@@ -23,6 +23,36 @@ namespace Cinema_Ticketing_System.Elements.Screen
     /// </summary>
     public partial class Screen : UserControl
     {
+        //BIND THESE
+        //ExsistingTickets
+        //PendingTickets
+
+        private static readonly DependencyProperty NumberOfColumnsProperty = DependencyProperty.Register("NumberOfColumns", typeof(int), typeof(Screen), new PropertyMetadata(0));
+        public int NumberOfColumns
+        {
+            set
+            {
+                SetValue(NumberOfColumnsProperty, value);
+            }
+            get
+            {
+                return (int)GetValue(NumberOfColumnsProperty);
+            }
+        }
+
+        private static readonly DependencyProperty NumberOfRowsProperty = DependencyProperty.Register("NumberOfRows", typeof(int), typeof(Screen), new PropertyMetadata(0));
+        public int NumberOfRows
+        {
+            set
+            {
+                SetValue(NumberOfRowsProperty, value);
+            }
+            get
+            {
+                return (int)GetValue(NumberOfRowsProperty);
+            }
+        }
+
         private static readonly DependencyProperty ExsistingTicketsProperty = DependencyProperty.Register("ExsistingTickets", typeof(ObservableCollection<Ticket>), typeof(Screen), new PropertyMetadata(null));
         public ObservableCollection<Ticket> ExsistingTickets
         {
@@ -56,11 +86,60 @@ namespace Cinema_Ticketing_System.Elements.Screen
             {
                 return _StagedTickets;
             }
+            private set
+            {
+                _StagedTickets = value;
+            }
         }
 
         public Screen()
         {
             InitializeComponent();
+        }
+
+        private void VisibilityChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (this.Visibility == Visibility.Visible)
+                CreateSeatingGrid();
+        }
+
+        private void CreateSeatingGrid()
+        {
+            SeatingGrid = new Grid();
+
+            //Add the column and row defs for the col row labels
+            SeatingGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+            SeatingGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+
+            //Add all the cols for the seats
+            for(int i = 0; i < NumberOfColumns; i++)
+            {
+                SeatingGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+
+            //Generate the seats
+            for (int y = 1; y < NumberOfRows; y++)
+            {
+                //Add the row label
+                Label rowLabel = new Label();
+                rowLabel.Content = y;
+                rowLabel.SetValue(Grid.ColumnProperty, 0);
+                rowLabel.SetValue(Grid.RowProperty, y);
+                SeatingGrid.Children.Add(rowLabel);
+
+                //Add the row def for this row of seats
+                SeatingGrid.RowDefinitions.Add(new RowDefinition());
+
+                for (int x = 1; x < NumberOfColumns; x++)
+                {
+                    //Add the column label
+                    Label colLabel = new Label();
+                    colLabel.Content = x;
+                    colLabel.SetValue(Grid.ColumnProperty, x);
+                    colLabel.SetValue(Grid.RowProperty, 0);
+                    SeatingGrid.Children.Add(colLabel);
+                }
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cinema_Ticketing_System.ViewModels.Screen;
 
 namespace Cinema_Ticketing_System
 {

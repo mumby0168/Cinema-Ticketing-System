@@ -65,6 +65,12 @@
     <Compile Include="Migrations\201805100900249_AddedScreeningLinkToTicketModel.Designer.cs">
       <DependentUpon>201805100900249_AddedScreeningLinkToTicketModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805101047477_AddedSeatNumberToTicketModel.cs" />
+    <Compile Include="Migrations\201805101047477_AddedSeatNumberToTicketModel.Designer.cs">
+      <DependentUpon>201805101047477_AddedSeatNumberToTicketModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\InitialTicketBookingFormViewModel.cs" />
     <Compile Include="ViewModels\Screen\ScreenViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Page Include="Elements\Screen\Screen.xaml">
@@ -75,7 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="RobMainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -91,8 +97,8 @@
     <Compile Include="Elements\Screen\Seat.xaml.cs">
       <DependentUpon>Seat.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="RobMainWindow.xaml.cs">
+      <DependentUpon>RobMainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -124,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805100900249_AddedScreeningLinkToTicketModel.resx">
       <DependentUpon>201805100900249_AddedScreeningLinkToTicketModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101047477_AddedSeatNumberToTicketModel.resx">
+      <DependentUpon>201805101047477_AddedSeatNumberToTicketModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

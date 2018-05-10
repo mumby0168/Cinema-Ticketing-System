@@ -31,7 +31,7 @@ namespace Cinema_Ticketing_System.Database
                 PopulateScreens();
             }
 
-            if (m_DatabaseContext.Screenings.Where(S => S.DateAndTime.Date == DateTime.Today).ToList().Count == 0)
+            if (m_DatabaseContext.Screenings.Where(S => S.DateAndTime.Day == DateTime.Today.Day && S.DateAndTime.Month == DateTime.Today.Month && S.DateAndTime.Year == DateTime.Today.Year).ToList().Count == 0)
             {
                 PopulateTodaysScreenings();
             }

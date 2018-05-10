@@ -3,15 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Cinema_Ticketing_System.Elements.Screen"
-             xmlns:usercontrols="clr-namespace:Cinema_Ticketing_System.Elements.Screen"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="800" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+             d:DesignHeight="400" d:DesignWidth="800" IsVisibleChanged="VisibilityChanged"  DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition />
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -20,13 +18,31 @@
         </Grid.RowDefinitions>
 
         <ListView Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" ItemsSource="{Binding Path=PendingTickets}">
-            
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Ticket Type" DisplayMemberBinding="{Binding Path=TicketType}"/>
+                    <GridViewColumn Header="Screen Number" DisplayMemberBinding="{Binding Path=Screening.Screen.ScreenNumber}"/>
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.Date}"/>
+                    <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.Time}"/>
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Path=Price}"/>
+                </GridView>
+            </ListView.View>
         </ListView>
+        
         <ListView Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding Path=StagedTickets}">
-
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Ticket Type" DisplayMemberBinding="{Binding Path=TicketType}"/>
+                    <GridViewColumn Header="Screen Number" DisplayMemberBinding="{Binding Path=Screening.Screen.ScreenNumber}"/>
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.Date}"/>
+                    <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.Time}"/>
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Path=Price}"/>
+                    <GridViewColumn Header="Seat Number" DisplayMemberBinding="{Binding Path=SeatNumber}"/>
+                </GridView>
+            </ListView.View>
         </ListView>
 
-        <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="3">
+        <Grid Name="SeatingGrid" Grid.Column="3" Grid.Row="0" Grid.RowSpan="3">
         </Grid>
         
         <Button Grid.Column="0" Grid.Row="2">Save</Button>
