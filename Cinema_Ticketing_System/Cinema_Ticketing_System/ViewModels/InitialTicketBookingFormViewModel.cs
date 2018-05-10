@@ -111,6 +111,7 @@ namespace Cinema_Ticketing_System.ViewModels
             set
             {
                 _selectedFilmTime = value;
+                TimeSelected();
                 OnPropertyChanged();
             }
         }
@@ -124,6 +125,17 @@ namespace Cinema_Ticketing_System.ViewModels
             {
                 _selectedFilm = value;
                 SetFilmTimes();
+                OnPropertyChanged();
+            }
+        }
+
+        private Screening _selectedScreening;
+        public Screening SelectedScreening
+        {
+            get => _selectedScreening;
+            set
+            {
+                _selectedScreening = value;
                 OnPropertyChanged();
             }
         }
@@ -178,7 +190,21 @@ namespace Cinema_Ticketing_System.ViewModels
             }
 
             FilmTimes = times;
+        }
 
+        public void TimeSelected()
+        {
+            var screening = _currentPossibleScreenings.FirstOrDefault(f =>
+                f.Film.Id == _selectedFilm.Id && f.DateAndTime.TimeOfDay == _selectedFilmTime.TimeOfDay);
+
+            if (screening != null)
+                SelectedScreening = screening;
+
+        }
+
+        public void SubmitForm()
+        {
+            
         }
 
 
