@@ -24,7 +24,6 @@ namespace Cinema_Ticketing_System.Elements.Screen
     public partial class Screen : UserControl
     {
         private static readonly DependencyProperty ExsistingTicketsProperty = DependencyProperty.Register("ExsistingTickets", typeof(ObservableCollection<Ticket>), typeof(Screen), new PropertyMetadata(null));
-
         public ObservableCollection<Ticket> ExsistingTickets
         {
             set
@@ -34,6 +33,28 @@ namespace Cinema_Ticketing_System.Elements.Screen
             get
             {
                 return (ObservableCollection<Ticket>)GetValue(ExsistingTicketsProperty);
+            }
+        }
+
+        private static readonly DependencyProperty PendingTicketsProperty = DependencyProperty.Register("PendingTickets", typeof(ObservableCollection<Ticket>), typeof(Screen), new PropertyMetadata(null));
+        public ObservableCollection<Ticket> PendingTickets
+        {
+            set
+            {
+                SetValue(ExsistingTicketsProperty, value);
+            }
+            get
+            {
+                return (ObservableCollection<Ticket>)GetValue(PendingTicketsProperty);
+            }
+        }
+
+        private ObservableCollection<Ticket> _StagedTickets = null;
+        public ObservableCollection<Ticket> StagedTickets
+        {
+            get
+            {
+                return _StagedTickets;
             }
         }
 
