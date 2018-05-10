@@ -68,11 +68,22 @@
     <Compile Include="Migrations\201805100900249_AddedScreeningLinkToTicketModel.Designer.cs">
       <DependentUpon>201805100900249_AddedScreeningLinkToTicketModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805101047477_AddedSeatNumberToTicketModel.cs" />
+    <Compile Include="Migrations\201805101047477_AddedSeatNumberToTicketModel.Designer.cs">
+      <DependentUpon>201805101047477_AddedSeatNumberToTicketModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201805101223598_Hmmm.cs" />
     <Compile Include="Migrations\201805101223598_Hmmm.Designer.cs">
       <DependentUpon>201805101223598_Hmmm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805101230000_WillThisBreakIt.cs" />
+    <Compile Include="Migrations\201805101230000_WillThisBreakIt.Designer.cs">
+      <DependentUpon>201805101230000_WillThisBreakIt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\InitialTicketBookingFormViewModel.cs" />
     <Compile Include="ViewModels\Screen\ScreenViewModel.cs" />
@@ -92,10 +103,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -108,10 +115,10 @@
     <Compile Include="Elements\Screen\Seat.xaml.cs">
       <DependentUpon>Seat.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\InitalTicketBookingForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -146,8 +153,14 @@
     <EmbeddedResource Include="Migrations\201805100900249_AddedScreeningLinkToTicketModel.resx">
       <DependentUpon>201805100900249_AddedScreeningLinkToTicketModel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101047477_AddedSeatNumberToTicketModel.resx">
+      <DependentUpon>201805101047477_AddedSeatNumberToTicketModel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805101223598_Hmmm.resx">
       <DependentUpon>201805101223598_Hmmm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101230000_WillThisBreakIt.resx">
+      <DependentUpon>201805101230000_WillThisBreakIt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

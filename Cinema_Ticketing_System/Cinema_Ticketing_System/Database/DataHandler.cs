@@ -117,5 +117,9 @@ namespace Cinema_Ticketing_System.Database
 
             return screenings.Where(e => e.DateAndTime.Date == datetoGetwith.Date).ToList();
         }
+        public List<Ticket> GetTicketsWithScreenByScreeningID(int iScreeningID)
+        {
+            return m_DatabaseContext.Tickets.Include(T => T.Screening).Where(T => T.ScreeningId == iScreeningID).ToList();
+        }
     }
 }
