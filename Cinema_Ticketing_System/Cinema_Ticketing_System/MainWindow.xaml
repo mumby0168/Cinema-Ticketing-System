@@ -5,11 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cinema_Ticketing_System"
         xmlns:vms="clr-namespace:Cinema_Ticketing_System.ViewModels"
+        xmlns:vs="clr-namespace:Cinema_Ticketing_System.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
         <vms:ShellViewModel></vms:ShellViewModel>
     </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vms:InitialTicketBookingFormViewModel}">
+            <vs:InitalTicketBookingForm></vs:InitalTicketBookingForm>
+        </DataTemplate>
+    </Window.Resources>
 
     <DockPanel>
         <Label Content="Cinema Ticketing System" DockPanel.Dock="Top" HorizontalAlignment="Center"></Label>

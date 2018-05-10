@@ -19,5 +19,10 @@ namespace Cinema_Ticketing_System.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public ShellViewModel()
+        {
+            ViewModel = new InitialTicketBookingFormViewModel();
+        }
     }
 }

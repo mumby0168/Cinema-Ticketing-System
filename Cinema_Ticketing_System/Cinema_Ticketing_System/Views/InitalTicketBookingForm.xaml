@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Cinema_Ticketing_System.Views"
              xmlns:vms="clr-namespace:Cinema_Ticketing_System.ViewModels"
+             xmlns:cont="clr-namespace:Cinema_Ticketing_System.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -40,30 +41,47 @@
 
 
         <!--TicketForm-->
-        <WrapPanel Grid.Row="1" Margin="10" Grid.Column="0" Orientation="Vertical">
+        <WrapPanel HorizontalAlignment="Center" Grid.Row="1" Margin="10" Grid.Column="0" Orientation="Vertical">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Left" Margin="0,0,10,0" VerticalAlignment="Center" Text="Date:"></TextBlock>
-                <DatePicker DockPanel.Dock="Right"></DatePicker>
+                <DatePicker SelectedDate="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"></DatePicker>
             </DockPanel>
             <DockPanel>
-                <TextBlock DockPanel.Dock="Left" Text="Film and Time:" Margin="0,0,10,0"></TextBlock>
-                <ItemsControl>
-                    <ItemsControl.ItemTemplate>
+                <TextBlock DockPanel.Dock="Left" Text="Film:" Margin="0,0,10,0"></TextBlock>
+                <ComboBox SelectedItem="{Binding Path=SelectedFilm}" ItemsSource="{Binding Path=Films, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <WrapPanel>
-                                <TextBlock Text="{Binding}"></TextBlock>
-                                <ItemsControl Visibility="{Binding}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding}"></TextBlock>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </WrapPanel>
+                            <ComboBoxItem Content="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </DockPanel>
+            <DockPanel>
+
+                <TextBlock DockPanel.Dock="Left" Text="Time:" Margin="0,0,10,0"></TextBlock>
+                <ComboBox SelectedItem="{Binding Path=FilmTimeSelected}" ItemsSource="{Binding Path=FilmTimes, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <ComboBoxItem Content="{Binding TimeOfDay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </DockPanel>
+
+            <WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Adults"></TextBlock>
+                    <cont:UpDownPicker Value="{Binding Path=AdultTickets, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"></cont:UpDownPicker>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Childs"></TextBlock>
+                    <cont:UpDownPicker Value="{Binding Path=ChildTickets, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"></cont:UpDownPicker>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Concessions"></TextBlock>
+                    <cont:UpDownPicker Value="{Binding Path=ConcessionTickets, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"></cont:UpDownPicker>
+                </WrapPanel>
+            </WrapPanel>
 
 
         </WrapPanel>
