@@ -4,32 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cinema_Ticketing_System"
-        xmlns:vms="clr-namespace:Cinema_Ticketing_System.ViewModels"
-        xmlns:vs="clr-namespace:Cinema_Ticketing_System.Views"
+        xmlns:vms="clr-namespace:Cinema_Ticketing_System.ViewModels.Screen"
+        xmlns:vs="clr-namespace:Cinema_Ticketing_System.Elements.Screen"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
-        <vms:ShellViewModel></vms:ShellViewModel>
+        <vms:ScreenViewModel />
     </Window.DataContext>
 
-    <Window.Resources>
-        <DataTemplate DataType="{x:Type vms:InitialTicketBookingFormViewModel}">
-            <vs:InitalTicketBookingForm></vs:InitalTicketBookingForm>
-        </DataTemplate>
-    </Window.Resources>
-
-    <DockPanel>
-        <Label Content="Cinema Ticketing System" DockPanel.Dock="Top" HorizontalAlignment="Center"></Label>
-
-        <StackPanel MinWidth="75" DockPanel.Dock="Left">
-            <Button>Home</Button>
-            <Button>Link</Button>
-        </StackPanel>
-
-
-        <ContentPresenter Content="{Binding Path=ViewModel, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right">
-           
-        </ContentPresenter>
-
-    </DockPanel>
+    <Grid>
+        <vs:Screen Visibility="{Binding Path=ScreenVisibility, UpdateSourceTrigger=PropertyChanged}" NumberOfColumns="{Binding Path=NumberOfColumns, UpdateSourceTrigger=PropertyChanged}" NumberOfRows="{Binding Path=NumberOfRows, UpdateSourceTrigger=PropertyChanged}"  ExsistingTickets="{Binding Path=ExsistingTickets, UpdateSourceTrigger=PropertyChanged}" PendingTickets="{Binding Path=PendingTickets, UpdateSourceTrigger=PropertyChanged}" />
+    </Grid>
 </Window>

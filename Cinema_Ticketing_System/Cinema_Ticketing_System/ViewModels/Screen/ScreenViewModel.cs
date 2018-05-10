@@ -12,11 +12,8 @@ namespace Cinema_Ticketing_System.ViewModels.Screen
 {
     public class ScreenViewModel : BaseViewModel
     {
-        public ScreenViewModel()
+        public ScreenViewModel(Action<int, List<Ticket>, Visibility> action)
         {
-            NumberOfColumns = 10;
-            NumberOfRows = 10;
-            ScreeningId = 1;
             if(ScreenVisibility == Visibility.Visible)
             {
                 LoadDataFromDB();
@@ -65,7 +62,7 @@ namespace Cinema_Ticketing_System.ViewModels.Screen
             }
         }
 
-        private Visibility _ScreenVisibility = Visibility.Visible;
+        private Visibility _ScreenVisibility = Visibility.Collapsed;
         public Visibility ScreenVisibility
         {
             get
@@ -85,6 +82,9 @@ namespace Cinema_Ticketing_System.ViewModels.Screen
             using (DataHandler handle = new DataHandler())
             {
                 ExsistingTickets = handle.GetTicketsWithScreenByScreeningID(ScreeningId);
+                var screening = handle.GetSecreeningWithScreenByScreeningId(ScreeningId);
+                NumberOfColumns = screening.Screen.Columns;
+                NumberOfRows = screening.Screen.Rows;
             }
         }
 

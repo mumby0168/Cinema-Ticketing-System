@@ -27,7 +27,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
         //ExsistingTickets
         //PendingTickets
 
-        private static readonly DependencyProperty NumberOfColumnsProperty = DependencyProperty.Register("NumberOfColumns", typeof(int), typeof(Screen), new PropertyMetadata(0));
+        public static readonly DependencyProperty NumberOfColumnsProperty = DependencyProperty.Register("NumberOfColumns", typeof(int), typeof(Screen), new PropertyMetadata(0));
         public int NumberOfColumns
         {
             set
@@ -40,7 +40,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
             }
         }
 
-        private static readonly DependencyProperty NumberOfRowsProperty = DependencyProperty.Register("NumberOfRows", typeof(int), typeof(Screen), new PropertyMetadata(0));
+        public static readonly DependencyProperty NumberOfRowsProperty = DependencyProperty.Register("NumberOfRows", typeof(int), typeof(Screen), new PropertyMetadata(0));
         public int NumberOfRows
         {
             set
@@ -53,7 +53,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
             }
         }
 
-        private static readonly DependencyProperty ExsistingTicketsProperty = DependencyProperty.Register("ExsistingTickets", typeof(ObservableCollection<Ticket>), typeof(Screen), new PropertyMetadata(null));
+        public static readonly DependencyProperty ExsistingTicketsProperty = DependencyProperty.Register("ExsistingTickets", typeof(ObservableCollection<Ticket>), typeof(Screen), new PropertyMetadata(null));
         public ObservableCollection<Ticket> ExsistingTickets
         {
             set
@@ -66,7 +66,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
             }
         }
 
-        private static readonly DependencyProperty PendingTicketsProperty = DependencyProperty.Register("PendingTickets", typeof(ObservableCollection<Ticket>), typeof(Screen), new PropertyMetadata(null));
+        public static readonly DependencyProperty PendingTicketsProperty = DependencyProperty.Register("PendingTickets", typeof(ObservableCollection<Ticket>), typeof(Screen), new PropertyMetadata(null));
         public ObservableCollection<Ticket> PendingTickets
         {
             set
@@ -105,8 +105,6 @@ namespace Cinema_Ticketing_System.Elements.Screen
 
         private void CreateSeatingGrid()
         {
-            SeatingGrid = new Grid();
-
             //Add the column and row defs for the col row labels
             SeatingGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
             SeatingGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
@@ -118,7 +116,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
             }
 
             //Generate the seats
-            for (int y = 1; y < NumberOfRows; y++)
+            for (int y = 1; y < NumberOfRows + 1; y++)
             {
                 //Add the row label
                 Label rowLabel = new Label();
@@ -130,7 +128,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
                 //Add the row def for this row of seats
                 SeatingGrid.RowDefinitions.Add(new RowDefinition());
 
-                for (int x = 1; x < NumberOfColumns; x++)
+                for (int x = 1; x < NumberOfColumns + 1; x++)
                 {
                     //Add the column label
                     Label colLabel = new Label();
@@ -138,6 +136,12 @@ namespace Cinema_Ticketing_System.Elements.Screen
                     colLabel.SetValue(Grid.ColumnProperty, x);
                     colLabel.SetValue(Grid.RowProperty, 0);
                     SeatingGrid.Children.Add(colLabel);
+
+                    //Create seat
+                    Seat seat = new Seat();
+                    seat.SetValue(Grid.ColumnProperty, x);
+                    seat.SetValue(Grid.RowProperty, y);
+                    SeatingGrid.Children.Add(seat);
                 }
             }
         }
