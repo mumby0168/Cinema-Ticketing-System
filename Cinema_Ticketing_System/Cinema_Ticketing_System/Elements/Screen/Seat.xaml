@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Cinema_Ticketing_System.Elements.Screen"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="200">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="20" d:DesignWidth="20" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Border BorderBrush="White" BorderThickness="1px" Background="{Binding Path=Colour, UpdateSourceTrigger=PropertyChanged }" IsMouseDirectlyOverChanged="IsMouseDirectlyOverChanged" MouseDown="MouseDown">
+        <Image Visibility="{Binding Path=PersonVisibility, UpdateSourceTrigger=PropertyChanged }" IsHitTestVisible="False" Source="pack://application:,,,/Resources/PersonIcon.png"/>
+    </Border>
 </UserControl>
