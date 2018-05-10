@@ -108,7 +108,7 @@
                 </StackPanel>
             </Grid>
 
-            <Button Margin="10" Content="Submit" Grid.Row="4"></Button>
+            <Button Command="{Binding Path=OpenSeatPicker}" Margin="10" Content="Submit" Grid.Row="4"></Button>
 
 
         </Grid>

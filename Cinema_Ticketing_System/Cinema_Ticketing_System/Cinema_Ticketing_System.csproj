@@ -85,6 +85,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Commands\ClickCommand.cs" />
     <Compile Include="ViewModels\InitialTicketBookingFormViewModel.cs" />
     <Compile Include="ViewModels\Screen\ScreenViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />

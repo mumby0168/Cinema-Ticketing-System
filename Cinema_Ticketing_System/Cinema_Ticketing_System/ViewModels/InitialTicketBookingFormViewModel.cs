@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Navigation;
 using Cinema_Ticketing_System.Database;
 using Cinema_Ticketing_System.Models;
+using Cinema_Ticketing_System.ViewModels.Commands;
 
 namespace Cinema_Ticketing_System.ViewModels
 {
@@ -202,15 +203,38 @@ namespace Cinema_Ticketing_System.ViewModels
 
         }
 
+        public ClickCommand OpenSeatPicker { get; set; }
+
         public void SubmitForm()
         {
-            
+            List<Ticket> tickets = new List<Ticket>();
+
+            for (int i = 0; i < _childTickets; i++)
+            {
+                tickets.Add(new Ticket(){ScreeningId = _selectedScreening.Id, TicketType = TicketType.Child, Price = 20.0});
+            }
+
+            for (int i = 0; i < _adultTickets; i++)
+            {
+                tickets.Add(new Ticket() { ScreeningId = _selectedScreening.Id, TicketType = TicketType.Adult, Price = 30.0 });
+            }
+
+            for (int i = 0; i < _concessionTickets; i++)
+            {
+                tickets.Add(new Ticket() { ScreeningId = _selectedScreening.Id, TicketType = TicketType.Concession
+                    , Price = 15.0 });
+            }
+
+            Passer(_selectedScreening.Id, tickets, Visibility.Visible);
         }
 
+        private Action<int, List<Ticket>, Visibility> Passer;
 
-        public InitialTicketBookingFormViewModel()
-        {        
+        public InitialTicketBookingFormViewModel(Action<int, List<Ticket>, Visibility> passer)
+        {
+            Passer = passer;
             SelectedDateTime = DateTime.Now;
+            OpenSeatPicker = new ClickCommand(SubmitForm);
         }
     }
 }
