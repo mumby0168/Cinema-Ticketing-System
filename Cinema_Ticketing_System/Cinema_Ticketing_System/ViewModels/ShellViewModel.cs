@@ -39,8 +39,16 @@ namespace Cinema_Ticketing_System.ViewModels
                     screenViewModel.ScreeningId = screeningId;
                     screenViewModel.PendingTickets = tickets;
                     screenViewModel.ScreenVisibility = visibilty;
+                    ChangeContextToScreen();
                 });
 
+            ViewModel = InitialTicketBookingFormViewModel;
+
+        }
+
+        public void ChangeContextToScreen()
+        {
+            ViewModel = screenViewModel;
         }
     }
 }

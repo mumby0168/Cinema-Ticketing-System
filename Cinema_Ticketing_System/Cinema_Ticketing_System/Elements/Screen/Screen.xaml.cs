@@ -97,12 +97,6 @@ namespace Cinema_Ticketing_System.Elements.Screen
             InitializeComponent();
         }
 
-        private void VisibilityChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (this.Visibility == Visibility.Visible)
-                CreateSeatingGrid();
-        }
-
         private void CreateSeatingGrid()
         {
             //Add the column and row defs for the col row labels
@@ -144,6 +138,11 @@ namespace Cinema_Ticketing_System.Elements.Screen
                     SeatingGrid.Children.Add(seat);
                 }
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            CreateSeatingGrid();
         }
     }
 }

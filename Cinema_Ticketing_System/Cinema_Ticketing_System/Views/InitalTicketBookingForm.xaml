@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Cinema_Ticketing_System.Views"
              xmlns:vms="clr-namespace:Cinema_Ticketing_System.ViewModels"
+             xmlns:elements="clr-namespace:Cinema_Ticketing_System.Elements.Screen"
              xmlns:cont="clr-namespace:Cinema_Ticketing_System.Controls"
+             xmlns:screensvms="clr-namespace:Cinema_Ticketing_System.ViewModels.Screen"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -19,9 +21,10 @@
 
     <UserControl.Resources>
         <DataTemplate x:Key="FilmSelector">
-            
+
         </DataTemplate>
     </UserControl.Resources>
+
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -32,6 +35,8 @@
             <RowDefinition MaxHeight="50"/>
             <RowDefinition MaxHeight="300"/>
         </Grid.RowDefinitions>
+
+
 
 
         <Label Content="Book a Ticket" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0"></Label>

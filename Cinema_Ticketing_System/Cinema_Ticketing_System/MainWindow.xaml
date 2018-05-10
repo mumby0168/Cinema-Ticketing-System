@@ -4,15 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cinema_Ticketing_System"
-        xmlns:vms="clr-namespace:Cinema_Ticketing_System.ViewModels.Screen"
-        xmlns:vs="clr-namespace:Cinema_Ticketing_System.Elements.Screen"
-        mc:Ignorable="d"
+        xmlns:vms="clr-namespace:Cinema_Ticketing_System.ViewModels"
+        xmlns:vs="clr-namespace:Cinema_Ticketing_System.Views"
+        xmlns:shiity="clr-namespace:Cinema_Ticketing_System.ViewModels.Screen"
+        xmlns:shittier="clr-namespace:Cinema_Ticketing_System.Elements.Screen"
+    mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Window.DataContext>
-        <vms:ScreenViewModel />
+        <vms:ShellViewModel></vms:ShellViewModel>
     </Window.DataContext>
 
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vms:InitialTicketBookingFormViewModel}">
+            <vs:InitalTicketBookingForm></vs:InitalTicketBookingForm>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type shiity:ScreenViewModel}">
+            <shittier:Screen NumberOfColumns="{Binding Path=NumberOfColumns, UpdateSourceTrigger=PropertyChanged}" NumberOfRows="{Binding Path=NumberOfRows, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding Path=ScreenVisibility, UpdateSourceTrigger=PropertyChanged}" ExsistingTickets="{Binding Path=ExsistingTickets, UpdateSourceTrigger=PropertyChanged}" PendingTickets="{Binding Path=PendingTickets, UpdateSourceTrigger=PropertyChanged}"></shittier:Screen>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
-        <vs:Screen Visibility="{Binding Path=ScreenVisibility, UpdateSourceTrigger=PropertyChanged}" NumberOfColumns="{Binding Path=NumberOfColumns, UpdateSourceTrigger=PropertyChanged}" NumberOfRows="{Binding Path=NumberOfRows, UpdateSourceTrigger=PropertyChanged}"  ExsistingTickets="{Binding Path=ExsistingTickets, UpdateSourceTrigger=PropertyChanged}" PendingTickets="{Binding Path=PendingTickets, UpdateSourceTrigger=PropertyChanged}" />
+        <ContentPresenter Content="{Binding Path=ViewModel, UpdateSourceTrigger=PropertyChanged}"></ContentPresenter>
     </Grid>
 </Window>
