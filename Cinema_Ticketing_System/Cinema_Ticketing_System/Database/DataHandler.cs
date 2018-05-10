@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cinema_Ticketing_System.Models;
+using System.Data.Entity;
 
 namespace Cinema_Ticketing_System.Database
 {
@@ -95,6 +96,11 @@ namespace Cinema_Ticketing_System.Database
             screening.FilmId = 4;
             screening.DateAndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 18, 0, 0);
             m_DatabaseContext.Screenings.Add(screening);
+        }
+
+        public List<Ticket> GetTicketsWithScreenByScreeningID(int iScreeningID)
+        {
+            return m_DatabaseContext.Tickets.Include(T => T.Screening).Where(T => T.ScreeningId == iScreeningID).ToList();
         }
     }
 }

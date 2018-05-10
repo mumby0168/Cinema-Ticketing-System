@@ -10,9 +10,6 @@ namespace Cinema_Ticketing_System.ViewModels.Screen
     {
         public ScreenViewModel()
         {
-            using (var handle = new Cinema_Ticketing_System.Database.DataHandler())
-            {
-            }
         }
     }
 }

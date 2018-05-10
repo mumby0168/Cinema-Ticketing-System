@@ -20,5 +20,9 @@ namespace Cinema_Ticketing_System.Models
         public TicketType TicketType { get; set; }
 
         public double Price { get; set; }
+
+        public int ScreeningId { get; set; }
+
+        public Screening Screening { get; set; }
     }
 }
