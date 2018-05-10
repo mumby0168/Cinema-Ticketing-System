@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace Cinema_Ticketing_System.ViewModels
 {
-    class ShellViewModel
+    public class ShellViewModel : BaseViewModel
     {
+        private object _viewModel;
+
+        public object ViewModel
+        {
+            get => _viewModel;
+            set
+            {
+                _viewModel = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
