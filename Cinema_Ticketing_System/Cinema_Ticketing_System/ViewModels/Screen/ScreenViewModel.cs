@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace Cinema_Ticketing_System.ViewModels.Screen
 {
-    class ScreenViewModel : IDisposable
+    class ScreenViewModel
     {
-        private DatabaseContext m_Context = new DatabaseContext();
-        void IDisposable.Dispose()
-        {
-            DatabaseContext.Dispose();
-        }
-
+       
         public ScreenViewModel()
         {
 

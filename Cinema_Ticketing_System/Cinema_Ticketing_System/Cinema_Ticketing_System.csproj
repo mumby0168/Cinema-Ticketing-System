@@ -61,6 +61,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Elements\Screen\Screen.xaml.cs">
+      <DependentUpon>Screen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\Screen\Seat.xaml.cs">
+      <DependentUpon>Seat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Screen\ScreenViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Page Include="Elements\Screen\Screen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Elements\Screen\Seat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
