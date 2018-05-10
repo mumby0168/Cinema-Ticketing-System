@@ -9,9 +9,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <UserControl.DataContext>
+    <!--<UserControl.DataContext>
         <vms:InitialTicketBookingFormViewModel></vms:InitialTicketBookingFormViewModel>
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
 
     <UserControl.Background>
         <SolidColorBrush Color="LightBlue" Opacity="0.3"></SolidColorBrush>
@@ -30,7 +30,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="50"/>
-            <RowDefinition/>
+            <RowDefinition MaxHeight="300"/>
         </Grid.RowDefinitions>
 
 
@@ -41,52 +41,128 @@
 
 
         <!--TicketForm-->
-        <WrapPanel HorizontalAlignment="Center" Grid.Row="1" Margin="10" Grid.Column="0" Orientation="Vertical">
-            <DockPanel>
-                <TextBlock DockPanel.Dock="Left" Margin="0,0,10,0" VerticalAlignment="Center" Text="Date:"></TextBlock>
-                <DatePicker SelectedDate="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"></DatePicker>
-            </DockPanel>
-            <DockPanel>
-                <TextBlock DockPanel.Dock="Left" Text="Film:" Margin="0,0,10,0"></TextBlock>
-                <ComboBox SelectedItem="{Binding Path=SelectedFilm}" ItemsSource="{Binding Path=Films, UpdateSourceTrigger=PropertyChanged}">
+        <Grid Grid.Row="1" Margin="10" Grid.Column="0" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="TextBlock"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Width="{Binding ElementName=timelabel, Path=ActualWidth}" Grid.Column="0" DockPanel.Dock="Left" Margin="0,0,10,0" VerticalAlignment="Center" Text="Date:"></TextBlock>
+                <DatePicker MinWidth="100" MaxWidth="350" Name="datepicker" Grid.Column="1" SelectedDate="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"></DatePicker>
+            </Grid>
+
+            <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="TextBlock"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Width="{Binding ElementName=timelabel, Path=ActualWidth}" Grid.Column="0" DockPanel.Dock="Left" Text="Film:" Margin="0,0,10,0"></TextBlock>
+                <ComboBox Width="{Binding ElementName=datepicker, Path=ActualWidth}" Height="{Binding ElementName=datepicker, Path=ActualHeight}" Grid.Column="1" SelectedItem="{Binding Path=SelectedFilm}" ItemsSource="{Binding Path=Films, UpdateSourceTrigger=PropertyChanged}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <ComboBoxItem Content="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-            </DockPanel>
-            <DockPanel>
-
-                <TextBlock DockPanel.Dock="Left" Text="Time:" Margin="0,0,10,0"></TextBlock>
-                <ComboBox SelectedItem="{Binding Path=FilmTimeSelected}" ItemsSource="{Binding Path=FilmTimes, UpdateSourceTrigger=PropertyChanged}">
+            </Grid>
+            <Grid Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="TextBlock"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="timelabel" Grid.Column="0" DockPanel.Dock="Left" Text="Time:" Margin="0,0,10,0"></TextBlock>
+                <ComboBox Width="{Binding ElementName=datepicker, Path=ActualWidth}" Grid.Column="1" Height="{Binding ElementName=datepicker, Path=ActualHeight}" SelectedItem="{Binding Path=FilmTimeSelected}" ItemsSource="{Binding Path=FilmTimes, UpdateSourceTrigger=PropertyChanged}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <ComboBoxItem Content="{Binding TimeOfDay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-            </DockPanel>
+            </Grid>
 
-            <WrapPanel>
-                <WrapPanel>
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="2" Grid.Column="0">
                     <TextBlock Text="Adults"></TextBlock>
                     <cont:UpDownPicker Value="{Binding Path=AdultTickets, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"></cont:UpDownPicker>
-                </WrapPanel>
-                <WrapPanel>
+                </StackPanel>
+                <StackPanel Margin="2" Grid.Column="1">
                     <TextBlock Text="Childs"></TextBlock>
                     <cont:UpDownPicker Value="{Binding Path=ChildTickets, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"></cont:UpDownPicker>
-                </WrapPanel>
-                <WrapPanel>
+                </StackPanel>
+                <StackPanel Margin="2" Grid.Column="2">
                     <TextBlock Text="Concessions"></TextBlock>
                     <cont:UpDownPicker Value="{Binding Path=ConcessionTickets, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"></cont:UpDownPicker>
+                </StackPanel>
+            </Grid>
+
+            <Button Margin="10" Content="Submit" Grid.Row="4"></Button>
+
+
+        </Grid>
+
+        <!--TicketDisplay-->
+
+        <Grid HorizontalAlignment="Center" Margin="10" Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <WrapPanel Grid.Row="0">
+                <Label Content="Date:"></Label>
+                <Label Content="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}"></Label>
+            </WrapPanel>
+            <WrapPanel Grid.Row="1">
+                <Label Content="Film"></Label>
+                <Label Content="{Binding Path=SelectedFilm.Name, UpdateSourceTrigger=PropertyChanged}"></Label>
+            </WrapPanel>
+            <WrapPanel Grid.Row="2">
+                <Label Content="Screen:"></Label>
+                <Label Content="{Binding Path=SelectedScreening.Screen.Number, UpdateSourceTrigger=PropertyChanged}"></Label>
+            </WrapPanel>
+            <WrapPanel Grid.Row="3">
+                <Label Content="Genre:"></Label>
+                <Label Content="{Binding Path=SelectedScreening.Film.Genre, UpdateSourceTrigger=PropertyChanged}"></Label>
+            </WrapPanel>
+            <WrapPanel Grid.Row="4">
+                <Label Content="Time:"></Label>
+                <Label Content="{Binding Path=SelectedScreening.DateAndTime.TimeOfDay, UpdateSourceTrigger=PropertyChanged}"></Label>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Vertical" Grid.Row="5">
+                <TextBlock Text="Tickets"></TextBlock>
+                <WrapPanel>
+                    <TextBlock Text="Childs:   "></TextBlock>
+                    <TextBlock Text="{Binding Path=ChildTickets, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Adults:   "></TextBlock>
+                    <TextBlock Text="{Binding Path=AdultTickets, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Concessions:   "></TextBlock>
+                    <TextBlock Text="{Binding Path=ConcessionTickets, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 </WrapPanel>
             </WrapPanel>
 
-
-        </WrapPanel>
-
-        <!--TicketDisplay-->
+        </Grid>
         
 
     </Grid>
