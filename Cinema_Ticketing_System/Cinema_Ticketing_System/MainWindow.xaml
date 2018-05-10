@@ -10,7 +10,19 @@
     <Window.DataContext>
         <vms:ShellViewModel></vms:ShellViewModel>
     </Window.DataContext>
-    <Grid>
-        
-    </Grid>
+
+    <DockPanel>
+        <Label Content="Cinema Ticketing System" DockPanel.Dock="Top" HorizontalAlignment="Center"></Label>
+
+        <StackPanel MinWidth="75" DockPanel.Dock="Left">
+            <Button>Home</Button>
+            <Button>Link</Button>
+        </StackPanel>
+
+
+        <ContentPresenter Content="{Binding Path=ViewModel, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right">
+           
+        </ContentPresenter>
+
+    </DockPanel>
 </Window>

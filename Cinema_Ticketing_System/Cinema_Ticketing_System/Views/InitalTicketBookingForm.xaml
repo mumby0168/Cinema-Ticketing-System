@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Cinema_Ticketing_System.Views.InitalTicketBookingForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cinema_Ticketing_System.Views"
+             xmlns:vms="clr-namespace:Cinema_Ticketing_System.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <vms:InitialTicketBookingFormViewModel></vms:InitialTicketBookingFormViewModel>
+    </UserControl.DataContext>
+
+    <UserControl.Background>
+        <SolidColorBrush Color="LightBlue" Opacity="0.3"></SolidColorBrush>
+    </UserControl.Background>
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="FilmSelector">
+            
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <!--TicketForm-->
+        <WrapPanel Margin="10" Grid.Column="0" Orientation="Vertical">
+            <WrapPanel>
+                <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" Text="Date:"></TextBlock>
+                <DatePicker></DatePicker>
+            </WrapPanel>
+            
+
+
+        </WrapPanel>
+
+        <!--TicketDisplay-->
+        
+
+    </Grid>
+</UserControl>
