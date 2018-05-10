@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cinema_Ticketing_System.Models;
 
-namespace Cinema_Ticketing_System
+namespace Cinema_Ticketing_System.Database
 {
     public class CinemaContext : DbContext
     {

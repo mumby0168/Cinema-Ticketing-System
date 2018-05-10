@@ -8,7 +8,6 @@ namespace Cinema_Ticketing_System.ViewModels.Screen
 {
     class ScreenViewModel
     {
-       
         public ScreenViewModel()
         {
 
