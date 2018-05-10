@@ -24,17 +24,46 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <Label Content="Book a Ticket" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0"></Label>
+
+        <Label Content="Ticket Details" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"></Label>
+
+
+
         <!--TicketForm-->
-        <WrapPanel Margin="10" Grid.Column="0" Orientation="Vertical">
-            <WrapPanel>
-                <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" Text="Date:"></TextBlock>
-                <DatePicker></DatePicker>
-            </WrapPanel>
-            
+        <WrapPanel Grid.Row="1" Margin="10" Grid.Column="0" Orientation="Vertical">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left" Margin="0,0,10,0" VerticalAlignment="Center" Text="Date:"></TextBlock>
+                <DatePicker DockPanel.Dock="Right"></DatePicker>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left" Text="Film and Time:" Margin="0,0,10,0"></TextBlock>
+                <ItemsControl>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <TextBlock Text="{Binding}"></TextBlock>
+                                <ItemsControl Visibility="{Binding}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}"></TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </DockPanel>
 
 
         </WrapPanel>
