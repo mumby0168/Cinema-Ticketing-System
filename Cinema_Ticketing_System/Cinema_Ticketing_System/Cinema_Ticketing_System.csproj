@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Charts\ChartCreator.cs" />
     <Compile Include="Controls\UpDownPicker.xaml.cs">
       <DependentUpon>UpDownPicker.xaml</DependentUpon>
     </Compile>
@@ -87,15 +88,16 @@
     <Compile Include="Migrations\201805101230000_WillThisBreakIt.Designer.cs">
       <DependentUpon>201805101230000_WillThisBreakIt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805110807256_AddedRowAndColNumberToTicketModel.cs" />
-    <Compile Include="Migrations\201805110807256_AddedRowAndColNumberToTicketModel.Designer.cs">
-      <DependentUpon>201805110807256_AddedRowAndColNumberToTicketModel.cs</DependentUpon>
+    <Compile Include="Migrations\201805110930474_hm.cs" />
+    <Compile Include="Migrations\201805110930474_hm.Designer.cs">
+      <DependentUpon>201805110930474_hm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ChartLandingPageViewModel.cs" />
     <Compile Include="ViewModels\Commands\ClickCommand.cs" />
     <Compile Include="ViewModels\InitialTicketBookingFormViewModel.cs" />
     <Compile Include="ViewModels\Screen\ScreenViewModel.cs" />
@@ -181,8 +183,8 @@
     <EmbeddedResource Include="Migrations\201805101230000_WillThisBreakIt.resx">
       <DependentUpon>201805101230000_WillThisBreakIt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805110807256_AddedRowAndColNumberToTicketModel.resx">
-      <DependentUpon>201805110807256_AddedRowAndColNumberToTicketModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805110930474_hm.resx">
+      <DependentUpon>201805110930474_hm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

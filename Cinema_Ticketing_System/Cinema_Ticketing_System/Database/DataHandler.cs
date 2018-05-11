@@ -124,7 +124,28 @@ namespace Cinema_Ticketing_System.Database
 
         public Screening GetSecreeningWithScreenByScreeningId(int iScreeningID)
         {
-            return m_DatabaseContext.Screenings.Include(S => S.Screen).Where(S => S.Id == iScreeningID).FirstOrDefault();
+            return m_DatabaseContext.Screenings.Include(S => S.Screen).FirstOrDefault(S => S.Id == iScreeningID);
+        }
+
+        public List<Ticket> GetTicketsFromScreening(int id)
+        {
+            var tickets = m_DatabaseContext.Tickets.Include(s => s.Screening).Where(t => t.ScreeningId == id).ToList();
+
+            if (tickets == null)
+            {
+                throw new Exception("No tickets found for that screening.");
+            }
+
+            return tickets;
+        }
+
+        public List<Screening> GetScreeningsOnDate(DateTime Date)
+        {
+            var screenings = m_DatabaseContext.Screenings.ToList();
+
+            List<Screening> sOnDate = screenings.Where(s => s.DateAndTime.Date == Date.Date).ToList();
+
+            return sOnDate;
         }
 
         public void AddTicket(Ticket t)

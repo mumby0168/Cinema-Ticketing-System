@@ -27,6 +27,7 @@ namespace Cinema_Ticketing_System.ViewModels
 
         private InitialTicketBookingFormViewModel InitialTicketBookingFormViewModel;
 
+        private ChartLandingPageViewModel chartLandingPageViewModel;
 
 
 
@@ -42,13 +43,25 @@ namespace Cinema_Ticketing_System.ViewModels
                     ChangeContextToScreen();
                 });
 
-            ViewModel = InitialTicketBookingFormViewModel;
+            chartLandingPageViewModel = new ChartLandingPageViewModel();
+
+            ViewModel = chartLandingPageViewModel;
 
         }
 
         public void ChangeContextToScreen()
         {
             ViewModel = screenViewModel;
+        }
+
+        public void BookTicketClicked()
+        {
+            ViewModel = InitialTicketBookingFormViewModel;
+        }
+
+        public void ViewCharts()
+        {
+            ViewModel = chartLandingPageViewModel;
         }
     }
 }

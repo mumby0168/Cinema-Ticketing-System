@@ -4,13 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Cinema_Ticketing_System.Views"
+             xmlns:vms="clr-namespace:Cinema_Ticketing_System.ViewModels"
              xmlns:oxy="http://oxyplot.org/wpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <vms:ChartLandingPageViewModel></vms:ChartLandingPageViewModel>
+    </UserControl.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
 
 
@@ -21,15 +27,42 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Margin="15" Grid.Column="0" Content="Chart 1"></Button>
-            <Button Margin="15" Grid.Column="1" Content="Chart 2"></Button>
+            <StackPanel Grid.Column="0" Margin="10">
+                <Button Command="{Binding Path=Chart1Clicked}" Margin="5" Grid.Column="0" Content="Chart 1"></Button>
+                <StackPanel Visibility="{Binding Path=Chart1DetailsVisibilty, UpdateSourceTrigger=PropertyChanged}">
+                    <DatePicker SelectedDate="{Binding Path=DateChosenChart1, UpdateSourceTrigger=PropertyChanged}" Margin="5"></DatePicker>
+                    <ComboBox Margin="5" ItemsSource="{Binding Path=Screenings, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <ComboBoxItem IsHitTestVisible="False" Content="{Binding DateAndTime.TimeOfDay}"></ComboBoxItem>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="10" Orientation="Vertical" Grid.Column="1">
+                <Button Command="{Binding Path=Chart2Clicked}" Margin="5" Grid.Column="1" Content="Chart 2"></Button>
+                <StackPanel Visibility="{Binding Path=Chart2DetailVisibility, UpdateSourceTrigger=PropertyChanged}" >
+                    <DatePicker SelectedDate="{Binding Path=DateChosenChart1, UpdateSourceTrigger=PropertyChanged}" Margin="5"></DatePicker>
+                    <ComboBox Margin="5" ItemsSource="{Binding Path=Screenings, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <ComboBoxItem IsHitTestVisible="False" Content="{Binding DateAndTime.TimeOfDay}"></ComboBoxItem>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+                
+            </StackPanel>
+            
+            
             <Button Margin="15" Grid.Column="2" Content="Chart 3"></Button>
             <Button Margin="15" Grid.Column="3" Content="Chart 4"></Button>
         </Grid>
 
 
-        <Grid>
-            
+        <Grid Grid.Row="1">
+            <oxy:PlotView Margin="10" Model="{Binding Path=Model, UpdateSourceTrigger=PropertyChanged}"></oxy:PlotView>
         </Grid>
         
 
