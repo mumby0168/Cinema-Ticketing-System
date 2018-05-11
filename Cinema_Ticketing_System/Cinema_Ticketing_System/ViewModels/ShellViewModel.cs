@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cinema_Ticketing_System.ViewModels.Commands;
 using Cinema_Ticketing_System.ViewModels.Screen;
+using Cinema_Ticketing_System.Views;
 
 namespace Cinema_Ticketing_System.ViewModels
 {
@@ -32,18 +33,24 @@ namespace Cinema_Ticketing_System.ViewModels
 
         private HomePageViewModel homePageView;
 
+        private ViewAScreenPage _ViewAScreen;
+
 
         public ClickCommand goToBook { get; private set; }
 
         public ClickCommand GoToCharts { get; private set; }
+
+        public ClickCommand GoToViewAScreen { get; private set; }
 
         public ShellViewModel()
         {            
 
             goToBook = new ClickCommand(BookTicketClicked);
             GoToCharts = new ClickCommand(ViewCharts);
+            GoToViewAScreen = new ClickCommand(ViewAScreen);
             screenViewModel = new ScreenViewModel();
             homePageView = new HomePageViewModel();
+            _ViewAScreen = new ViewAScreenPage();
 
             InitialTicketBookingFormViewModel = new InitialTicketBookingFormViewModel((screeningId, tickets) =>
                 {
@@ -71,6 +78,11 @@ namespace Cinema_Ticketing_System.ViewModels
         public void ViewCharts()
         {
             ViewModel = chartLandingPageViewModel;
+        }
+
+        public void ViewAScreen()
+        {
+            ViewModel = _ViewAScreen;
         }
     }
 }
