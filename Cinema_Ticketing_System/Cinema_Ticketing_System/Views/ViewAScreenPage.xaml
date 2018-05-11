@@ -54,7 +54,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Button>Back</Button>
+            <Button Click="Button_Click_1">Back</Button>
             <elements:Screen Grid.Row="1"  NumberOfColumns="{Binding Path=NumberOfColumns, UpdateSourceTrigger=PropertyChanged}" NumberOfRows="{Binding Path=NumberOfRows, UpdateSourceTrigger=PropertyChanged}" ExsistingTickets="{Binding Path=ExsistingTickets, UpdateSourceTrigger=PropertyChanged}" PendingTickets="{Binding Path=PendingTickets, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
     </StackPanel>

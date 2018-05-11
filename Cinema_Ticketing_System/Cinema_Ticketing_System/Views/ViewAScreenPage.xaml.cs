@@ -143,5 +143,11 @@ namespace Cinema_Ticketing_System.Views
             _SelectedTime = (DateTime)combo.SelectedItem;
             SubmitButton.IsEnabled = true;
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ScreenView.Visibility = Visibility.Collapsed;
+            FormGrid.Visibility = Visibility.Visible;
+        }
     }
 }
