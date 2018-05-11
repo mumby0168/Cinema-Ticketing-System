@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization.Configuration;
 using Cinema_Ticketing_System.Charts;
 using Cinema_Ticketing_System.Database;
 using Cinema_Ticketing_System.Models;
+using Cinema_Ticketing_System.ViewModels.Commands;
 using OxyPlot;
 
 namespace Cinema_Ticketing_System.ViewModels
@@ -17,6 +19,7 @@ namespace Cinema_Ticketing_System.ViewModels
         public ChartLandingPageViewModel()
         {
             DateChosenChart1 = DateTime.Now;
+            InitCommands();
         }
 
         #region private members (not related to a property)
@@ -93,16 +96,53 @@ namespace Cinema_Ticketing_System.ViewModels
             }
         }
 
+        private Visibility _chart1DetailsVisibility;
+
+        public Visibility Chart1DetailsVisibilty
+        {
+            get => _chart1DetailsVisibility;
+            set
+            {
+                _chart1DetailsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _chart2DetailsVisibility;
+
+        public Visibility Chart2DetailVisibility
+        {
+            get => _chart2DetailsVisibility;
+            set
+            {
+                _chart2DetailsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Commands
-
+        public ClickCommand Chart1Clicked { get; private set; }        
+        
+        public ClickCommand Chart2Clicked { get; private set; }
         #endregion
 
         #region CommandMethods
 
+        public void InitCommands()
+        {
+            Chart1Clicked = new ClickCommand(LoadTicketDataForScreening);
+            Chart2Clicked = new ClickCommand(LoadFilledDataForScreening);
+        }
+
         public void LoadTicketDataForScreening()
         {
+            Chart1DetailsVisibilty = Visibility.Visible;
+            Chart2DetailVisibility = Visibility.Collapsed;
+
+            return;
+
             List<Ticket> tickets;
             using (var handler = new DataHandler())
             {
@@ -117,6 +157,10 @@ namespace Cinema_Ticketing_System.ViewModels
 
         public void LoadFilledDataForScreening()
         {
+            Chart2DetailVisibility = Visibility.Visible;
+            Chart1DetailsVisibilty = Visibility.Collapsed;
+            return;
+
             Screening Screening;
             List<Ticket> Tickets;
             int ticketCount = 0;

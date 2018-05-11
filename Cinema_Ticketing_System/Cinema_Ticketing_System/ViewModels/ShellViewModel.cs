@@ -53,5 +53,15 @@ namespace Cinema_Ticketing_System.ViewModels
         {
             ViewModel = screenViewModel;
         }
+
+        public void BookTicketClicked()
+        {
+            ViewModel = InitialTicketBookingFormViewModel;
+        }
+
+        public void ViewCharts()
+        {
+            ViewModel = chartLandingPageViewModel;
+        }
     }
 }
