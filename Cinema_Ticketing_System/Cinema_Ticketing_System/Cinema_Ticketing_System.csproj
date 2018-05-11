@@ -88,6 +88,10 @@
     <Compile Include="Migrations\201805101230000_WillThisBreakIt.Designer.cs">
       <DependentUpon>201805101230000_WillThisBreakIt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805110807256_AddedRowAndColNumberToTicketModel.cs" />
+    <Compile Include="Migrations\201805110807256_AddedRowAndColNumberToTicketModel.Designer.cs">
+      <DependentUpon>201805110807256_AddedRowAndColNumberToTicketModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201805110930474_hm.cs" />
     <Compile Include="Migrations\201805110930474_hm.Designer.cs">
       <DependentUpon>201805110930474_hm.cs</DependentUpon>
@@ -183,12 +187,16 @@
     <EmbeddedResource Include="Migrations\201805101230000_WillThisBreakIt.resx">
       <DependentUpon>201805101230000_WillThisBreakIt.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805110807256_AddedRowAndColNumberToTicketModel.resx">
+      <DependentUpon>201805110807256_AddedRowAndColNumberToTicketModel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805110930474_hm.resx">
       <DependentUpon>201805110930474_hm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -200,14 +208,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Imgs\person_black_216x216.png">
+    <Resource Include="Resources\PersonIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\PersonIcon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Imgs\person_black_216x216.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

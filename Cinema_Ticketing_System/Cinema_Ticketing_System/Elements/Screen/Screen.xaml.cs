@@ -126,27 +126,31 @@ namespace Cinema_Ticketing_System.Elements.Screen
             }
             else if (seatObj.Selected == false && seatObj.AssociatedTicket != null)
             {
-                
                 PendingTickets.Add(seatObj.AssociatedTicket);
                 StagedTickets.Remove(seatObj.AssociatedTicket);
                 _NextTicketToAdd = seatObj.AssociatedTicket;
                 seatObj.AssociatedTicket = null;
             }
 
-            if(PendingTickets.Count > 0)
+            if (PendingTickets != null)
             {
-                Seat.AddingEnabled = true;
-                if (_NextTicketToAdd == null)
+                if (PendingTickets.Count > 0)
                 {
-                    _NextTicketToAdd = PendingTickets[0];
+                    Seat.AddingEnabled = true;
+                    if (_NextTicketToAdd == null)
+                    {
+                        _NextTicketToAdd = PendingTickets[0];
+                    }
+                }
+                else
+                {
+                    Seat.AddingEnabled = false;
+                    _NextTicketToAdd = null;
                 }
             }
-            else
-            {
-                Seat.AddingEnabled = false;
-                _NextTicketToAdd = null;
-            }
         }
+
+        private List<Seat> _Seats = new List<Seat>();
 
         public void CreateSeatingGrid()
         {
@@ -223,6 +227,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
                                 seat.ColumnNumber = x;
                                 seat.CanEdit = false;
                                 seat.Selected = true;
+                                _Seats.Add(seat);
                                 SeatingGrid.Children.Add(seat);
 
                                 bNewSeat = false;
@@ -240,6 +245,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
                         seat.Selected = false;
                         seat.RowNumber = y;
                         seat.ColumnNumber = x;
+                        _Seats.Add(seat);
                         SeatingGrid.Children.Add(seat);
                     }
                 }
@@ -259,10 +265,20 @@ namespace Cinema_Ticketing_System.Elements.Screen
                 {
                     foreach (Ticket t in StagedTickets)
                     {
+                        foreach(Seat s in _Seats)
+                        {
+                            if(s.AssociatedTicket == t)
+                            {
+                                s.CanEdit = false;
+                            }
+                        }
 
                         handle.AddTicket(t);
                     }
                     StagedTickets.Clear();
+                    StagedListView.Visibility = Visibility.Collapsed;
+                    PendingListView.Visibility = Visibility.Collapsed;
+                    SaveButton.Visibility = Visibility.Collapsed;
                 }
             }
         }

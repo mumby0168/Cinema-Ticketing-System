@@ -165,7 +165,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
             }
             set
             {
-                _CanEdit = true;
+                _CanEdit = value;
                 OnPropertyChanged();
             }
         }
