@@ -58,6 +58,7 @@ namespace Cinema_Ticketing_System.ViewModels
             set
             {
                 _chosenScreening = value;
+                Chart1Clicked.Execute(this);
                 OnPropertyChanged();
             }
         }
