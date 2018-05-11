@@ -23,10 +23,6 @@ namespace Cinema_Ticketing_System.Elements.Screen
     /// </summary>
     public partial class Screen : UserControl
     {
-        //BIND THESE
-        //ExsistingTickets
-        //PendingTickets
-
         public static readonly DependencyProperty NumberOfColumnsProperty = DependencyProperty.Register("NumberOfColumns", typeof(int), typeof(Screen), new PropertyMetadata(0));
         public int NumberOfColumns
         {
@@ -95,6 +91,34 @@ namespace Cinema_Ticketing_System.Elements.Screen
         public Screen()
         {
             InitializeComponent();
+            Seat.OnClick += new Seat.SeatClickedCallback(OnSeatClicked);
+        }
+        private Ticket _NextTicketToAdd = null;
+        public void OnSeatClicked(Seat seatObj)
+        {
+            if (_NextTicketToAdd != null && seatObj.AssociatedTicket == null)
+            {
+                seatObj.AssociatedTicket = _NextTicketToAdd;
+                StagedTickets.Add(_NextTicketToAdd);
+                PendingTickets.Remove(_NextTicketToAdd);
+                _NextTicketToAdd = null;
+            }
+            else if (seatObj.AssociatedTicket != null)
+            {
+                PendingTickets.Add(_NextTicketToAdd);
+                StagedTickets.Remove(_NextTicketToAdd);
+                _NextTicketToAdd = seatObj.AssociatedTicket;
+                seatObj.AssociatedTicket = null;
+            }
+
+            if (PendingTickets.Count > 0)
+            {
+                _NextTicketToAdd = PendingTickets[0];
+            }
+            else
+            {
+                Seat.AddingEnabled = false;
+            }
         }
 
         private void CreateSeatingGrid()
@@ -131,12 +155,39 @@ namespace Cinema_Ticketing_System.Elements.Screen
                     colLabel.SetValue(Grid.RowProperty, 0);
                     SeatingGrid.Children.Add(colLabel);
 
-                    //Create seat
-                    Seat seat = new Seat();
-                    seat.SetValue(Grid.ColumnProperty, x);
-                    seat.SetValue(Grid.RowProperty, y);
-                    SeatingGrid.Children.Add(seat);
+                    bool bNewSeat = true;
+                    foreach (Ticket t in ExsistingTickets)
+                    {
+                        if(t.RowNumber == y && t.ColumnNumber == x)
+                        {
+                            Seat seat = new Seat();
+                            seat.SetValue(Grid.ColumnProperty, x);
+                            seat.SetValue(Grid.RowProperty, y);
+                            seat.AssociatedTicket = t;
+                            seat.CanEdit = false;
+                            seat.Selected = true;
+                            SeatingGrid.Children.Add(seat);
+
+                            bNewSeat = false;
+                        }
+                    }
+
+                    if (bNewSeat)
+                    {
+                        //Create seat
+                        Seat seat = new Seat();
+                        seat.SetValue(Grid.ColumnProperty, x);
+                        seat.SetValue(Grid.RowProperty, y);
+                        seat.CanEdit = true;
+                        seat.Selected = false;
+                        SeatingGrid.Children.Add(seat);
+                    }
                 }
+            }
+
+            if (PendingTickets.Count > 0)
+            {
+                Seat.AddingEnabled = true;
             }
         }
 

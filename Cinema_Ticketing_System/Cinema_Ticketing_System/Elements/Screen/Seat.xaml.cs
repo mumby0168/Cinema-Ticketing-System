@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cinema_Ticketing_System.Models;
 
 namespace Cinema_Ticketing_System.Elements.Screen
 {
@@ -70,7 +71,32 @@ namespace Cinema_Ticketing_System.Elements.Screen
                 OnPropertyChanged();
             }
         }
-
+        private Ticket _AssociatedTicket = null;
+        public Ticket AssociatedTicket
+        {
+            get
+            {
+                return _AssociatedTicket;
+            }
+            set
+            {
+                AssociatedTicket = value;
+                OnPropertyChanged();
+            }
+        }
+        public delegate void SeatClickedCallback(Seat seatObj);
+        private static SeatClickedCallback _OnClick;
+        public static SeatClickedCallback OnClick
+        {
+            get
+            {
+                return _OnClick;
+            }
+            set
+            {
+                _OnClick = value;
+            }
+        }
         public Seat()
         {
             InitializeComponent();
@@ -92,36 +118,71 @@ namespace Cinema_Ticketing_System.Elements.Screen
             }
         }
 
+        private static bool _AddingEnabled = false;
+        public static bool AddingEnabled
+        {
+            get
+            {
+                return _AddingEnabled;
+            }
+            set
+            {
+                _AddingEnabled = true;
+            }
+        }
+
+        private bool _CanEdit = false;
+        public bool CanEdit
+        {
+            get
+            {
+                return _CanEdit;
+            }
+            set
+            {
+                _CanEdit = true;
+                OnPropertyChanged();
+            }
+        }
+
         #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
         private void IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if((bool)e.NewValue == true && !Selected)
+            if (AddingEnabled)
             {
-                Colour = Brushes.Orange;
-            }
-            else if (!Selected)
-            {
-                Colour = Brushes.Red;
+                if ((bool)e.NewValue == true && !Selected)
+                {
+                    Colour = Brushes.Orange;
+                }
+                else if (!Selected)
+                {
+                    Colour = Brushes.Red;
+                }
             }
         }
         #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
         private void MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Selected = !Selected;
-            if(Selected)
+            if (AddingEnabled && CanEdit)
             {
-                Colour = Brushes.Green;
-                PersonVisibility = Visibility.Visible;
-            }
-            else if (IsMouseOver)
-            {
-                Colour = Brushes.Orange;
-                PersonVisibility = Visibility.Hidden;
-            }
-            else
-            {
-                Colour = Brushes.Red;
-                PersonVisibility = Visibility.Hidden;
+                Selected = !Selected;
+                if (Selected)
+                {
+                    Colour = Brushes.Green;
+                    PersonVisibility = Visibility.Visible;
+                }
+                else if (IsMouseOver)
+                {
+                    Colour = Brushes.Orange;
+                    PersonVisibility = Visibility.Hidden;
+                }
+                else
+                {
+                    Colour = Brushes.Red;
+                    PersonVisibility = Visibility.Hidden;
+                }
+
+                OnClick.Invoke(this);
             }
         }
     }

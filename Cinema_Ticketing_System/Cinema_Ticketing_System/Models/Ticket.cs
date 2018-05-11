@@ -23,6 +23,10 @@ namespace Cinema_Ticketing_System.Models
 
         public String SeatNumber { get; set; }
 
+        public int RowNumber { get; set; }
+
+        public int ColumnNumber { get; set; }
+
         public int ScreeningId { get; set; }
 
         public Screening Screening { get; set; }
