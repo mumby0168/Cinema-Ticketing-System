@@ -27,17 +27,17 @@
                     </DockPanel>
                     <DockPanel Margin="0px 5px 0px 0px">
                         <Label DockPanel.Dock="Left">Pick a Screen: </Label>
-                        <ComboBox Name="ScreenCombo" Selected="ScreenCombo_Selected" ItemsSource="{Binding Path=Screens, UpdateSourceTrigger=PropertyChanged}"  IsEnabled="False" DockPanel.Dock="Right">
+                        <ComboBox Name="ScreenCombo" SelectionChanged="ScreenCombo_Selected" ItemsSource="{Binding Path=Screens, UpdateSourceTrigger=PropertyChanged}"  IsEnabled="False" DockPanel.Dock="Right">
                         </ComboBox>
                     </DockPanel>
                     <DockPanel Margin="0px 5px 0px 0px">
                         <Label DockPanel.Dock="Left">Pick a Film:</Label>
-                        <ComboBox Selected="FilmCombo_Selected" ItemsSource="{Binding Path=Films, UpdateSourceTrigger=PropertyChanged}" Name="FilmCombo" IsEnabled="False" DockPanel.Dock="Right">
+                        <ComboBox SelectionChanged="FilmCombo_Selected" ItemsSource="{Binding Path=Films, UpdateSourceTrigger=PropertyChanged}" Name="FilmCombo" IsEnabled="False" DockPanel.Dock="Right">
                         </ComboBox>
                     </DockPanel>
                     <DockPanel Margin="0px 5px 0px 0px">
                         <Label DockPanel.Dock="Left">Pick a Time:</Label>
-                        <ComboBox Selected="TimeCombo_Selected" ItemsSource="{Binding Path=Times, UpdateSourceTrigger=PropertyChanged}" Name="TimeCombo" IsEnabled="False" DockPanel.Dock="Right">
+                        <ComboBox SelectionChanged="TimeCombo_Selected" ItemsSource="{Binding Path=Times, UpdateSourceTrigger=PropertyChanged}" Name="TimeCombo" IsEnabled="False" DockPanel.Dock="Right">
                         </ComboBox>
                     </DockPanel>
                     <Grid HorizontalAlignment="Center" Margin="0px 5px 0px 0px">
@@ -54,7 +54,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Button>Back</Button>
+            <Button Click="Button_Click_1">Back</Button>
             <elements:Screen Grid.Row="1"  NumberOfColumns="{Binding Path=NumberOfColumns, UpdateSourceTrigger=PropertyChanged}" NumberOfRows="{Binding Path=NumberOfRows, UpdateSourceTrigger=PropertyChanged}" ExsistingTickets="{Binding Path=ExsistingTickets, UpdateSourceTrigger=PropertyChanged}" PendingTickets="{Binding Path=PendingTickets, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
     </StackPanel>
