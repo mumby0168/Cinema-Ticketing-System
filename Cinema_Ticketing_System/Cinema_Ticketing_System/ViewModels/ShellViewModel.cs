@@ -30,6 +30,8 @@ namespace Cinema_Ticketing_System.ViewModels
 
         private ChartLandingPageViewModel chartLandingPageViewModel;
 
+        private HomePageViewModel homePageView;
+
 
         public ClickCommand goToBook { get; private set; }
 
@@ -41,6 +43,7 @@ namespace Cinema_Ticketing_System.ViewModels
             goToBook = new ClickCommand(BookTicketClicked);
             GoToCharts = new ClickCommand(ViewCharts);
             screenViewModel = new ScreenViewModel();
+            homePageView = new HomePageViewModel();
 
             InitialTicketBookingFormViewModel = new InitialTicketBookingFormViewModel((screeningId, tickets) =>
                 {
@@ -51,7 +54,7 @@ namespace Cinema_Ticketing_System.ViewModels
 
             chartLandingPageViewModel = new ChartLandingPageViewModel();
 
-            ViewModel = chartLandingPageViewModel;
+            ViewModel = homePageView;
 
         }
 

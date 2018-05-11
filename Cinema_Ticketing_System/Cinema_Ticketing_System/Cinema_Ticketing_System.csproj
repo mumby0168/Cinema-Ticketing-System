@@ -103,11 +103,15 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ChartLandingPageViewModel.cs" />
     <Compile Include="ViewModels\Commands\ClickCommand.cs" />
+    <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\InitialTicketBookingFormViewModel.cs" />
     <Compile Include="ViewModels\Screen\ScreenViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\ChartLandingPage.xaml.cs">
       <DependentUpon>ChartLandingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InitalTicketBookingForm.xaml.cs">
       <DependentUpon>InitalTicketBookingForm.xaml</DependentUpon>
@@ -141,6 +145,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ChartLandingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

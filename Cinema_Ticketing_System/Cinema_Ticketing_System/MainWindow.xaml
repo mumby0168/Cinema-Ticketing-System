@@ -25,6 +25,9 @@
         <DataTemplate DataType="{x:Type vms:ChartLandingPageViewModel}">
             <vs:ChartLandingPage></vs:ChartLandingPage>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vms:HomePageViewModel}">
+            <vs:HomePage></vs:HomePage>
+        </DataTemplate>
     </Window.Resources>
 
     <DockPanel>
