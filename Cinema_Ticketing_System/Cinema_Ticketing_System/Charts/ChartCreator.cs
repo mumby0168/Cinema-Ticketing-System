@@ -13,6 +13,17 @@ namespace Cinema_Ticketing_System.Charts
 
         public static PieSeries GetProportionOfTicketsPerScreeningPieChart(List<Ticket> tickets)
         {
+
+            if (tickets.Count == 0)
+            {
+                var pieseries = new PieSeries()
+                {
+                    Title = "No Data"
+                };
+
+                return pieseries;
+            }
+
             var pieSeries = new PieSeries
             {
                 Title = "Propertions of ticket types for screening on: " + tickets[0].Screening.DateAndTime +

@@ -151,6 +151,7 @@ namespace Cinema_Ticketing_System.ViewModels
 
             Model = new PlotModel();
             Model.Series.Add(series);
+            Model.InvalidatePlot(true);
         }
 
         public void LoadFilledDataForScreening()
@@ -172,6 +173,8 @@ namespace Cinema_Ticketing_System.ViewModels
 
             Model = new PlotModel();
             Model.Series.Add(series);
+
+            Model.InvalidatePlot(true);
 
         }
 
