@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cinema_Ticketing_System.ViewModels.Screen;
 
 namespace Cinema_Ticketing_System.ViewModels
 {
@@ -20,9 +21,34 @@ namespace Cinema_Ticketing_System.ViewModels
             }
         }
 
+
+        private ScreenViewModel screenViewModel;
+
+        private InitialTicketBookingFormViewModel InitialTicketBookingFormViewModel;
+
+
+
+
+
         public ShellViewModel()
+        {            
+            screenViewModel = new ScreenViewModel();
+
+            InitialTicketBookingFormViewModel = new InitialTicketBookingFormViewModel((screeningId, tickets, visibilty) =>
+                {
+                    screenViewModel.ScreeningId = screeningId;
+                    screenViewModel.PendingTickets = tickets;
+                    screenViewModel.ScreenVisibility = visibilty;
+                    ChangeContextToScreen();
+                });
+
+            ViewModel = InitialTicketBookingFormViewModel;
+
+        }
+
+        public void ChangeContextToScreen()
         {
-            ViewModel = new InitialTicketBookingFormViewModel();
+            ViewModel = screenViewModel;
         }
     }
 }

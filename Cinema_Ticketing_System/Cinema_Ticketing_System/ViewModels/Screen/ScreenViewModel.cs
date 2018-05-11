@@ -12,7 +12,7 @@ namespace Cinema_Ticketing_System.ViewModels.Screen
 {
     public class ScreenViewModel : BaseViewModel
     {
-        public ScreenViewModel(Action<int, List<Ticket>, Visibility> action)
+        public ScreenViewModel()
         {
             if(ScreenVisibility == Visibility.Visible)
             {
