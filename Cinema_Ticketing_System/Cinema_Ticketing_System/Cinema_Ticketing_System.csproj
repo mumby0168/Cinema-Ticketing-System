@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Charts\ChartCreator.cs" />
     <Compile Include="Controls\UpDownPicker.xaml.cs">
       <DependentUpon>UpDownPicker.xaml</DependentUpon>
     </Compile>
@@ -92,6 +93,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ChartLandingPageViewModel.cs" />
     <Compile Include="ViewModels\Commands\ClickCommand.cs" />
     <Compile Include="ViewModels\InitialTicketBookingFormViewModel.cs" />
     <Compile Include="ViewModels\Screen\ScreenViewModel.cs" />

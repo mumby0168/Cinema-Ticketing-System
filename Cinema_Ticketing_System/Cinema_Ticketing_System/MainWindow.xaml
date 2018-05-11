@@ -9,7 +9,7 @@
         xmlns:shiity="clr-namespace:Cinema_Ticketing_System.ViewModels.Screen"
         xmlns:shittier="clr-namespace:Cinema_Ticketing_System.Elements.Screen"
     mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="1000">
 
     <Window.DataContext>
         <vms:ShellViewModel></vms:ShellViewModel>
@@ -21,6 +21,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type shiity:ScreenViewModel}">
             <shittier:Screen NumberOfColumns="{Binding Path=NumberOfColumns, UpdateSourceTrigger=PropertyChanged}" NumberOfRows="{Binding Path=NumberOfRows, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding Path=ScreenVisibility, UpdateSourceTrigger=PropertyChanged}" ExsistingTickets="{Binding Path=ExsistingTickets, UpdateSourceTrigger=PropertyChanged}" PendingTickets="{Binding Path=PendingTickets, UpdateSourceTrigger=PropertyChanged}"></shittier:Screen>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vms:ChartLandingPageViewModel}">
+            <vs:ChartLandingPage></vs:ChartLandingPage>
         </DataTemplate>
     </Window.Resources>
 
