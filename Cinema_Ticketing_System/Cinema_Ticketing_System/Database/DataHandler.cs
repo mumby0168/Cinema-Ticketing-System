@@ -111,7 +111,8 @@ namespace Cinema_Ticketing_System.Database
 
         public Screening GetScreeningFromDateFilmTimeScreen(DateTime _Date, Screen _SelectedScreen, Film _SelectedFilm, DateTime _SelectedTime)
         {
-            return m_DatabaseContext.Screenings.First(S => S.DateAndTime.Date == _Date && S.ScreenId == _SelectedScreen.Id && S.FilmId == _SelectedFilm.Id && S.DateAndTime.TimeOfDay == _SelectedTime.TimeOfDay);
+            var l = m_DatabaseContext.Screenings.Where(S => S.ScreenId == _SelectedScreen.Id && S.FilmId == _SelectedFilm.Id).ToList();
+            return l.Where(S => S.DateAndTime.Date == _Date && S.DateAndTime.TimeOfDay == _SelectedTime.TimeOfDay).First();
         }
         public List<Screening> GetFilmsOnDate(DateTime datetoGetwith)
         {
@@ -154,9 +155,16 @@ namespace Cinema_Ticketing_System.Database
 
         public List<Screening> GetScreeningsWithScreenOnDate(DateTime Date)
         {
-            List<Screening> sOnDate = m_DatabaseContext.Screenings.Include(S => S.Screen).Where(s => s.DateAndTime.Date == Date.Date).ToList();
+            var screenings = m_DatabaseContext.Screenings.Include(S => S.Screen).ToList();
+
+            List<Screening> sOnDate = screenings.Where(s => s.DateAndTime.Date == Date.Date).ToList();
 
             return sOnDate;
+        }
+
+        public List<Screen> GetScreens()
+        {
+            return m_DatabaseContext.Screens.ToList();
         }
 
         public List<Film> GetFilmsInScreen(Screen s)
@@ -189,10 +197,10 @@ namespace Cinema_Ticketing_System.Database
 
         public List<DateTime> TimesFromScreensAndDate(DateTime dt, Screen s)
         {
-            var ret = m_DatabaseContext.Screenings.Where(S => S.DateAndTime.Date == dt.Date && S.ScreenId == s.Id).ToList();
+            var ret = m_DatabaseContext.Screenings.Where(S => S.ScreenId == s.Id).ToList();
             List<DateTime> times = new List<DateTime>();
 
-            foreach(var t in ret)
+            foreach (var t in ret.Where(S => S.DateAndTime.Date == dt.Date))
             {
                 times.Add(t.DateAndTime);
             }

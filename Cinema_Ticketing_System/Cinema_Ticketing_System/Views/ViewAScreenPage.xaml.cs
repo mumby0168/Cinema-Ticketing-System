@@ -45,20 +45,16 @@ namespace Cinema_Ticketing_System.Views
             set
             {
                 _Date = value;
-                ScreenCombo.IsEnabled = true;
                 using (Database.DataHandler handle = new Database.DataHandler())
                 {
-                    foreach (Screening S in handle.GetScreeningsWithScreenOnDate(_Date))
-                    {
-                        Screens.Add(S.Screen);
-                    }
+                    Screens = handle.GetScreens();
                 }
                 OnPropertyChanged();
             }
         }
 
         private Screen _SelectedScreen = null;
-        private List<Screen> _Screens = null;
+        private List<Screen> _Screens = new List<Screen>();
         public List<Screen> Screens
         {
             get
@@ -112,7 +108,9 @@ namespace Cinema_Ticketing_System.Views
             }
 
             FormGrid.Visibility = Visibility.Collapsed;
+            ScreenView.Visibility = Visibility.Visible;
             ScreenView.DataContext = new ScreenViewModel() { NumberOfColumns = _SelectedScreen.Columns, NumberOfRows = _SelectedScreen.Rows, ScreeningId = _SelectedScreening.Id, PendingTickets = null };
+            ActualScreen.CreateSeatingGrid();
         }
 
         private void ScreenCombo_Selected(object sender, RoutedEventArgs e)
@@ -123,6 +121,7 @@ namespace Cinema_Ticketing_System.Views
             using (Database.DataHandler handle = new Database.DataHandler())
             {
                 Films = handle.GetFilmsInScreen(_SelectedScreen);
+                FilmCombo.ItemsSource = Films;
             }
         }
 
@@ -134,6 +133,7 @@ namespace Cinema_Ticketing_System.Views
             using (Database.DataHandler handle = new Database.DataHandler())
             {
                 Times = handle.TimesFromScreensAndDate(_Date, _SelectedScreen);
+                TimeCombo.ItemsSource = Times;
             }
         }
 
