@@ -205,5 +205,16 @@ namespace Cinema_Ticketing_System.Database
             m_DatabaseContext.Tickets.Add(t);
             m_DatabaseContext.SaveChanges();
         }
+
+        public List<Ticket> GetAllTicketsFromGenre(Genre genre)
+        {
+            return m_DatabaseContext.Tickets.Include(s => s.Screening).Where(t => t.Screening.Film.Genre == genre)
+                .ToList();
+        }
+
+        public Screening GetAScreening()
+        {
+            return m_DatabaseContext.Screenings.FirstOrDefault();
+        }
     }
 }

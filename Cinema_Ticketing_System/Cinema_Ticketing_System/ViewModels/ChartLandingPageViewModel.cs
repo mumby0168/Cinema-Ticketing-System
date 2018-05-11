@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,17 @@ namespace Cinema_Ticketing_System.ViewModels
         public ChartLandingPageViewModel()
         {
             DateChosenChart1 = DateTime.Now;
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now;
             InitCommands();
+            using (var handler = new DataHandler())
+            {
+                ChosenScreening = handler.GetAScreening();
+            }
+
+            ChosenGenre = Genre.Action;
+
+            Model.TitleHorizontalAlignment = TitleHorizontalAlignment.CenteredWithinView;
         }
 
         #region private members (not related to a property)
@@ -121,12 +132,51 @@ namespace Cinema_Ticketing_System.ViewModels
             }
         }
 
+        private Visibility _chart3Visibility;
+        public Visibility Chart3Visibility { get => _chart3Visibility;
+            set
+            {
+                _chart3Visibility = value;
+                OnPropertyChanged();
+            }
+        }
+        private Visibility _chart4Visibility;
+        public Visibility Chart4Visibility
+        {
+            get => _chart4Visibility;
+            set
+            {
+                _chart4Visibility = value;
+                OnPropertyChanged();
+            }
+        }
+        public List<string> Genres
+        {
+            get { return Enum.GetNames(typeof(Genre)).ToList(); }
+        }
+
+        private Genre _chosenGenre;
+        public Genre ChosenGenre
+        {
+            get => _chosenGenre;
+            set
+            {
+                _chosenGenre = value;
+                Chart3Clicked.Execute(this);
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Commands
         public ClickCommand Chart1Clicked { get; private set; }        
         
         public ClickCommand Chart2Clicked { get; private set; }
+
+        public ClickCommand Chart3Clicked { get; private set; }
+
+        public ClickCommand Chart4Clicked { get; private set; }
         #endregion
 
         #region CommandMethods
@@ -135,12 +185,17 @@ namespace Cinema_Ticketing_System.ViewModels
         {
             Chart1Clicked = new ClickCommand(LoadTicketDataForScreening);
             Chart2Clicked = new ClickCommand(LoadFilledDataForScreening);
+            Chart3Clicked = new ClickCommand(LoadTicketProportionsForGenre);
+            Chart4Clicked = new ClickCommand(LoadTicketSoldOverTimePeriod);
         }
 
         public void LoadTicketDataForScreening()
         {
             Chart1DetailsVisibilty = Visibility.Visible;
-            Chart2DetailVisibility = Visibility.Collapsed;            
+            Chart2DetailVisibility = Visibility.Collapsed;
+            Chart3Visibility = Visibility.Collapsed;
+            Chart4Visibility = Visibility.Collapsed;
+
 
             List<Ticket> tickets = new List<Ticket>();
             using (var handler = new DataHandler())
@@ -157,9 +212,11 @@ namespace Cinema_Ticketing_System.ViewModels
 
         public void LoadFilledDataForScreening()
         {
-            Chart2DetailVisibility = Visibility.Visible;
-            Chart1DetailsVisibilty = Visibility.Collapsed;
 
+            Chart1DetailsVisibilty = Visibility.Collapsed;
+            Chart2DetailVisibility = Visibility.Visible;
+            Chart3Visibility = Visibility.Collapsed;
+            Chart4Visibility = Visibility.Collapsed;
             Screening Screening;
             List<Ticket> Tickets;
             int ticketCount = 0;
@@ -181,12 +238,24 @@ namespace Cinema_Ticketing_System.ViewModels
 
         public void LoadTicketProportionsForGenre()
         {
+            Chart1DetailsVisibilty = Visibility.Collapsed;
+            Chart2DetailVisibility = Visibility.Collapsed;
+            Chart3Visibility = Visibility.Visible;
+            Chart4Visibility = Visibility.Collapsed;
+            var series = ChartCreator.GetTicketTypeSplitOfGenre(_chosenGenre);
+
+            Model = new PlotModel();
+            Model.Series.Add(series);
+            Model.InvalidatePlot(true);
 
         }
 
         public void LoadTicketSoldOverTimePeriod()
         {
-
+            Chart1DetailsVisibilty = Visibility.Collapsed;
+            Chart2DetailVisibility = Visibility.Collapsed;
+            Chart3Visibility = Visibility.Collapsed;
+            Chart4Visibility = Visibility.Visible;
         }
 
         #endregion

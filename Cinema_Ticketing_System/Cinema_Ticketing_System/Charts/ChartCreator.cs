@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cinema_Ticketing_System.Database;
 using Cinema_Ticketing_System.Models;
 using OxyPlot.Series;
 
@@ -69,6 +70,25 @@ namespace Cinema_Ticketing_System.Charts
             pieSeries.Slices.Add(new PieSlice("Empty", screenCapacity));
 
             return pieSeries;
+        }
+
+        public static PieSeries GetTicketTypeSplitOfGenre(Genre genre)
+        {
+            var series = new PieSeries()
+            {
+                Title = "Spread of ticket types Across Genres"
+            };
+            List<Ticket> TicketsofGenre;
+            using (var handler = new DataHandler())
+            {
+                TicketsofGenre = new List<Ticket>(handler.GetAllTicketsFromGenre(genre));
+            }
+
+            series.Slices.Add(new PieSlice("Adults", TicketsofGenre.Count(t => t.TicketType == TicketType.Adult)));
+            series.Slices.Add(new PieSlice("Childs", TicketsofGenre.Count(t => t.TicketType == TicketType.Child)));
+            series.Slices.Add(new PieSlice("Concessions", TicketsofGenre.Count(t => t.TicketType == TicketType.Concession)));
+
+            return series;
         }
 
     }
