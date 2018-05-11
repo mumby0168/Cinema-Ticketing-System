@@ -139,14 +139,12 @@ namespace Cinema_Ticketing_System.ViewModels
         public void LoadTicketDataForScreening()
         {
             Chart1DetailsVisibilty = Visibility.Visible;
-            Chart2DetailVisibility = Visibility.Collapsed;
+            Chart2DetailVisibility = Visibility.Collapsed;            
 
-            return;
-
-            List<Ticket> tickets;
+            List<Ticket> tickets = new List<Ticket>();
             using (var handler = new DataHandler())
             {
-                tickets = handler.GetTicketsFromScreening(_chosenScreening.Id);
+                tickets = new List<Ticket>(handler.GetTicketsFromScreening(_chosenScreening.Id));
             }
 
             var series = ChartCreator.GetProportionOfTicketsPerScreeningPieChart(tickets);
@@ -159,7 +157,6 @@ namespace Cinema_Ticketing_System.ViewModels
         {
             Chart2DetailVisibility = Visibility.Visible;
             Chart1DetailsVisibilty = Visibility.Collapsed;
-            return;
 
             Screening Screening;
             List<Ticket> Tickets;

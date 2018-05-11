@@ -101,17 +101,11 @@ namespace Cinema_Ticketing_System.Elements.Screen
             }
         }
 
-        private DependencyProperty StagedTicketsProperty = DependencyProperty.Register("StagedTickets", typeof(ObservableCollection<Ticket>), typeof(Screen), new PropertyMetadata(new ObservableCollection<Ticket>()));
+        private ObservableCollection<Ticket> _StagedTickets = new ObservableCollection<Ticket>();
         public ObservableCollection<Ticket> StagedTickets
         {
-            get
-            {
-                return (ObservableCollection<Ticket>)GetValue(StagedTicketsProperty);
-            }
-            private set
-            {
-                SetValue(StagedTicketsProperty, value);
-            }
+            get { return _StagedTickets; }
+            private set { _StagedTickets = value; }
         }
 
         public Screen()
