@@ -31,7 +31,7 @@
                 <Button Command="{Binding Path=Chart1Clicked}" Margin="5" Grid.Column="0" Content="Chart 1"></Button>
                 <StackPanel Visibility="{Binding Path=Chart1DetailsVisibilty, UpdateSourceTrigger=PropertyChanged}">
                     <DatePicker SelectedDate="{Binding Path=DateChosenChart1, UpdateSourceTrigger=PropertyChanged}" Margin="5"></DatePicker>
-                    <ComboBox Margin="5" ItemsSource="{Binding Path=Screenings, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox SelectedItem="{Binding Path=ChosenScreening, UpdateSourceTrigger=PropertyChanged}" Margin="5" ItemsSource="{Binding Path=Screenings, UpdateSourceTrigger=PropertyChanged}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <ComboBoxItem IsHitTestVisible="False" Content="{Binding DateAndTime.TimeOfDay}"></ComboBoxItem>
@@ -44,7 +44,7 @@
                 <Button Command="{Binding Path=Chart2Clicked}" Margin="5" Grid.Column="1" Content="Chart 2"></Button>
                 <StackPanel Visibility="{Binding Path=Chart2DetailVisibility, UpdateSourceTrigger=PropertyChanged}" >
                     <DatePicker SelectedDate="{Binding Path=DateChosenChart1, UpdateSourceTrigger=PropertyChanged}" Margin="5"></DatePicker>
-                    <ComboBox Margin="5" ItemsSource="{Binding Path=Screenings, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox SelectedItem="{Binding Path=ChosenScreening}" Margin="5" ItemsSource="{Binding Path=Screenings, UpdateSourceTrigger=PropertyChanged}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <ComboBoxItem IsHitTestVisible="False" Content="{Binding DateAndTime.TimeOfDay}"></ComboBoxItem>
