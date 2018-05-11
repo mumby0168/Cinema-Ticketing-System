@@ -87,6 +87,10 @@
     <Compile Include="Migrations\201805101230000_WillThisBreakIt.Designer.cs">
       <DependentUpon>201805101230000_WillThisBreakIt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805110807256_AddedRowAndColNumberToTicketModel.cs" />
+    <Compile Include="Migrations\201805110807256_AddedRowAndColNumberToTicketModel.Designer.cs">
+      <DependentUpon>201805110807256_AddedRowAndColNumberToTicketModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -176,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805101230000_WillThisBreakIt.resx">
       <DependentUpon>201805101230000_WillThisBreakIt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805110807256_AddedRowAndColNumberToTicketModel.resx">
+      <DependentUpon>201805110807256_AddedRowAndColNumberToTicketModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

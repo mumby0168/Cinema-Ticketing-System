@@ -225,12 +225,12 @@ namespace Cinema_Ticketing_System.ViewModels
                     , Price = 15.0 });
             }
 
-            Passer(_selectedScreening.Id, tickets, Visibility.Visible);
+            Passer(_selectedScreening.Id, tickets);
         }
 
-        private Action<int, List<Ticket>, Visibility> Passer;
+        private Action<int, List<Ticket>> Passer;
 
-        public InitialTicketBookingFormViewModel(Action<int, List<Ticket>, Visibility> passer)
+        public InitialTicketBookingFormViewModel(Action<int, List<Ticket>> passer)
         {
             Passer = passer;
             SelectedDateTime = DateTime.Now;

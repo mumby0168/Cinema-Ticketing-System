@@ -126,5 +126,11 @@ namespace Cinema_Ticketing_System.Database
         {
             return m_DatabaseContext.Screenings.Include(S => S.Screen).Where(S => S.Id == iScreeningID).FirstOrDefault();
         }
+
+        public void AddTicket(Ticket t)
+        {
+            m_DatabaseContext.Tickets.Add(t);
+            m_DatabaseContext.SaveChanges();
+        }
     }
 }

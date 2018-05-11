@@ -68,6 +68,13 @@ namespace Cinema_Ticketing_System.Elements.Screen
             set
             {
                 _Selected = value;
+
+                if(Selected == true)
+                {
+                    Colour = Brushes.Green;
+                    PersonVisibility = Visibility.Visible;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -80,7 +87,13 @@ namespace Cinema_Ticketing_System.Elements.Screen
             }
             set
             {
-                AssociatedTicket = value;
+                _AssociatedTicket = value;
+                if (AssociatedTicket != null)
+                {
+                    AssociatedTicket.ColumnNumber = ColumnNumber;
+                    AssociatedTicket.RowNumber = RowNumber;
+                    AssociatedTicket.SeatNumber = RowNumber.ToString() + ColumnNumber.ToString();
+                }
                 OnPropertyChanged();
             }
         }
@@ -100,21 +113,33 @@ namespace Cinema_Ticketing_System.Elements.Screen
         public Seat()
         {
             InitializeComponent();
+        }
 
-            if(Selected)
+        private int _RowNumber = 0;
+        public int RowNumber
+        {
+            get
             {
-                Colour = Brushes.Green;
-                PersonVisibility = Visibility.Visible;
+                return _RowNumber;
             }
-            else if (IsMouseOver)
+            set
             {
-                Colour = Brushes.Orange;
-                PersonVisibility = Visibility.Hidden;
+                _RowNumber = value;
+                OnPropertyChanged();
             }
-            else
+        }
+
+        private int _ColumnNumber = 0;
+        public int ColumnNumber
+        {
+            get
             {
-                Colour = Brushes.Red;
-                PersonVisibility = Visibility.Hidden;
+                return _ColumnNumber;
+            }
+            set
+            {
+                _ColumnNumber = value;
+                OnPropertyChanged();
             }
         }
 
@@ -127,7 +152,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
             }
             set
             {
-                _AddingEnabled = true;
+                _AddingEnabled = value;
             }
         }
 
@@ -148,38 +173,31 @@ namespace Cinema_Ticketing_System.Elements.Screen
         #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
         private void IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (AddingEnabled)
+            if ((bool)e.NewValue == true && !Selected && AddingEnabled)
             {
-                if ((bool)e.NewValue == true && !Selected)
-                {
-                    Colour = Brushes.Orange;
-                }
-                else if (!Selected)
-                {
-                    Colour = Brushes.Red;
-                }
+                Colour = Brushes.Orange;
+            }
+            else if ((bool)e.NewValue == false && !Selected)
+            {
+                Colour = Brushes.Red;
             }
         }
         #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
         private void MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (AddingEnabled && CanEdit)
+            if (CanEdit)
             {
-                Selected = !Selected;
                 if (Selected)
                 {
-                    Colour = Brushes.Green;
-                    PersonVisibility = Visibility.Visible;
-                }
-                else if (IsMouseOver)
-                {
-                    Colour = Brushes.Orange;
-                    PersonVisibility = Visibility.Hidden;
-                }
-                else
-                {
+                    Selected = false;
                     Colour = Brushes.Red;
                     PersonVisibility = Visibility.Hidden;
+                }
+                else if (!Selected && AddingEnabled)
+                {
+                    Selected = true;
+                    Colour = Brushes.Green;
+                    PersonVisibility = Visibility.Visible;
                 }
 
                 OnClick.Invoke(this);

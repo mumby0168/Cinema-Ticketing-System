@@ -20,7 +20,7 @@
             <vs:InitalTicketBookingForm></vs:InitalTicketBookingForm>
         </DataTemplate>
         <DataTemplate DataType="{x:Type shiity:ScreenViewModel}">
-            <shittier:Screen NumberOfColumns="{Binding Path=NumberOfColumns, UpdateSourceTrigger=PropertyChanged}" NumberOfRows="{Binding Path=NumberOfRows, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding Path=ScreenVisibility, UpdateSourceTrigger=PropertyChanged}" ExsistingTickets="{Binding Path=ExsistingTickets, UpdateSourceTrigger=PropertyChanged}" PendingTickets="{Binding Path=PendingTickets, UpdateSourceTrigger=PropertyChanged}"></shittier:Screen>
+            <shittier:Screen NumberOfColumns="{Binding Path=NumberOfColumns, UpdateSourceTrigger=PropertyChanged}" NumberOfRows="{Binding Path=NumberOfRows, UpdateSourceTrigger=PropertyChanged}" ExsistingTickets="{Binding Path=ExsistingTickets, UpdateSourceTrigger=PropertyChanged}" PendingTickets="{Binding Path=PendingTickets, UpdateSourceTrigger=PropertyChanged}"  CanInitialize="{Binding Path=IsInitialize, UpdateSourceTrigger=PropertyChanged}"></shittier:Screen>
         </DataTemplate>
     </Window.Resources>
 

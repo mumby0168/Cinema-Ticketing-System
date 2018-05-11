@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,11 +35,10 @@ namespace Cinema_Ticketing_System.ViewModels
         {            
             screenViewModel = new ScreenViewModel();
 
-            InitialTicketBookingFormViewModel = new InitialTicketBookingFormViewModel((screeningId, tickets, visibilty) =>
+            InitialTicketBookingFormViewModel = new InitialTicketBookingFormViewModel((screeningId, tickets) =>
                 {
                     screenViewModel.ScreeningId = screeningId;
-                    screenViewModel.PendingTickets = tickets;
-                    screenViewModel.ScreenVisibility = visibilty;
+                    screenViewModel.PendingTickets = new ObservableCollection<Cinema_Ticketing_System.Models.Ticket>(tickets);
                     ChangeContextToScreen();
                 });
 

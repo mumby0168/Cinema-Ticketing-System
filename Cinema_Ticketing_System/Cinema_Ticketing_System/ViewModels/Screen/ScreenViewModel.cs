@@ -7,6 +7,7 @@ using Cinema_Ticketing_System.Models;
 using Cinema_Ticketing_System.ViewModels;
 using Cinema_Ticketing_System.Database;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace Cinema_Ticketing_System.ViewModels.Screen
 {
@@ -14,10 +15,6 @@ namespace Cinema_Ticketing_System.ViewModels.Screen
     {
         public ScreenViewModel()
         {
-            if(ScreenVisibility == Visibility.Visible)
-            {
-                LoadDataFromDB();
-            }
         }
 
         private int _ScreeningId = 0;
@@ -30,6 +27,7 @@ namespace Cinema_Ticketing_System.ViewModels.Screen
             set
             {
                 _ScreeningId = value;
+                LoadDataFromDB();
                 OnPropertyChanged();
             }
         }
@@ -62,21 +60,19 @@ namespace Cinema_Ticketing_System.ViewModels.Screen
             }
         }
 
-        private Visibility _ScreenVisibility = Visibility.Collapsed;
-        public Visibility ScreenVisibility
+        private bool _IsIntialized = false;
+        public bool IsInitialize
         {
             get
             {
-                return _ScreenVisibility;
+                return _IsIntialized;
             }
             set
             {
-                _ScreenVisibility = value;
-                LoadDataFromDB();
+                _IsIntialized = value;
                 OnPropertyChanged();
             }
         }
-
         private void LoadDataFromDB()
         {
             using (DataHandler handle = new DataHandler())
@@ -85,6 +81,7 @@ namespace Cinema_Ticketing_System.ViewModels.Screen
                 var screening = handle.GetSecreeningWithScreenByScreeningId(ScreeningId);
                 NumberOfColumns = screening.Screen.Columns;
                 NumberOfRows = screening.Screen.Rows;
+                IsInitialize = true;
             }
         }
 
@@ -102,8 +99,8 @@ namespace Cinema_Ticketing_System.ViewModels.Screen
             }
         }
 
-        private List<Ticket> _PendingTickets = null;
-        public List<Ticket> PendingTickets
+        private ObservableCollection<Ticket> _PendingTickets = null;
+        public ObservableCollection<Ticket> PendingTickets
         {
             get
             {
