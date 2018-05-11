@@ -24,7 +24,27 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid>
-        <ContentPresenter Content="{Binding Path=ViewModel, UpdateSourceTrigger=PropertyChanged}"></ContentPresenter>
-    </Grid>
+    <DockPanel>
+
+        <Label FontStyle="Oblique" FontWeight="Bold" DockPanel.Dock="Top" HorizontalAlignment="Center" Content="Cinema Ticket Booking System"></Label>
+
+        <StackPanel DockPanel.Dock="Left">
+            <Button Command="{Binding}" Padding="10" Margin="5">Book a Ticket</Button>
+            <Button Command="{Binding}" Padding="10" Margin="5">View Chart Data</Button>
+        </StackPanel>
+
+        <StackPanel Margin="10" DockPanel.Dock="Right">
+            
+        </StackPanel>
+
+        <Label Content="@Copyright Cinema System 2018" DockPanel.Dock="Bottom" HorizontalAlignment="Center"></Label>
+
+        <Border BorderBrush="Black" BorderThickness="2">
+            <ContentPresenter Content="{Binding Path=ViewModel, UpdateSourceTrigger=PropertyChanged}"></ContentPresenter>
+        </Border>
+
+        
+
+    </DockPanel>
 </Window>
+                                                                                                            
