@@ -109,6 +109,10 @@ namespace Cinema_Ticketing_System.Database
             m_DatabaseContext.Screenings.Add(screening);
         }
 
+        public Screening GetScreeningFromDateFilmTimeScreen(DateTime _Date, Screen _SelectedScreen, Film _SelectedFilm, DateTime _SelectedTime)
+        {
+            return m_DatabaseContext.Screenings.First(S => S.DateAndTime.Date == _Date && S.ScreenId == _SelectedScreen.Id && S.FilmId == _SelectedFilm.Id && S.DateAndTime.TimeOfDay == _SelectedTime.TimeOfDay);
+        }
         public List<Screening> GetFilmsOnDate(DateTime datetoGetwith)
         {
             string date = datetoGetwith.Date.ToString("dd/MM/yyyy");
@@ -146,6 +150,54 @@ namespace Cinema_Ticketing_System.Database
             List<Screening> sOnDate = screenings.Where(s => s.DateAndTime.Date == Date.Date).ToList();
 
             return sOnDate;
+        }
+
+        public List<Screening> GetScreeningsWithScreenOnDate(DateTime Date)
+        {
+            List<Screening> sOnDate = m_DatabaseContext.Screenings.Include(S => S.Screen).Where(s => s.DateAndTime.Date == Date.Date).ToList();
+
+            return sOnDate;
+        }
+
+        public List<Film> GetFilmsInScreen(Screen s)
+        {
+            List<Film> films = new List<Film>();
+            List<Screening> screenings = m_DatabaseContext.Screenings.Include(S => S.Film).Where(S => S.ScreenId == s.Id).ToList();
+
+            for(int i = 0; i < screenings.Count; i++)
+            {
+                bool bAdd = true;
+                if(films.Count > 0)
+                {
+                    for (int j = 0; j < films.Count; j++)
+                    {
+                        if(films[j] == screenings[i].Film)
+                        {
+                            bAdd = false;
+                        }
+                    }
+                }
+
+                if(bAdd)
+                {
+                    films.Add(screenings[i].Film);
+                }
+            }
+
+            return films;
+        }
+
+        public List<DateTime> TimesFromScreensAndDate(DateTime dt, Screen s)
+        {
+            var ret = m_DatabaseContext.Screenings.Where(S => S.DateAndTime.Date == dt.Date && S.ScreenId == s.Id).ToList();
+            List<DateTime> times = new List<DateTime>();
+
+            foreach(var t in ret)
+            {
+                times.Add(t.DateAndTime);
+            }
+
+            return times;
         }
 
         public void AddTicket(Ticket t)

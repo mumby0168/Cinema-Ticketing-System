@@ -109,6 +109,9 @@
     <Compile Include="Views\ChartLandingPage.xaml.cs">
       <DependentUpon>ChartLandingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewAScreenPage.xaml.cs">
+      <DependentUpon>ViewAScreenPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InitalTicketBookingForm.xaml.cs">
       <DependentUpon>InitalTicketBookingForm.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
     <Page Include="Views\ChartLandingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewAScreenPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\InitalTicketBookingForm.xaml">
       <Generator>MSBuild:Compile</Generator>
