@@ -217,16 +217,19 @@ namespace Cinema_Ticketing_System.ViewModels
             Chart2DetailVisibility = Visibility.Visible;
             Chart3Visibility = Visibility.Collapsed;
             Chart4Visibility = Visibility.Collapsed;
-            Screening Screening;
+            Screening Screening = null;
             List<Ticket> Tickets;
             int ticketCount = 0;
             using (var handler = new DataHandler())
             {
-                Screening = handler.GetSecreeningWithScreenByScreeningId(_chosenScreening.Id);
-                Tickets = handler.GetTicketsFromScreening(_chosenScreening.Id);
-                ticketCount = Tickets.Count;
+                if (_chosenScreening != null)
+                {
+                    Screening = handler.GetSecreeningWithScreenByScreeningId(_chosenScreening.Id);
+                    Tickets = handler.GetTicketsFromScreening(_chosenScreening.Id);
+                    ticketCount = Tickets.Count;
+                }
             }
-
+            
             var series = ChartCreator.GetPercetentageChartOfScreeningFilled(Screening, ticketCount);
 
             Model = new PlotModel();
@@ -267,7 +270,7 @@ namespace Cinema_Ticketing_System.ViewModels
             using (var handler = new DataHandler())
             {
                 Screenings = handler.GetScreeningsOnDate(_dateChosenChart1);
-            }            
+            }
         }
 
         #endregion
