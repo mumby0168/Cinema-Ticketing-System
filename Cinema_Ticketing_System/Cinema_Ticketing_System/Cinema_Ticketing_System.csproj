@@ -105,6 +105,7 @@
     <Compile Include="ViewModels\ChartLandingPageViewModel.cs" />
     <Compile Include="ViewModels\Commands\ClickCommand.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\ViewAScreeningViewModel.cs" />
     <Compile Include="ViewModels\InitialTicketBookingFormViewModel.cs" />
     <Compile Include="ViewModels\OverCinemaPerformanceViewModel.cs" />
     <Compile Include="ViewModels\Screen\ScreenViewModel.cs" />
@@ -115,11 +116,11 @@
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewAScreening.xaml.cs">
+      <DependentUpon>ViewAScreening.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OverCinemaPerformanceView.xaml.cs">
       <DependentUpon>OverCinemaPerformanceView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ViewAScreenPage.xaml.cs">
-      <DependentUpon>ViewAScreenPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InitalTicketBookingForm.xaml.cs">
       <DependentUpon>InitalTicketBookingForm.xaml</DependentUpon>
@@ -160,13 +161,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ViewAScreening.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\OverCinemaPerformanceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ViewAScreenPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\InitalTicketBookingForm.xaml">
       <Generator>MSBuild:Compile</Generator>

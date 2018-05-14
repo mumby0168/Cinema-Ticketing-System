@@ -33,12 +33,13 @@ namespace Cinema_Ticketing_System.ViewModels
 
         private HomePageViewModel homePageView;
 
-        private ViewAScreenPage _ViewAScreen;
-
         private OverCinemaPerformanceViewModel _overCinemaPerformance;
+
+        private ViewAScreeningViewModel _ViewAScreeningViewModel;
 
 
         public ClickCommand goToBook { get; private set; }
+        public ClickCommand goToViewAScreening { get; private set; }
 
         public ClickCommand GoToCharts { get; private set; }
 
@@ -50,11 +51,11 @@ namespace Cinema_Ticketing_System.ViewModels
         {            
             GoToOverviewPage = new ClickCommand(GoToOverCinemaPerformance);
             goToBook = new ClickCommand(BookTicketClicked);
+            goToViewAScreening = new ClickCommand(ViewAScreen);
             GoToCharts = new ClickCommand(ViewCharts);
             GoToViewAScreen = new ClickCommand(ViewAScreen);
             screenViewModel = new ScreenViewModel();
             homePageView = new HomePageViewModel();
-            _ViewAScreen = new ViewAScreenPage();
             _overCinemaPerformance = new OverCinemaPerformanceViewModel();
 
             InitialTicketBookingFormViewModel = new InitialTicketBookingFormViewModel((screeningId, tickets) =>
@@ -63,6 +64,12 @@ namespace Cinema_Ticketing_System.ViewModels
                     screenViewModel.PendingTickets = new ObservableCollection<Cinema_Ticketing_System.Models.Ticket>(tickets);
                     ChangeContextToScreen();
                 });
+
+            _ViewAScreeningViewModel = new ViewAScreeningViewModel((screeningId) =>
+            {
+                screenViewModel.ScreeningId = screeningId;
+                ChangeContextToScreen();
+            });
 
             chartLandingPageViewModel = new ChartLandingPageViewModel();
 
@@ -92,7 +99,7 @@ namespace Cinema_Ticketing_System.ViewModels
 
         public void ViewAScreen()
         {
-            ViewModel = _ViewAScreen;
+            ViewModel = _ViewAScreeningViewModel;
         }
     }
 }
