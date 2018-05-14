@@ -197,10 +197,11 @@ namespace Cinema_Ticketing_System.ViewModels
             Chart4Visibility = Visibility.Collapsed;
 
 
-            List<Ticket> tickets = new List<Ticket>();
+            List<Ticket> tickets = new List<Ticket>();            
             using (var handler = new DataHandler())
             {
-                tickets = new List<Ticket>(handler.GetTicketsFromScreening(_chosenScreening.Id));
+                if(_chosenScreening != null)
+                    tickets = new List<Ticket>(handler.GetTicketsFromScreening(_chosenScreening.Id));
             }
 
             var series = ChartCreator.GetProportionOfTicketsPerScreeningPieChart(tickets);

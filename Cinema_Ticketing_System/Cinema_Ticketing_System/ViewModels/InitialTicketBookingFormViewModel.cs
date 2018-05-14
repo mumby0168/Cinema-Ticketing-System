@@ -225,6 +225,18 @@ namespace Cinema_Ticketing_System.ViewModels
                     , Price = 15.0 });
             }
 
+            if (SelectedScreening == null)
+            {
+                MessageBox.Show("Please make sure you populate all the fields");
+                return;
+            }
+
+            if (tickets.Count == 0)
+            {
+                MessageBox.Show("Please Select some tickets.");
+                return;
+            }
+
             Passer(_selectedScreening.Id, tickets);
         }
 

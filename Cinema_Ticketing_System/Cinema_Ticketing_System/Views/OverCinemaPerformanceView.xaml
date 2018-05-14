@@ -27,15 +27,45 @@
                     <GridViewColumn Header="Week Beginning">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding WeekCommencing, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                <TextBlock Text="{Binding WeekCommencing,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Total Tickets Sold"></GridViewColumn>
-                    <GridViewColumn Header="Child Tickets Sold"></GridViewColumn>
-                    <GridViewColumn Header="Adult Tickets Sold"></GridViewColumn>
-                    <GridViewColumn Header="Conccesion Ticket Sold"></GridViewColumn>
-                    <GridViewColumn Header="Total Revenue"></GridViewColumn>
+                    <GridViewColumn Header="Total Tickets Sold">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TotalTicketsSold, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Child Tickets Sold">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TotalChildTickets, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Adult Tickets Sold">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TotalAdultTickets, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Conccesion Ticket Sold">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TotalConncessionTickets, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Total Revenue">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TotalRevenue, UpdateSourceTrigger=PropertyChanged, StringFormat=c}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
