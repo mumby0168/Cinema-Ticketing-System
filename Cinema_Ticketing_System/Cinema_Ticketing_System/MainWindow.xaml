@@ -31,6 +31,9 @@
         <DataTemplate DataType="{x:Type vs:ViewAScreenPage}">
             <vs:ViewAScreenPage></vs:ViewAScreenPage>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vms:OverCinemaPerformanceViewModel}">
+            <vs:OverCinemaPerformanceView></vs:OverCinemaPerformanceView>
+        </DataTemplate>
     </Window.Resources>
 
     <DockPanel>
@@ -41,6 +44,7 @@
             <Button Command="{Binding Path=goToBook}" Padding="10" Margin="5">Book a Ticket</Button>
             <Button Command="{Binding Path=GoToCharts}" Padding="10" Margin="5">View Chart Data</Button>
             <Button Command="{Binding Path=GoToViewAScreen}" Padding="10" Margin="5">View A Screen</Button>
+            <Button Command="{Binding Path=GoToOverviewPage}" Content="Cinema Performance" Padding="10" Margin="5"></Button>
         </StackPanel>
 
         <StackPanel Margin="10" DockPanel.Dock="Right">

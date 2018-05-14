@@ -17,6 +17,11 @@ namespace Cinema_Ticketing_System.Database
             m_DatabaseContext.Dispose();
         }
 
+        public List<Ticket> GetAllTickets()
+        {
+            return m_DatabaseContext.Tickets.Include(s => s.Screening).ToList();
+        }
+
         public DataHandler()
         {
             m_DatabaseContext = new CinemaContext();

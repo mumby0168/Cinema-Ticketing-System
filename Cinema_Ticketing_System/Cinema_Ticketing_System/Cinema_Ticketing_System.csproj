@@ -96,6 +96,7 @@
     <Compile Include="Migrations\201805110930474_hm.Designer.cs">
       <DependentUpon>201805110930474_hm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Application Models\WeeklyOverview.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -105,6 +106,7 @@
     <Compile Include="ViewModels\Commands\ClickCommand.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\InitialTicketBookingFormViewModel.cs" />
+    <Compile Include="ViewModels\OverCinemaPerformanceViewModel.cs" />
     <Compile Include="ViewModels\Screen\ScreenViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\ChartLandingPage.xaml.cs">
@@ -112,6 +114,9 @@
     </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OverCinemaPerformanceView.xaml.cs">
+      <DependentUpon>OverCinemaPerformanceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewAScreenPage.xaml.cs">
       <DependentUpon>ViewAScreenPage.xaml</DependentUpon>
@@ -154,6 +159,10 @@
     <Page Include="Views\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OverCinemaPerformanceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ViewAScreenPage.xaml">
       <Generator>MSBuild:Compile</Generator>

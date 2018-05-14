@@ -35,6 +35,8 @@ namespace Cinema_Ticketing_System.ViewModels
 
         private ViewAScreenPage _ViewAScreen;
 
+        private OverCinemaPerformanceViewModel _overCinemaPerformance;
+
 
         public ClickCommand goToBook { get; private set; }
 
@@ -42,15 +44,18 @@ namespace Cinema_Ticketing_System.ViewModels
 
         public ClickCommand GoToViewAScreen { get; private set; }
 
+        public ClickCommand GoToOverviewPage { get; private set; }
+
         public ShellViewModel()
         {            
-
+            GoToOverviewPage = new ClickCommand(GoToOverCinemaPerformance);
             goToBook = new ClickCommand(BookTicketClicked);
             GoToCharts = new ClickCommand(ViewCharts);
             GoToViewAScreen = new ClickCommand(ViewAScreen);
             screenViewModel = new ScreenViewModel();
             homePageView = new HomePageViewModel();
             _ViewAScreen = new ViewAScreenPage();
+            _overCinemaPerformance = new OverCinemaPerformanceViewModel();
 
             InitialTicketBookingFormViewModel = new InitialTicketBookingFormViewModel((screeningId, tickets) =>
                 {
@@ -63,6 +68,11 @@ namespace Cinema_Ticketing_System.ViewModels
 
             ViewModel = homePageView;
 
+        }
+
+        public void GoToOverCinemaPerformance()
+        {
+            ViewModel = _overCinemaPerformance;
         }
 
         public void ChangeContextToScreen()
