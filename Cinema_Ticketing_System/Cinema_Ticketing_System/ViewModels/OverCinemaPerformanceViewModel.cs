@@ -32,59 +32,59 @@ namespace Cinema_Ticketing_System.ViewModels
 
         public OverCinemaPerformanceViewModel()
         {
-            using (var handler = new DataHandler())
-            {
-                _tickets = handler.GetAllTickets();
-            }
+            //using (var handler = new DataHandler())
+            //{
+            //    _tickets = handler.GetAllTickets();
+            //}
 
-            Sort();
+            //Sort();
         }
 
-        private void Sort()
-        {
-            _tickets.OrderByDescending(d => d.Screening.DateAndTime.Date);
+        //private void Sort()
+        //{
+        //    _tickets.OrderByDescending(d => d.Screening.DateAndTime.Date);
 
-            _firsDate = _tickets[0].Screening.DateAndTime;
+        //    _firsDate = _tickets[0].Screening.DateAndTime;
 
-            if (_firsDate.DayOfWeek != DayOfWeek.Monday)
-            {
-                do
-                {
-                    _firsDate.AddDays(1.0);
-                } while (_firsDate.DayOfWeek != DayOfWeek.Monday);
-            }
+        //    if (_firsDate.DayOfWeek != DayOfWeek.Monday)
+        //    {
+        //        do
+        //        {
+        //            _firsDate.AddDays(1.0);
+        //        } while (_firsDate.DayOfWeek != DayOfWeek.Monday);
+        //    }
 
-            foreach (var ticket in _tickets)
-            {
-                var indexOfList = 0;
+        //    foreach (var ticket in _tickets)
+        //    {
+        //        var indexOfList = 0;
 
-                if (ticket.Screening.DateAndTime != _firsDate.AddDays(7))
-                {
-                    _weeklyOverviews[indexOfList].TotalTicketsSold++;
+        //        if (ticket.Screening.DateAndTime != _firsDate.AddDays(7))
+        //        {
+        //            _weeklyOverviews[indexOfList].TotalTicketsSold++;
 
-                    if(ticket.TicketType == TicketType.Adult)
-                        _weeklyOverviews[indexOfList].TotalAdultTickets++;
-                    if (ticket.TicketType == TicketType.Child)
-                        _weeklyOverviews[indexOfList].TotalChildTickets++;
-                    if (ticket.TicketType == TicketType.Concession)
-                        _weeklyOverviews[indexOfList].TotalConncessionTickets++;
+        //            if(ticket.TicketType == TicketType.Adult)
+        //                _weeklyOverviews[indexOfList].TotalAdultTickets++;
+        //            if (ticket.TicketType == TicketType.Child)
+        //                _weeklyOverviews[indexOfList].TotalChildTickets++;
+        //            if (ticket.TicketType == TicketType.Concession)
+        //                _weeklyOverviews[indexOfList].TotalConncessionTickets++;
 
-                    _weeklyOverviews[indexOfList].TotalRevenue += ticket.Price;
+        //            _weeklyOverviews[indexOfList].TotalRevenue += ticket.Price;
 
-                }
+        //        }
 
-                if (ticket.Screening.DateAndTime == _firsDate.AddDays(7))
-                {
-                    _firsDate = _firsDate.AddDays(7);
-                    var count = _weeklyOverviews.Count;
-                    if (_weeklyOverviews.Count != 0)
-                        indexOfList = count - 1;
-                    _weeklyOverviews.Add(new WeeklyOverview() { WeekCommencing = _firsDate });
-                }
+        //        if (ticket.Screening.DateAndTime == _firsDate.AddDays(7))
+        //        {
+        //            _firsDate = _firsDate.AddDays(7);
+        //            var count = _weeklyOverviews.Count;
+        //            if (_weeklyOverviews.Count != 0)
+        //                indexOfList = count - 1;
+        //            _weeklyOverviews.Add(new WeeklyOverview() { WeekCommencing = _firsDate });
+        //        }
                 
-            }
+        //    }
 
 
-        }
+        //}
     }
 }
