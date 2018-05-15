@@ -20,9 +20,9 @@
 
         <ListView Name="PendingListView" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding Path=PendingTickets, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
-                <GridView>
+                <GridView >
                     <GridViewColumn Header="Ticket Type" DisplayMemberBinding="{Binding Path=TicketType}"/>
-                    <GridViewColumn Header="Screen Number" DisplayMemberBinding="{Binding Path=Screening.Screen.ScreenNumber}"/>
+                    <GridViewColumn Header="Screen Number" DisplayMemberBinding="{Binding Path=Screening.Screen.Number}"/>
                     <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.Date}"/>
                     <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.Time}"/>
                     <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Path=Price}"/>
@@ -34,7 +34,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Ticket Type" DisplayMemberBinding="{Binding Path=TicketType}"/>
-                    <GridViewColumn Header="Screen Number" DisplayMemberBinding="{Binding Path=Screening.Screen.ScreenNumber}"/>
+					<GridViewColumn Header="Screen Number" DisplayMemberBinding="{Binding Path=Screening.Screen.ScreenNumber}"/>
                     <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.Date}"/>
                     <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.Time}"/>
                     <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Path=Price}"/>

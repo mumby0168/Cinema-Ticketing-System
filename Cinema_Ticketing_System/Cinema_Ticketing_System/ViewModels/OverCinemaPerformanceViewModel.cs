@@ -45,6 +45,9 @@ namespace Cinema_Ticketing_System.ViewModels
         {
             _tickets = _tickets.OrderBy(d => d.Screening.DateAndTime.Date).ToList();
 
+            if (_tickets.Count == 0)
+                return;
+
             _firsDate = _tickets[0].Screening.DateAndTime;
 
             if (_firsDate.DayOfWeek != DayOfWeek.Monday)
@@ -54,6 +57,11 @@ namespace Cinema_Ticketing_System.ViewModels
                     _firsDate = _firsDate.AddDays(-1.0);
                 } while (_firsDate.DayOfWeek != DayOfWeek.Monday);
             }
+
+            _firsDate = _firsDate.AddHours(-_firsDate.Hour);
+            _firsDate = _firsDate.AddMinutes(-_firsDate.Minute);
+            _firsDate = _firsDate.AddSeconds(-_firsDate.Second);
+            _firsDate = _firsDate.AddMilliseconds(-_firsDate.Millisecond);
 
             foreach (var ticket in _tickets)
             {
@@ -67,13 +75,12 @@ namespace Cinema_Ticketing_System.ViewModels
                 if (_weeklyOverviews.Count == 0)
                 {
                     _weeklyOverviews.Add(new WeeklyOverview());
-                    index = _weeklyOverviews.Count - 1;
-                    _weeklyOverviews[index].WeekCommencing = _firsDate;
+                    _weeklyOverviews[0].WeekCommencing = _firsDate;
                 }
 
                 if (ticket.Screening.DateAndTime.Date < _firsDate)
                 {
-                    continue;
+                    throw new Exception("This should never happen as it means were losing data");
                 }
 
                 var maxdate = _firsDate.AddDays(7.0);
@@ -119,6 +126,19 @@ namespace Cinema_Ticketing_System.ViewModels
                 else
                 {
                     _firsDate = ticket.Screening.DateAndTime;
+
+                    if (_firsDate.DayOfWeek != DayOfWeek.Monday)
+                    {
+                        do
+                        {
+                            _firsDate = _firsDate.AddDays(-1.0);
+                        } while (_firsDate.DayOfWeek != DayOfWeek.Monday);
+                    }
+
+                    _firsDate = _firsDate.AddHours(-_firsDate.Hour);
+                    _firsDate = _firsDate.AddMinutes(-_firsDate.Minute);
+                    _firsDate = _firsDate.AddSeconds(-_firsDate.Second);
+                    _firsDate = _firsDate.AddMilliseconds(-_firsDate.Millisecond);
 
                     _weeklyOverviews.Add(new WeeklyOverview());
                     index = _weeklyOverviews.Count - 1;

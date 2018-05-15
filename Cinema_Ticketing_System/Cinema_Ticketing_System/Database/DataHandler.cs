@@ -47,6 +47,11 @@ namespace Cinema_Ticketing_System.Database
             }
         }
 
+        public Screen GetScreenByID(int iScreenId)
+        {
+            return m_DatabaseContext.Screens.First(s => s.Id == iScreenId);
+        }
+
         public void PopulateFilms()
         {
             Film film = new Film();
