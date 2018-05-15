@@ -117,6 +117,9 @@ namespace Cinema_Ticketing_System.Elements.Screen
         private Ticket _NextTicketToAdd = null;
         public void OnSeatClicked(Seat seatObj)
         {
+            if (PendingTickets == null)
+                return;
+
             if (seatObj.Selected && _NextTicketToAdd != null)
             {
                 seatObj.AssociatedTicket = _NextTicketToAdd;

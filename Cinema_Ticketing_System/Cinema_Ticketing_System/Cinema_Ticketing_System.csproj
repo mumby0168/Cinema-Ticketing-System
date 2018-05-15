@@ -96,6 +96,7 @@
     <Compile Include="Migrations\201805110930474_hm.Designer.cs">
       <DependentUpon>201805110930474_hm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Application Models\DailyOverview.cs" />
     <Compile Include="Models\Application Models\WeeklyOverview.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="MainWindow.xaml.cs">

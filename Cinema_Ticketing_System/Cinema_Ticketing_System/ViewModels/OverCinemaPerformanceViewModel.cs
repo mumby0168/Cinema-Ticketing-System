@@ -24,7 +24,6 @@ namespace Cinema_Ticketing_System.ViewModels
             {
                 _weeklyOverviews = value;
                 OnPropertyChanged();
-                
             }
         }
 
@@ -56,8 +55,6 @@ namespace Cinema_Ticketing_System.ViewModels
                 } while (_firsDate.DayOfWeek != DayOfWeek.Monday);
             }
 
-
-
             foreach (var ticket in _tickets)
             {
                 int index = 0;
@@ -84,23 +81,40 @@ namespace Cinema_Ticketing_System.ViewModels
                 if (ticket.Screening.DateAndTime.Date < maxdate.Date && ticket.Screening.DateAndTime.Date >= _firsDate.Date)
                 {
                     var itemInList = _weeklyOverviews[index];
+                    int dayOfWeek = (int)ticket.Screening.DateAndTime.DayOfWeek;
+                    //Mon: 1 - 0
+                    //Tue: 2 - 1
+                    //Wed: 3 - 2
+                    //Thu: 4 - 3
+                    //Fri: 5 - 4
+                    //Sat: 6 - 5
+                    //Sun: 0 - 6
+                    //so sub 1 off of dow and then if it is -1 set it to six
+                    dayOfWeek--;
+                    if (dayOfWeek < 0)
+                        dayOfWeek = 6;
 
                     itemInList.TotalTicketsSold++;
                     itemInList.TotalRevenue += ticket.Price;
+
+                    itemInList.Details[dayOfWeek].TotalTicketsSold++;
+                    itemInList.Details[dayOfWeek].TotalRevenue += ticket.Price;
 
                     switch (ticket.TicketType)
                     {
                         case TicketType.Adult:
                             itemInList.TotalAdultTickets++;
+                            itemInList.Details[dayOfWeek].TotalAdultTickets++;
                             break;
                         case TicketType.Child:
                             itemInList.TotalChildTickets++;
+                            itemInList.Details[dayOfWeek].TotalChildTickets++;
                             break;
                         case TicketType.Concession:
                             itemInList.TotalConncessionTickets++;
+                            itemInList.Details[dayOfWeek].TotalConncessionTickets++;
                             break;
-                    }
-
+                    }                 
                 }
                 else
                 {
@@ -113,16 +127,36 @@ namespace Cinema_Ticketing_System.ViewModels
                     _weeklyOverviews[index].TotalTicketsSold++;
                     _weeklyOverviews[index].TotalRevenue += ticket.Price;
 
+                    var itemInList = _weeklyOverviews[index];
+                    int dayOfWeek = (int)ticket.Screening.DateAndTime.DayOfWeek;
+                    //Mon: 1 - 0
+                    //Tue: 2 - 1
+                    //Wed: 3 - 2
+                    //Thu: 4 - 3
+                    //Fri: 5 - 4
+                    //Sat: 6 - 5
+                    //Sun: 0 - 6
+                    //so sub 1 off of dow and then if it is -1 set it to six
+                    dayOfWeek--;
+                    if (dayOfWeek < 0)
+                        dayOfWeek = 6;
+
+                    itemInList.Details[dayOfWeek].TotalTicketsSold++;
+                    itemInList.Details[dayOfWeek].TotalRevenue += ticket.Price;
+
                     switch (ticket.TicketType)
                     {
                         case TicketType.Adult:
                             _weeklyOverviews[index].TotalAdultTickets++;
+                            itemInList.Details[dayOfWeek].TotalAdultTickets++;
                             break;
                         case TicketType.Child:
                             _weeklyOverviews[index].TotalChildTickets++;
+                            itemInList.Details[dayOfWeek].TotalChildTickets++;
                             break;
                         case TicketType.Concession:
                             _weeklyOverviews[index].TotalConncessionTickets++;
+                            itemInList.Details[dayOfWeek].TotalConncessionTickets++;
                             break;
                     }
                 }

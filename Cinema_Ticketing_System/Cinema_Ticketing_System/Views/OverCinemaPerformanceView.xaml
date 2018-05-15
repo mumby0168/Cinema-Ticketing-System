@@ -21,54 +21,33 @@
 
         <Label Content="OverPerformace Indicator" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Path=WeeklyOverviews, UpdateSourceTrigger=PropertyChanged}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Week Beginning">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding WeekCommencing,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Total Tickets Sold">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding TotalTicketsSold, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Child Tickets Sold">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding TotalChildTickets, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Adult Tickets Sold">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding TotalAdultTickets, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Conccesion Ticket Sold">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding TotalConncessionTickets, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Total Revenue">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding TotalRevenue, UpdateSourceTrigger=PropertyChanged, StringFormat=c}"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Grid.Row="1" Width="auto" ItemsSource="{Binding Path=WeeklyOverviews, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False">
+            <DataGrid.Columns>
+				<DataGridTextColumn Width="auto" Header="Week Beginning" Binding="{Binding WeekCommencing,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+				<DataGridTextColumn Width="auto" Header="Adult Tickets Sold" Binding="{Binding TotalAdultTickets, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+				<DataGridTextColumn Width="auto" Header="Child Tickets Sold" Binding="{Binding TotalChildTickets, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+				<DataGridTextColumn Width="auto" Header="Conccesion Tickets Sold" Binding="{Binding TotalConncessionTickets, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+				<DataGridTextColumn Width="auto" Header="Total Tickets Sold" Binding="{Binding TotalTicketsSold, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                <DataGridTextColumn Width="auto" Header="Total Revenue" Binding="{Binding TotalRevenue, UpdateSourceTrigger=PropertyChanged, StringFormat=c}"></DataGridTextColumn>
+            </DataGrid.Columns>
+            <!-- Day Overview -->
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <ListView ItemsSource="{Binding Path=Details, UpdateSourceTrigger=PropertyChanged}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Day" DisplayMemberBinding="{Binding Day, UpdateSourceTrigger=PropertyChanged}" />
+								<GridViewColumn Header="Adult Tickets Sold" DisplayMemberBinding="{Binding TotalAdultTickets, UpdateSourceTrigger=PropertyChanged}" />
+								<GridViewColumn Header="Child Tickets Sold" DisplayMemberBinding="{Binding TotalChildTickets, UpdateSourceTrigger=PropertyChanged}" />
+								<GridViewColumn Header="Conccesion Tickets Sold" DisplayMemberBinding="{Binding TotalConncessionTickets, UpdateSourceTrigger=PropertyChanged}" />
+								<GridViewColumn Header="Total Tickets Sold" DisplayMemberBinding="{Binding TotalTicketsSold, UpdateSourceTrigger=PropertyChanged}" />
+								<GridViewColumn Header="Total Revenue" DisplayMemberBinding="{Binding TotalRevenue, UpdateSourceTrigger=PropertyChanged}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
 
     </Grid>
 </UserControl>
