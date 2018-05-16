@@ -63,9 +63,10 @@ namespace Cinema_Ticketing_System.ViewModels
             _firsDate = _firsDate.AddSeconds(-_firsDate.Second);
             _firsDate = _firsDate.AddMilliseconds(-_firsDate.Millisecond);
 
+            int index = 0;
             foreach (var ticket in _tickets)
             {
-                int index = 0;
+                System.Diagnostics.Debug.WriteLine(ticket.Id + " " + ticket.Screening.DateAndTime);
 
                 if (_weeklyOverviews == null)
                 {
@@ -75,7 +76,7 @@ namespace Cinema_Ticketing_System.ViewModels
                 if (_weeklyOverviews.Count == 0)
                 {
                     _weeklyOverviews.Add(new WeeklyOverview());
-                    _weeklyOverviews[0].WeekCommencing = _firsDate;
+                    _weeklyOverviews[index].WeekCommencing = _firsDate;
                 }
 
                 if (ticket.Screening.DateAndTime.Date < _firsDate)

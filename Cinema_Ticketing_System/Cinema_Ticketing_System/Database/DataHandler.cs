@@ -38,12 +38,23 @@ namespace Cinema_Ticketing_System.Database
                 m_DatabaseContext.SaveChanges();
             }
 
-            if (m_DatabaseContext.Screenings.Where(S =>
-                    S.DateAndTime.Day == DateTime.Today.Day && S.DateAndTime.Month == DateTime.Today.Month &&
-                    S.DateAndTime.Year == DateTime.Today.Year).ToList().Count == 0)
+            GenerateScreengins(DateTime.Now, DateTime.Now.AddDays(14));
+            m_DatabaseContext.SaveChanges();
+        }
+
+        public void GenerateScreengins(DateTime start, DateTime end)
+        {
+            if (start > end)
+                throw new Exception("You plonker");
+
+            var curr = start;
+            while (curr < end)
             {
-                PopulateTodaysScreenings();
-                m_DatabaseContext.SaveChanges();
+                if (m_DatabaseContext.Screenings.Where(S => S.DateAndTime.Day == curr.Day && S.DateAndTime.Month == curr.Month && S.DateAndTime.Year == curr.Year).ToList().Count == 0)
+                {
+                    PopulateScreenings(curr);
+                }
+                curr = curr.AddDays(1);
             }
         }
 
@@ -81,41 +92,41 @@ namespace Cinema_Ticketing_System.Database
             Screen screen = new Screen();
             screen.Columns = 10;
             screen.Rows = 5;
-            screen.Number = 50;
+            screen.Number = 1;
 
             m_DatabaseContext.Screens.Add(screen);
 
             screen = new Screen();
             screen.Columns = 10;
             screen.Rows = 5;
-            screen.Number = 50;
+            screen.Number = 2;
             m_DatabaseContext.Screens.Add(screen);
         }
 
-        public void PopulateTodaysScreenings()
+        public void PopulateScreenings(DateTime date)
         {
             Screening screening = new Screening();
             screening.ScreenId = m_DatabaseContext.Screens.ToList()[0].Id;
             screening.FilmId = m_DatabaseContext.Films.ToList()[0].Id;
-            screening.DateAndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 9, 0, 0);
+            screening.DateAndTime = new DateTime(date.Year, date.Month, date.Day, 9, 0, 0);
             m_DatabaseContext.Screenings.Add(screening);
 
             screening = new Screening();
             screening.ScreenId = m_DatabaseContext.Screens.ToList()[1].Id;
             screening.FilmId = m_DatabaseContext.Films.ToList()[1].Id;
-            screening.DateAndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 12, 0, 0);
+            screening.DateAndTime = new DateTime(date.Year, date.Month, date.Day, 12, 0, 0);
             m_DatabaseContext.Screenings.Add(screening);
 
             screening = new Screening();
             screening.ScreenId = m_DatabaseContext.Screens.ToList()[0].Id;
             screening.FilmId = m_DatabaseContext.Films.ToList()[2].Id;
-            screening.DateAndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
+            screening.DateAndTime = new DateTime(date.Year, date.Month, date.Day, 15, 0, 0);
             m_DatabaseContext.Screenings.Add(screening);
 
             screening = new Screening();
             screening.ScreenId = m_DatabaseContext.Screens.ToList()[1].Id;
             screening.FilmId = m_DatabaseContext.Films.ToList()[3].Id;
-            screening.DateAndTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 18, 0, 0);
+            screening.DateAndTime = new DateTime(date.Year, date.Month, date.Day, 18, 0, 0);
             m_DatabaseContext.Screenings.Add(screening);
         }
 

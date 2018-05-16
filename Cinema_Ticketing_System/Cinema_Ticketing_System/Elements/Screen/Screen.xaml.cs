@@ -276,6 +276,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
                             }
                         }
 
+                        t.Screening = null;
                         handle.AddTicket(t);
                     }
                     StagedTickets.Clear();

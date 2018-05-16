@@ -109,6 +109,7 @@ namespace Cinema_Ticketing_System.ViewModels.Screen
             set
             {
                 _PendingTickets = value;
+                System.Diagnostics.Debug.WriteLine(_PendingTickets[0].Screening.DateAndTime);
                 OnPropertyChanged();
             }
         }

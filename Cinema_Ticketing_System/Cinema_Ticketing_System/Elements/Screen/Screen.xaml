@@ -2,9 +2,15 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:converter="clr-namespace:Cinema_Ticketing_System.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="800" Loaded="UserControl_Initialized">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<converter:DateTimeToShortDateConverter x:Key="DateTimeToShortDate" />
+		</ResourceDictionary>
+	</UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
@@ -23,8 +29,8 @@
                 <GridView >
                     <GridViewColumn Header="Ticket Type" DisplayMemberBinding="{Binding Path=TicketType}"/>
                     <GridViewColumn Header="Screen Number" DisplayMemberBinding="{Binding Path=Screening.Screen.Number}"/>
-                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.Date}"/>
-                    <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.Time}"/>
+					<GridViewColumn Header="Date" DisplayMemberBinding="{Binding Converter={StaticResource DateTimeToShortDate}, Path=Screening.DateAndTime.Date}"/>
+                    <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.TimeOfDay}"/>
                     <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Path=Price}"/>
                 </GridView>
             </ListView.View>
@@ -34,9 +40,9 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Ticket Type" DisplayMemberBinding="{Binding Path=TicketType}"/>
-					<GridViewColumn Header="Screen Number" DisplayMemberBinding="{Binding Path=Screening.Screen.ScreenNumber}"/>
-                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.Date}"/>
-                    <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.Time}"/>
+					<GridViewColumn Header="Screen Number" DisplayMemberBinding="{Binding Path=Screening.Screen.Number}"/>
+					<GridViewColumn Header="Date" DisplayMemberBinding="{Binding Converter={StaticResource DateTimeToShortDate}, Path=Screening.DateAndTime.Date}"/>
+					<GridViewColumn Header="Time" DisplayMemberBinding="{Binding Path=Screening.DateAndTime.TimeOfDay}"/>
                     <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Path=Price}"/>
                     <GridViewColumn Header="Seat Number" DisplayMemberBinding="{Binding Path=SeatNumber}"/>
                 </GridView>
