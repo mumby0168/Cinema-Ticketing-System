@@ -11,7 +11,7 @@
 
         <Image HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
 
-        <Button x:Name="Open_User_Guide" Content="Open User Guide" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" BorderBrush="#FF000B29" Foreground="#FF000B29" RenderTransformOrigin="0.491,0.548">
+        <Button x:Name="Open_User_Guide" Style ="{StaticResource coolbtn}" Content="Open User Guide" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" BorderBrush="#FF000B29" Foreground="#FF000B29" RenderTransformOrigin="0.491,0.548">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                     <GradientStop Color="#FFD70026" Offset="0"/>

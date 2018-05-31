@@ -13,7 +13,7 @@
             <GradientStop Color="#D70026" Offset="0" />
         </LinearGradientBrush>
 
-        <Style TargetType="{x:Type Button}">
+        <Style x:Key="coolbtn" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="{StaticResource RedPearlGradientBrush}" />
             <Setter Property="Template">
                 <Setter.Value>

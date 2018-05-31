@@ -42,10 +42,10 @@
         <Label FontStyle="Oblique" FontWeight="Bold" DockPanel.Dock="Top" HorizontalAlignment="Center" Content="Cinema Ticket Booking System" Foreground="#FFF8F5F2"></Label>
 
         <StackPanel DockPanel.Dock="Left" Background="#FF000B29">
-            <Button Command="{Binding Path=goToBook}" Padding="10" Margin="5">Book a Ticket</Button>
-            <Button Command="{Binding Path=GoToCharts}" Padding="10" Margin="5">View Chart Data</Button>
-            <Button Command="{Binding Path=GoToViewAScreen}" Padding="10" Margin="5">View A Screening</Button>
-            <Button Command="{Binding Path=GoToOverviewPage}" Content="Cinema Performance" Padding="10" Margin="5"></Button>
+            <Button Style="{StaticResource coolbtn}" Command="{Binding Path=goToBook}" Content="Book a Ticket" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
+            <Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToCharts}" Content="View Chart Data" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
+            <Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToViewAScreen}" Content="View a Screening" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
+            <Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToOverviewPage}" Content="Cinema Performance" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
         </StackPanel>
 
         <StackPanel Margin="10" DockPanel.Dock="Right">

@@ -16,7 +16,7 @@
     </UserControl.DataContext>-->
 
     <UserControl.Background>
-        <SolidColorBrush Color="LightBlue" Opacity="0.3"></SolidColorBrush>
+        <SolidColorBrush Color="White" Opacity="1"></SolidColorBrush>
     </UserControl.Background>
 
     <UserControl.Resources>
@@ -33,7 +33,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="50"/>
-            <RowDefinition MaxHeight="300"/>
+            <RowDefinition MaxHeight="350"/>
         </Grid.RowDefinitions>
 
 
@@ -61,7 +61,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Width="{Binding ElementName=timelabel, Path=ActualWidth}" Grid.Column="0" DockPanel.Dock="Left" Margin="0,0,10,0" VerticalAlignment="Center" Text="Date:"></TextBlock>
-                <DatePicker MinWidth="100" MaxWidth="350" Name="datepicker" Grid.Column="1" SelectedDate="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"></DatePicker>
+                <DatePicker  Background="#D70026" MinWidth="100" MaxWidth="350" Name="datepicker" Grid.Column="1" SelectedDate="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"></DatePicker>
             </Grid>
 
             <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -71,9 +71,14 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Width="{Binding ElementName=timelabel, Path=ActualWidth}" Grid.Column="0" DockPanel.Dock="Left" Text="Film:" Margin="0,0,10,0"></TextBlock>
                 <ComboBox Width="{Binding ElementName=datepicker, Path=ActualWidth}" Height="{Binding ElementName=datepicker, Path=ActualHeight}" Grid.Column="1" SelectedItem="{Binding Path=SelectedFilm}" ItemsSource="{Binding Path=Films, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#D70026" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#D70026" />
+                    </ComboBox.Resources>
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <ComboBoxItem IsHitTestVisible="False" Content="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
@@ -84,7 +89,12 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Name="timelabel" Grid.Column="0" DockPanel.Dock="Left" Text="Time:" Margin="0,0,10,0"></TextBlock>
-                <ComboBox Width="{Binding ElementName=datepicker, Path=ActualWidth}" Grid.Column="1" Height="{Binding ElementName=datepicker, Path=ActualHeight}" SelectedItem="{Binding Path=FilmTimeSelected}" ItemsSource="{Binding Path=FilmTimes, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox Background="#D70026" Width="{Binding ElementName=datepicker, Path=ActualWidth}" Grid.Column="1" Height="{Binding ElementName=datepicker, Path=ActualHeight}" SelectedItem="{Binding Path=FilmTimeSelected}" ItemsSource="{Binding Path=FilmTimes, UpdateSourceTrigger=PropertyChanged}">
+
+                    <ComboBox.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#D70026" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#D70026" />
+                    </ComboBox.Resources>
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <ComboBoxItem IsHitTestVisible="False" Content="{Binding TimeOfDay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -101,7 +111,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Margin="2" Grid.Column="0">
                     <TextBlock Text="Adults"></TextBlock>
-                    <cont:UpDownPicker Value="{Binding Path=AdultTickets, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"></cont:UpDownPicker>
+                    <cont:UpDownPicker Value="{Binding Path=AdultTickets, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"/>
                 </StackPanel>
                 <StackPanel Margin="2" Grid.Column="1">
                     <TextBlock Text="Childs"></TextBlock>
@@ -113,7 +123,7 @@
                 </StackPanel>
             </Grid>
 
-            <Button Command="{Binding Path=OpenSeatPicker}" Margin="10" Content="Submit" Grid.Row="4"></Button>
+            <Button Style ="{StaticResource coolbtn}" Command="{Binding Path=OpenSeatPicker}" Margin="2" HorizontalAlignment="Center" Content="Submit" Grid.Row="4"></Button>
 
 
         </Grid>
