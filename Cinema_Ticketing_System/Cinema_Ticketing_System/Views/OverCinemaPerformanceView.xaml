@@ -21,7 +21,7 @@
 
         <Label Content="OverPerformace Indicator" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
 
-        <DataGrid Grid.Row="1" Width="auto" ItemsSource="{Binding Path=WeeklyOverviews, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False">
+        <DataGrid Grid.Row="1" Width="auto" ItemsSource="{Binding Path=WeeklyOverviews, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" Background="#FF606060">
             <DataGrid.Columns>
 				<DataGridTextColumn Width="auto" Header="Week Beginning" Binding="{Binding WeekCommencing,StringFormat=dd-MM-yyyy, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
 				<DataGridTextColumn Width="auto" Header="Adult Tickets Sold" Binding="{Binding TotalAdultTickets, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>

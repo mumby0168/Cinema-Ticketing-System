@@ -6,13 +6,20 @@
              xmlns:local="clr-namespace:Cinema_Ticketing_System.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Welcome to the cinema ticketing" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10"></TextBlock>
+    <Grid Background="#FFF8F5F3">
+        <TextBlock Text="Welcome to the XL Cinemas Ticketing System" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" FontFamily="Arial Rounded MT Bold" FontSize="28" FontWeight="Bold" TextDecorations="{x:Null}" Foreground="#FF000B29"/>
 
         <Image HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
 
-
-        <Button Content="Open User Guide" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10"></Button>
+        <Button x:Name="___Open_User_Guide_" Content="Open User Guide" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="326,0,304,10" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" BorderBrush="#FF000B29" Foreground="#FF000B29" Width="170" RenderTransformOrigin="0.491,0.548">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Color="#FFD70026" Offset="0"/>
+                    <GradientStop Color="#FFF8F5F2" Offset="0.951"/>
+                    <GradientStop Color="#FFD70026" Offset="0"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
 
 
     </Grid>

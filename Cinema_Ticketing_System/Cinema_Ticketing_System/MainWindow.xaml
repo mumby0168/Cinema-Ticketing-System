@@ -37,11 +37,11 @@
         </DataTemplate>
     </Window.Resources>
 
-    <DockPanel>
+    <DockPanel Background="#FF000B29">
 
-        <Label FontStyle="Oblique" FontWeight="Bold" DockPanel.Dock="Top" HorizontalAlignment="Center" Content="Cinema Ticket Booking System"></Label>
+        <Label FontStyle="Oblique" FontWeight="Bold" DockPanel.Dock="Top" HorizontalAlignment="Center" Content="Cinema Ticket Booking System" Foreground="#FFF8F5F2"></Label>
 
-        <StackPanel DockPanel.Dock="Left">
+        <StackPanel DockPanel.Dock="Left" Background="#FF000B29">
             <Button Command="{Binding Path=goToBook}" Padding="10" Margin="5">Book a Ticket</Button>
             <Button Command="{Binding Path=GoToCharts}" Padding="10" Margin="5">View Chart Data</Button>
             <Button Command="{Binding Path=GoToViewAScreen}" Padding="10" Margin="5">View A Screening</Button>

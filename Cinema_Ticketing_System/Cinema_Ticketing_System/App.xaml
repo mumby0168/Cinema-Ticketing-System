@@ -5,6 +5,31 @@
              xmlns:vms="clr-namespace:Cinema_Ticketing_System.ViewModels"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        
+        <LinearGradientBrush x:Key="RedPearlGradientBrush"
+         StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#D70026" Offset="0" />
+            <GradientStop Color="#FFF8F5F3" Offset="0.951" />
+            <GradientStop Color="#D70026" Offset="0" />
+        </LinearGradientBrush>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource RedPearlGradientBrush}" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="outerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="{TemplateBinding Background}" RadiusX="20" RadiusY="20" StrokeThickness="5" Fill="Transparent" />
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" StrokeThickness="20" Fill="{TemplateBinding Background}" RadiusX="20" RadiusY="20" />
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Margin="20" Content="{TemplateBinding Content}" TextBlock.Foreground="Black" />
+                            </DockPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    
     </Application.Resources>
 </Application>
