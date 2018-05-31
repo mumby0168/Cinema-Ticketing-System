@@ -43,6 +43,10 @@ namespace Cinema_Ticketing_System.ViewModels
 
         private void Sort()
         {
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             _tickets = _tickets.OrderBy(d => d.Screening.DateAndTime.Date).ToList();
 
             if (_tickets.Count == 0)
@@ -66,7 +70,6 @@ namespace Cinema_Ticketing_System.ViewModels
             int index = 0;
             foreach (var ticket in _tickets)
             {
-                System.Diagnostics.Debug.WriteLine(ticket.Id + " " + ticket.Screening.DateAndTime);
 
                 if (_weeklyOverviews == null)
                 {
@@ -184,6 +187,9 @@ namespace Cinema_Ticketing_System.ViewModels
             }
 
             WeeklyOverviews = _weeklyOverviews;
+
+            stopwatch.Stop();
+            Debug.WriteLine(stopwatch.Elapsed);
         }
     }
 }
