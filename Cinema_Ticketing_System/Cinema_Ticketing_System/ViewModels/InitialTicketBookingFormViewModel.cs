@@ -223,17 +223,17 @@ namespace Cinema_Ticketing_System.ViewModels
 
             for (int i = 0; i < _childTickets; i++)
             {
-                tickets.Add(new Ticket(){ScreeningId = _selectedScreening.Id, Screening = SelectedScreening, TicketType = TicketType.Child, Price = 20.0});
+                tickets.Add(new Ticket(){ScreeningId = _selectedScreening.Id, Screening = SelectedScreening, TicketType = TicketType.Child, Price = 3.0});
             }
 
             for (int i = 0; i < _adultTickets; i++)
             {
-                tickets.Add(new Ticket() { ScreeningId = _selectedScreening.Id, Screening = SelectedScreening, TicketType = TicketType.Adult, Price = 30.0 });
+                tickets.Add(new Ticket() { ScreeningId = _selectedScreening.Id, Screening = SelectedScreening, TicketType = TicketType.Adult, Price = 7.0 });
             }
 
             for (int i = 0; i < _concessionTickets; i++)
             {
-                tickets.Add(new Ticket() { ScreeningId = _selectedScreening.Id, Screening = SelectedScreening, TicketType = TicketType.Concession, Price = 15.0 });
+                tickets.Add(new Ticket() { ScreeningId = _selectedScreening.Id, Screening = SelectedScreening, TicketType = TicketType.Concession, Price = 5.0 });
             }
 
             if (tickets.Count == 0)

@@ -23,6 +23,10 @@ namespace Cinema_Ticketing_System
     {
         public MainWindow()
         {
+            using (var handle = new Database.DataHandler())
+            {
+                handle.GenerateData();
+            }
             InitializeComponent();
         }
     }
