@@ -50,7 +50,10 @@
                     <ComboBox SelectedItem="{Binding Path=ChosenScreening, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5" ItemsSource="{Binding Path=Screenings, UpdateSourceTrigger=PropertyChanged}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <ComboBoxItem IsSelected="True" IsHitTestVisible="False" Content="{Binding DateAndTime.TimeOfDay}"></ComboBoxItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="2" Text="{Binding DateAndTime.TimeOfDay}"></TextBlock>
+                                    <TextBlock Margin="2" Text="{Binding Film.Name}"></TextBlock>
+                                </StackPanel>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
