@@ -20,7 +20,7 @@
 
         <Label Content="Films on Today" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
 
-        <DatePicker Grid.Row="1" SelectedDate="{Binding Path=DateChosen, UpdateSourceTrigger=PropertyChanged}" Margin="10"></DatePicker>
+        <DatePicker FontSize="15" Margin="100,10,100,10" Grid.Row="1" SelectedDate="{Binding Path=DateChosen, UpdateSourceTrigger=PropertyChanged}" ></DatePicker>
 
         <StackPanel Grid.Row="2" Orientation="Vertical">
 
