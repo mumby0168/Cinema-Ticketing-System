@@ -65,8 +65,7 @@ namespace Cinema_Ticketing_System.Charts
 
             var pieSeries = new PieSeries
             {
-                Title = "Propertions of ticket types for screening on: " + tickets[0].Screening.DateAndTime +
-                        "watching: " + tickets[0].Screening.Film.Name
+               
             };
 
 

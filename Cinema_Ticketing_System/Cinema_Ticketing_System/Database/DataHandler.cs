@@ -110,8 +110,7 @@ namespace Cinema_Ticketing_System.Database
                     }
                 } while (bAdd == false);
 
-                Ticket t = new Ticket();
-                t.TicketType = (TicketType)rand.Next(0, 3);
+                Ticket t = new Ticket {TicketType = (TicketType) rand.Next(0, 3)};
                 switch (t.TicketType)
                 {
                     case TicketType.Adult:
@@ -161,41 +160,53 @@ namespace Cinema_Ticketing_System.Database
 
         public void PopulateFilms()
         {
-            Film film = new Film();
-            film.Genre = Genre.Action;
-            film.Name = "Die Hard";
+            Film film = new Film
+            {
+                Genre = Genre.Action,
+                Name = "Die Hard"
+            };
             m_DatabaseContext.Films.Add(film);
 
-            film = new Film();
-            film.Genre = Genre.Comedy;
-            film.Name = "Happy Gilmore";
+            film = new Film
+            {
+                Genre = Genre.Comedy,
+                Name = "Happy Gilmore"
+            };
             m_DatabaseContext.Films.Add(film);
 
-            film = new Film();
-            film.Genre = Genre.Drama;
-            film.Name = "Interstellar";
+            film = new Film
+            {
+                Genre = Genre.Drama,
+                Name = "Interstellar"
+            };
             m_DatabaseContext.Films.Add(film);
 
-            film = new Film();
-            film.Genre = Genre.Thriller;
-            film.Name = "Women In Black";
+            film = new Film
+            {
+                Genre = Genre.Thriller,
+                Name = "Women In Black"
+            };
             m_DatabaseContext.Films.Add(film);
             
         }
 
         public void PopulateScreens()
         {
-            Screen screen = new Screen();
-            screen.Columns = 10;
-            screen.Rows = 5;
-            screen.Number = 1;
+            Screen screen = new Screen
+            {
+                Columns = 10,
+                Rows = 5,
+                Number = 1
+            };
 
             m_DatabaseContext.Screens.Add(screen);
 
-            screen = new Screen();
-            screen.Columns = 10;
-            screen.Rows = 5;
-            screen.Number = 2;
+            screen = new Screen
+            {
+                Columns = 10,
+                Rows = 5,
+                Number = 2
+            };
             m_DatabaseContext.Screens.Add(screen);
         }
 
@@ -209,46 +220,60 @@ namespace Cinema_Ticketing_System.Database
             screening.DateAndTime = new DateTime(date.Year, date.Month, date.Day, 9, 0, 0);
             m_DatabaseContext.Screenings.Add(screening);
 
-            screening = new Screening();
-            screening.ScreenId = m_DatabaseContext.Screens.ToList()[0].Id;
-            screening.FilmId = films[rand.Next(0, films.Count)].Id;
-            screening.DateAndTime = new DateTime(date.Year, date.Month, date.Day, 12, 0, 0);
+            screening = new Screening
+            {
+                ScreenId = m_DatabaseContext.Screens.ToList()[0].Id,
+                FilmId = films[rand.Next(0, films.Count)].Id,
+                DateAndTime = new DateTime(date.Year, date.Month, date.Day, 12, 0, 0)
+            };
             m_DatabaseContext.Screenings.Add(screening);
 
-            screening = new Screening();
-            screening.ScreenId = m_DatabaseContext.Screens.ToList()[0].Id;
-            screening.FilmId = films[rand.Next(0, films.Count)].Id;
-            screening.DateAndTime = new DateTime(date.Year, date.Month, date.Day, 15, 0, 0);
+            screening = new Screening
+            {
+                ScreenId = m_DatabaseContext.Screens.ToList()[0].Id,
+                FilmId = films[rand.Next(0, films.Count)].Id,
+                DateAndTime = new DateTime(date.Year, date.Month, date.Day, 15, 0, 0)
+            };
             m_DatabaseContext.Screenings.Add(screening);
 
-            screening = new Screening();
-            screening.ScreenId = m_DatabaseContext.Screens.ToList()[0].Id;
-            screening.FilmId = films[rand.Next(0, films.Count)].Id;
-            screening.DateAndTime = new DateTime(date.Year, date.Month, date.Day, 18, 0, 0);
+            screening = new Screening
+            {
+                ScreenId = m_DatabaseContext.Screens.ToList()[0].Id,
+                FilmId = films[rand.Next(0, films.Count)].Id,
+                DateAndTime = new DateTime(date.Year, date.Month, date.Day, 18, 0, 0)
+            };
             m_DatabaseContext.Screenings.Add(screening);
 
-            screening = new Screening();
-            screening.ScreenId = m_DatabaseContext.Screens.ToList()[1].Id;
-            screening.FilmId = films[rand.Next(0, films.Count)].Id;
-            screening.DateAndTime = new DateTime(date.Year, date.Month, date.Day, 9, 0, 0);
+            screening = new Screening
+            {
+                ScreenId = m_DatabaseContext.Screens.ToList()[1].Id,
+                FilmId = films[rand.Next(0, films.Count)].Id,
+                DateAndTime = new DateTime(date.Year, date.Month, date.Day, 9, 0, 0)
+            };
             m_DatabaseContext.Screenings.Add(screening);
 
-            screening = new Screening();
-            screening.ScreenId = m_DatabaseContext.Screens.ToList()[1].Id;
-            screening.FilmId = films[rand.Next(0, films.Count)].Id;
-            screening.DateAndTime = new DateTime(date.Year, date.Month, date.Day, 12, 0, 0);
+            screening = new Screening
+            {
+                ScreenId = m_DatabaseContext.Screens.ToList()[1].Id,
+                FilmId = films[rand.Next(0, films.Count)].Id,
+                DateAndTime = new DateTime(date.Year, date.Month, date.Day, 12, 0, 0)
+            };
             m_DatabaseContext.Screenings.Add(screening);
 
-            screening = new Screening();
-            screening.ScreenId = m_DatabaseContext.Screens.ToList()[1].Id;
-            screening.FilmId = films[rand.Next(0, films.Count)].Id;
-            screening.DateAndTime = new DateTime(date.Year, date.Month, date.Day, 15, 0, 0);
+            screening = new Screening
+            {
+                ScreenId = m_DatabaseContext.Screens.ToList()[1].Id,
+                FilmId = films[rand.Next(0, films.Count)].Id,
+                DateAndTime = new DateTime(date.Year, date.Month, date.Day, 15, 0, 0)
+            };
             m_DatabaseContext.Screenings.Add(screening);
 
-            screening = new Screening();
-            screening.ScreenId = m_DatabaseContext.Screens.ToList()[1].Id;
-            screening.FilmId = films[rand.Next(0, films.Count)].Id;
-            screening.DateAndTime = new DateTime(date.Year, date.Month, date.Day, 18, 0, 0);
+            screening = new Screening
+            {
+                ScreenId = m_DatabaseContext.Screens.ToList()[1].Id,
+                FilmId = films[rand.Next(0, films.Count)].Id,
+                DateAndTime = new DateTime(date.Year, date.Month, date.Day, 18, 0, 0)
+            };
             m_DatabaseContext.Screenings.Add(screening);
         }
 
