@@ -159,7 +159,7 @@ namespace Cinema_Ticketing_System.Database
         }
 
         public void PopulateFilms()
-        {
+        { 
             Film film = new Film
             {
                 Genre = Genre.Action,
