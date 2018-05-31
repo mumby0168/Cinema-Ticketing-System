@@ -69,7 +69,6 @@ namespace Cinema_Ticketing_System.ViewModels
             set
             {
                 _chosenScreening = value;
-                Chart1Clicked.Execute(this);
                 OnPropertyChanged();
             }
         }
@@ -260,6 +259,15 @@ namespace Cinema_Ticketing_System.ViewModels
             Chart2DetailVisibility = Visibility.Collapsed;
             Chart3Visibility = Visibility.Collapsed;
             Chart4Visibility = Visibility.Visible;
+
+
+
+
+
+
+
+
+
         }
 
         #endregion
