@@ -66,8 +66,6 @@ namespace Cinema_Ticketing_System.ViewModels
             int index = 0;
             foreach (var ticket in _tickets)
             {
-                System.Diagnostics.Debug.WriteLine(ticket.Id + " " + ticket.Screening.DateAndTime);
-
                 if (_weeklyOverviews == null)
                 {
                     _weeklyOverviews = new ObservableCollection<WeeklyOverview>();
