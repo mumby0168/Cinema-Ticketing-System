@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,69 +26,84 @@ namespace Cinema_Ticketing_System.Database
         public DataHandler()
         {
             m_DatabaseContext = new CinemaContext();
+        }
 
-            if(m_DatabaseContext.Films.ToList().Count == 0)
+        public void GenerateData()
+        {
+            if (m_DatabaseContext.Films.ToList().Count == 0)
             {
                 PopulateFilms();
                 m_DatabaseContext.SaveChanges();
             }
-            
-            if(m_DatabaseContext.Screens.ToList().Count == 0)
+
+            if (m_DatabaseContext.Screens.ToList().Count == 0)
             {
                 PopulateScreens();
                 m_DatabaseContext.SaveChanges();
             }
 
-            DateTime start = DateTime.Now.AddDays(-14);
+            DateTime start = DateTime.Now.AddDays(-150);
             while (start.DayOfWeek != DayOfWeek.Monday)
             {
                 start = start.AddDays(-1);
             }
 
-            //GenerateScreengins(start, DateTime.Now.AddDays(14));
-            //GenerateHistoricData(start, DateTime.Now);
+            GenerateScreengins(start, DateTime.Now.AddDays(14));
+            GenerateHistoricData(start, DateTime.Now.AddDays(5));
+
             m_DatabaseContext.SaveChanges();
         }
 
+        
+
         public void GenerateHistoricData(DateTime start, DateTime end)
         {
+
+            var screenings = m_DatabaseContext.Screenings.Include(s => s.Screen).ToList();
+            var tickets = m_DatabaseContext.Tickets.ToList();
+
+
             if (start > end)
                 throw new Exception("You plonker");
 
             var curr = start;
             while (curr < end)
             {
-                System.Diagnostics.Debug.WriteLine("Currently on " + curr.ToShortDateString() + " out of " + end.ToShortDateString());
-                foreach (Screening s in m_DatabaseContext.Screenings.Where(S => S.DateAndTime.Day == curr.Day && S.DateAndTime.Month == curr.Month && S.DateAndTime.Year == curr.Year).ToList())
+                foreach (Screening s in screenings.Where(S => S.DateAndTime.Day == curr.Day && S.DateAndTime.Month == curr.Month && S.DateAndTime.Year == curr.Year).ToList())
                 {
-                    if (m_DatabaseContext.Tickets.Where(T => T.ScreeningId == s.Id).ToList().Count == 0)
+                    if (tickets.Where(T => T.ScreeningId == s.Id).ToList().Count == 0)
                     {
-                        PopulateScreening(s.Id);
+                        PopulateScreening(s);
                     }
                 }
 
                 curr = curr.AddDays(1);
             }
-        }
 
-        public void PopulateScreening(int screeningId)
+            m_DatabaseContext.Tickets.AddRange(ticketsToAdd);
+        }
+        private List<Ticket> ticketsToAdd = new List<Ticket>();
+
+        public void PopulateScreening(Screening s)
         {
             Random rand = new Random(DateTime.Now.Millisecond);
-            var screen = m_DatabaseContext.Screenings.Include(S => S.Screen).Where(S => S.Id == screeningId).First().Screen;
-            int num = rand.Next(10, screen.Rows * screen.Columns);
+            var screen = s.Screen;// m_DatabaseContext.Screenings.Include(S => S.Screen).Where(S => S.Id == s.Id).FirstOrDefault().Screen;
+            int num = rand.Next(10, screen.Columns * screen.Rows);
+            int row = 1;
+            int col = 1;
+
             for (int i = 0; i < num; i++)
             {
-                List<Ticket> tickets = m_DatabaseContext.Tickets.Where(T => T.ScreeningId == screeningId).ToList();
+                List<Ticket> tickets = m_DatabaseContext.Tickets.Where(T => T.ScreeningId == s.Id).ToList();
                 bool bAdd = false;
-                int row = 0;
-                int col = 0;
+
                 do
                 {
                     if (tickets.Count == 0)
                         bAdd = true;
 
-                    row = rand.Next(0, screen.Rows - 1);
-                    col = rand.Next(0, screen.Columns - 1);
+                    row = rand.Next(0, screen.Rows);
+                    col = rand.Next(0, screen.Columns);
                     if (tickets.Where(T => T.RowNumber == row && T.ColumnNumber == col).ToList().Count == 0)
                     {
                         bAdd = true;
@@ -95,7 +111,7 @@ namespace Cinema_Ticketing_System.Database
                 } while (bAdd == false);
 
                 Ticket t = new Ticket();
-                t.TicketType = (TicketType)rand.Next(0, 2);
+                t.TicketType = (TicketType)rand.Next(0, 3);
                 switch (t.TicketType)
                 {
                     case TicketType.Adult:
@@ -115,8 +131,8 @@ namespace Cinema_Ticketing_System.Database
                 t.ColumnNumber = col;
                 t.SeatNumber = "";
                 t.SeatNumber += row + col;
-                t.ScreeningId = screeningId;
-                m_DatabaseContext.Tickets.Add(t);
+                t.ScreeningId = s.Id;
+                ticketsToAdd.Add(t);
             }
 
             return;
