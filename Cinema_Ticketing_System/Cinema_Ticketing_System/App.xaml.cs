@@ -13,5 +13,6 @@ namespace Cinema_Ticketing_System
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

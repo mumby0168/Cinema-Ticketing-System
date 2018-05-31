@@ -3,14 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Cinema_Ticketing_System.Database;
 using Cinema_Ticketing_System.Models;
+using OxyPlot;
 using OxyPlot.Series;
 
 namespace Cinema_Ticketing_System.Charts
 {
     public static class ChartCreator
     {
+        /// <summary>
+        /// TODO: This method needs implementing before the deadline.
+        /// </summary>
+        /// <param name="date1"></param>
+        /// <param name="date2"></param>
+        /// <returns></returns>
+        public static PieSeries GetTicketSoldAcrossADate(DateTime date1, DateTime date2)
+        {
+            List<Ticket> ticket = new List<Ticket>();
+
+            using (var handler = new DataHandler())
+            {
+                ticket = handler.GetAllTickets();
+            }
+
+            var sortedTickets = ticket.Where(t =>
+                t.Screening.DateAndTime.Date > date1.Date && t.Screening.DateAndTime.Date < date2).ToList();
+
+            if (sortedTickets.Count == 0)
+            {
+                MessageBox.Show("there are no tickets for those dates");
+                return new PieSeries();
+            }
+
+            sortedTickets.OrderByDescending(t => t.Screening.DateAndTime.Date);
+
+            FunctionSeries series = new FunctionSeries();
+
+            List<DataPoint> points = new List<DataPoint>();
+
+            foreach (var sortedTicket in sortedTickets)
+            {
+
+            }
+                return new PieSeries();
+        }
 
         public static PieSeries GetProportionOfTicketsPerScreeningPieChart(List<Ticket> tickets)
         {
@@ -27,8 +65,7 @@ namespace Cinema_Ticketing_System.Charts
 
             var pieSeries = new PieSeries
             {
-                Title = "Propertions of ticket types for screening on: " + tickets[0].Screening.DateAndTime +
-                        "watching: " + tickets[0].Screening.Film.Name
+               
             };
 
 

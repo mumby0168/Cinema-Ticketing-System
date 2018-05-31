@@ -9,7 +9,8 @@ namespace Cinema_Ticketing_System.Models
         Action,
         Drama,
         Comedy,
-        Thriller
+        Thriller,
+        Horror
     }
     
 

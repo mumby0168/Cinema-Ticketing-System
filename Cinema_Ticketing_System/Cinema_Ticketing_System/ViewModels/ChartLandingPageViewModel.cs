@@ -58,7 +58,7 @@ namespace Cinema_Ticketing_System.ViewModels
             {
                 _dateChosenChart1 = value;
                 DateChosen();
-                OnPropertyChanged();
+                OnPropertyChanged();  
             }
         }
 

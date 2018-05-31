@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Cinema_Ticketing_System.Database.CinemaContextModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Films">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Genre" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Screenings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilmId" Type="int" Nullable="false" />
+          <Property Name="ScreenId" Type="int" Nullable="false" />
+          <Property Name="DateAndTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Screens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Rows" Type="int" Nullable="false" />
+          <Property Name="Columns" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tickets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TicketType" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="ScreeningId" Type="int" Nullable="false" />
+          <Property Name="SeatNumber" Type="nvarchar(max)" />
+          <Property Name="RowNumber" Type="int" Nullable="false" />
+          <Property Name="ColumnNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Screenings_dbo_Films_FilmId">
+          <End Role="Films" Type="Self.Films" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Screenings" Type="Self.Screenings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Films">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Screenings">
+              <PropertyRef Name="FilmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Screenings_dbo_Screens_ScreenId">
+          <End Role="Screens" Type="Self.Screens" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Screenings" Type="Self.Screenings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Screens">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Screenings">
+              <PropertyRef Name="ScreenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tickets_dbo_Screenings_ScreeningId">
+          <End Role="Screenings" Type="Self.Screenings" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Screenings">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="ScreeningId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Cinema_Ticketing_SystemDatabaseCinemaContextModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Films" EntityType="Self.Films" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Screenings" EntityType="Self.Screenings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Screens" EntityType="Self.Screens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Screenings_dbo_Films_FilmId" Association="Self.FK_dbo_Screenings_dbo_Films_FilmId">
+            <End Role="Films" EntitySet="Films" />
+            <End Role="Screenings" EntitySet="Screenings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Screenings_dbo_Screens_ScreenId" Association="Self.FK_dbo_Screenings_dbo_Screens_ScreenId">
+            <End Role="Screens" EntitySet="Screens" />
+            <End Role="Screenings" EntitySet="Screenings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tickets_dbo_Screenings_ScreeningId" Association="Self.FK_dbo_Tickets_dbo_Screenings_ScreeningId">
+            <End Role="Screenings" EntitySet="Screenings" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Cinema_Ticketing_System.Database.CinemaContextModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Film">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Genre" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Screenings" Relationship="Self.FK_dbo_Screenings_dbo_Films_FilmId" FromRole="Films" ToRole="Screenings" />
+        </EntityType>
+        <EntityType Name="Screening">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilmId" Type="Int32" Nullable="false" />
+          <Property Name="ScreenId" Type="Int32" Nullable="false" />
+          <Property Name="DateAndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Film" Relationship="Self.FK_dbo_Screenings_dbo_Films_FilmId" FromRole="Screenings" ToRole="Films" />
+          <NavigationProperty Name="Screen" Relationship="Self.FK_dbo_Screenings_dbo_Screens_ScreenId" FromRole="Screenings" ToRole="Screens" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK_dbo_Tickets_dbo_Screenings_ScreeningId" FromRole="Screenings" ToRole="Tickets" />
+        </EntityType>
+        <EntityType Name="Screen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Rows" Type="Int32" Nullable="false" />
+          <Property Name="Columns" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Screenings" Relationship="Self.FK_dbo_Screenings_dbo_Screens_ScreenId" FromRole="Screens" ToRole="Screenings" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TicketType" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="ScreeningId" Type="Int32" Nullable="false" />
+          <Property Name="SeatNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RowNumber" Type="Int32" Nullable="false" />
+          <Property Name="ColumnNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Screening" Relationship="Self.FK_dbo_Tickets_dbo_Screenings_ScreeningId" FromRole="Tickets" ToRole="Screenings" />
+        </EntityType>
+        <Association Name="FK_dbo_Screenings_dbo_Films_FilmId">
+          <End Role="Films" Type="Self.Film" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Screenings" Type="Self.Screening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Films">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Screenings">
+              <PropertyRef Name="FilmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Screenings_dbo_Screens_ScreenId">
+          <End Role="Screens" Type="Self.Screen" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Screenings" Type="Self.Screening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Screens">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Screenings">
+              <PropertyRef Name="ScreenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tickets_dbo_Screenings_ScreeningId">
+          <End Role="Screenings" Type="Self.Screening" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tickets" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Screenings">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="ScreeningId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Films" EntityType="Self.Film" />
+          <EntitySet Name="Screenings" EntityType="Self.Screening" />
+          <EntitySet Name="Screens" EntityType="Self.Screen" />
+          <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+          <AssociationSet Name="FK_dbo_Screenings_dbo_Films_FilmId" Association="Self.FK_dbo_Screenings_dbo_Films_FilmId">
+            <End Role="Films" EntitySet="Films" />
+            <End Role="Screenings" EntitySet="Screenings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Screenings_dbo_Screens_ScreenId" Association="Self.FK_dbo_Screenings_dbo_Screens_ScreenId">
+            <End Role="Screens" EntitySet="Screens" />
+            <End Role="Screenings" EntitySet="Screenings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tickets_dbo_Screenings_ScreeningId" Association="Self.FK_dbo_Tickets_dbo_Screenings_ScreeningId">
+            <End Role="Screenings" EntitySet="Screenings" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Cinema_Ticketing_SystemDatabaseCinemaContextModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="Cinema_Ticketing_System.Database.CinemaContextModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Films">
+            <EntityTypeMapping TypeName="Cinema_Ticketing_System.Database.CinemaContextModel.Film">
+              <MappingFragment StoreEntitySet="Films">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Screenings">
+            <EntityTypeMapping TypeName="Cinema_Ticketing_System.Database.CinemaContextModel.Screening">
+              <MappingFragment StoreEntitySet="Screenings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FilmId" ColumnName="FilmId" />
+                <ScalarProperty Name="ScreenId" ColumnName="ScreenId" />
+                <ScalarProperty Name="DateAndTime" ColumnName="DateAndTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Screens">
+            <EntityTypeMapping TypeName="Cinema_Ticketing_System.Database.CinemaContextModel.Screen">
+              <MappingFragment StoreEntitySet="Screens">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Rows" ColumnName="Rows" />
+                <ScalarProperty Name="Columns" ColumnName="Columns" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="Cinema_Ticketing_System.Database.CinemaContextModel.Ticket">
+              <MappingFragment StoreEntitySet="Tickets">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TicketType" ColumnName="TicketType" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ScreeningId" ColumnName="ScreeningId" />
+                <ScalarProperty Name="SeatNumber" ColumnName="SeatNumber" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="ColumnNumber" ColumnName="ColumnNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

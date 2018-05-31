@@ -98,6 +98,10 @@
     <Compile Include="Migrations\201805110930474_hm.Designer.cs">
       <DependentUpon>201805110930474_hm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805311106176_hmm.cs" />
+    <Compile Include="Migrations\201805311106176_hmm.Designer.cs">
+      <DependentUpon>201805311106176_hmm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Application Models\DailyOverview.cs" />
     <Compile Include="Models\Application Models\WeeklyOverview.cs" />
     <Compile Include="Properties\Annotations.cs" />
@@ -220,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805110930474_hm.resx">
       <DependentUpon>201805110930474_hm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805311106176_hmm.resx">
+      <DependentUpon>201805311106176_hmm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

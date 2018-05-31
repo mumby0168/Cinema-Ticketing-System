@@ -10,7 +10,7 @@
         xmlns:shittier="clr-namespace:Cinema_Ticketing_System.Elements.Screen"
         WindowState="Maximized"
     mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1000">
+        Title="MainWindow" Height="700" Width="1000" WindowStyle="SingleBorderWindow">
 
     <Window.DataContext>
         <vms:ShellViewModel></vms:ShellViewModel>
