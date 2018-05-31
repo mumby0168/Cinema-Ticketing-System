@@ -12,6 +12,23 @@ namespace Cinema_Ticketing_System.Charts
     public static class ChartCreator
     {
 
+        public static PieSeries GetTicketSoldAcrossADate(DateTime date1, DateTime date2)
+        {
+
+            List<Ticket> ticket = new List<Ticket>();
+
+            using (var handler = new DataHandler())
+            {
+                ticket = handler.GetAllTickets();
+            }
+
+            sortedticke
+
+
+
+                return new PieSeries();
+        }
+
         public static PieSeries GetProportionOfTicketsPerScreeningPieChart(List<Ticket> tickets)
         {
 

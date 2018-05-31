@@ -260,6 +260,15 @@ namespace Cinema_Ticketing_System.ViewModels
             Chart2DetailVisibility = Visibility.Collapsed;
             Chart3Visibility = Visibility.Collapsed;
             Chart4Visibility = Visibility.Visible;
+
+
+
+
+
+
+
+
+
         }
 
         #endregion
