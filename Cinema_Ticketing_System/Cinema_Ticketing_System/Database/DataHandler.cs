@@ -36,13 +36,13 @@ namespace Cinema_Ticketing_System.Database
                 m_DatabaseContext.SaveChanges();
             }
 
-            if (m_DatabaseContext.Screens.ToList().Count == 0)
+            if (m_DatabaseContext.Screens.ToList().Count == 1)
             {
                 PopulateScreens();
                 m_DatabaseContext.SaveChanges();
             }
 
-            DateTime start = DateTime.Now.AddDays(-150);
+            DateTime start = DateTime.Now.AddDays(-50);
             while (start.DayOfWeek != DayOfWeek.Monday)
             {
                 start = start.AddDays(-1);
