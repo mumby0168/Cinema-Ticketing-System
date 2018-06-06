@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,14 +22,38 @@ namespace Cinema_Ticketing_System
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private delegate void Test();
+
+        private void Deb()
+        {
+            System.Diagnostics.Debug.WriteLine("Data Gen Finished");
+        }
+
+        private void Method(Test t)
         {
             using (var handle = new Database.DataHandler())
             {
-                handle.GenerateData();
+                handle.GenerateData(14);
             }
 
+            t();
+        }
+
+        public MainWindow()
+        {
+            Test a = new Test(Deb);
+
+
+            Thread t = new Thread(new ThreadStart(() => 
+            {
+                Method(a);
+            }));
+
+            t.Name = "Data Generator";
+            t.Start();
+
             InitializeComponent();
+            System.Diagnostics.Debug.WriteLine("Loaded");
         }
     }
 }
