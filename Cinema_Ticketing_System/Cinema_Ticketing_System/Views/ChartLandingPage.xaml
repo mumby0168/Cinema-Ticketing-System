@@ -7,7 +7,7 @@
              xmlns:vms="clr-namespace:Cinema_Ticketing_System.ViewModels"
              xmlns:oxy="http://oxyplot.org/wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="#bcd2d0">
 
     <UserControl.DataContext>
         <vms:ChartLandingPageViewModel></vms:ChartLandingPageViewModel>
@@ -105,8 +105,8 @@
         </Grid>
 
 
-        <Grid Grid.Row="1">
-            <oxy:PlotView Margin="10" Model="{Binding Path=Model, UpdateSourceTrigger=PropertyChanged}"></oxy:PlotView>
+        <Grid  Grid.Row="1">
+            <oxy:PlotView Background="#5d576b" Opacity="0.5" Margin="10" Model="{Binding Path=Model, UpdateSourceTrigger=PropertyChanged}"></oxy:PlotView>
         </Grid>
         
 

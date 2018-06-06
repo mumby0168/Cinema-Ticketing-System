@@ -9,15 +9,13 @@
              xmlns:cont="clr-namespace:Cinema_Ticketing_System.Controls"
              xmlns:screensvms="clr-namespace:Cinema_Ticketing_System.ViewModels.Screen"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="#bcd2d0">
 
     <!--<UserControl.DataContext>
         <vms:InitialTicketBookingFormViewModel></vms:InitialTicketBookingFormViewModel>
     </UserControl.DataContext>-->
 
-    <UserControl.Background>
-        <SolidColorBrush Color="White" Opacity="1"></SolidColorBrush>
-    </UserControl.Background>
+
 
     <UserControl.Resources>
         <DataTemplate x:Key="FilmSelector">
@@ -46,7 +44,7 @@
 
 
         <!--TicketForm-->
-        <Grid Grid.Row="1" Margin="10" Grid.Column="0" HorizontalAlignment="Center">
+        <Grid Background="#5d576b" Opacity="0.5" Grid.Row="1" Margin="30" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -61,7 +59,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Width="{Binding ElementName=timelabel, Path=ActualWidth}" Grid.Column="0" DockPanel.Dock="Left" Margin="0,0,10,0" VerticalAlignment="Center" Text="Date:"></TextBlock>
-                <DatePicker  Background="#bcd2d0" MinWidth="100" MaxWidth="350" Name="datepicker" Grid.Column="1" SelectedDate="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"></DatePicker>
+                <DatePicker  Background="#bcd2d0" MinWidth="100" MaxWidth="200" Name="datepicker" Grid.Column="1" SelectedDate="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"></DatePicker>
             </Grid>
 
             <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">

@@ -54,8 +54,6 @@ namespace Cinema_Ticketing_System.Database
             m_DatabaseContext.SaveChanges();
         }
 
-        
-
         public void GenerateHistoricData(DateTime start, DateTime end)
         {
 
