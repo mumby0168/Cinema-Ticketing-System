@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Cinema_Ticketing_System.Models
 
         public double Price { get; set; }
 
+        [MaxLength(50)]
         public String SeatNumber { get; set; }
 
         public int RowNumber { get; set; }

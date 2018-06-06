@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cinema_Ticketing_System.Models;
+using MySql.Data.Entity;
 
 namespace Cinema_Ticketing_System.Database
 {
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class CinemaContext : DbContext
     {
         public DbSet<Ticket> Tickets { get; set; }
