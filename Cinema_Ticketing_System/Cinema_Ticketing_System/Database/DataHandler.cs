@@ -110,8 +110,8 @@ namespace Cinema_Ticketing_System.Database
                     if (tickets.Count == 0)
                         bAdd = true;
 
-                    row = rand.Next(0, screen.Rows);
-                    col = rand.Next(0, screen.Columns);
+                    row = rand.Next(1, screen.Rows);
+                    col = rand.Next(1, screen.Columns);
                     if (tickets.Where(T => T.RowNumber == row && T.ColumnNumber == col).ToList().Count == 0)
                     {
                         bAdd = true;
