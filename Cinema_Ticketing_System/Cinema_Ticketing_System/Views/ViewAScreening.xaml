@@ -52,7 +52,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Width="{Binding ElementName=timelabel, Path=ActualWidth}" Grid.Column="0" DockPanel.Dock="Left" Margin="0,0,10,0" VerticalAlignment="Center" Text="Date:"></TextBlock>
-                <DatePicker Background="#D70026" MinWidth="100" MaxWidth="350" Name="datepicker" Grid.Column="1" SelectedDate="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"></DatePicker>
+                <DatePicker Background ="#bcd2d0" MinWidth="100" MaxWidth="350" Name="datepicker" Grid.Column="1" SelectedDate="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"></DatePicker>
             </Grid>
 
             <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -61,11 +61,11 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Width="{Binding ElementName=timelabel, Path=ActualWidth}" Grid.Column="0" DockPanel.Dock="Left" Text="Film:" Margin="0,0,10,0"></TextBlock>
-                <ComboBox Width="{Binding ElementName=datepicker, Path=ActualWidth}" Height="{Binding ElementName=datepicker, Path=ActualHeight}" Grid.Column="1" SelectedItem="{Binding Path=SelectedFilm}" ItemsSource="{Binding Path=Films, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox Background="#bcd2d0" Width="{Binding ElementName=datepicker, Path=ActualWidth}" Height="{Binding ElementName=datepicker, Path=ActualHeight}" Grid.Column="1" SelectedItem="{Binding Path=SelectedFilm}" ItemsSource="{Binding Path=Films, UpdateSourceTrigger=PropertyChanged}">
 
                     <ComboBox.Resources>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#D70026" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#D70026" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#bcd2d0" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#bcd2d0" />
                     </ComboBox.Resources>
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -82,8 +82,8 @@
                 <TextBlock Name="timelabel" Grid.Column="0" DockPanel.Dock="Left" Text="Time:" Margin="0,0,10,0"></TextBlock>
                 <ComboBox Width="{Binding ElementName=datepicker, Path=ActualWidth}" Grid.Column="1" Height="{Binding ElementName=datepicker, Path=ActualHeight}" SelectedItem="{Binding Path=FilmTimeSelected}" ItemsSource="{Binding Path=FilmTimes, UpdateSourceTrigger=PropertyChanged}">
                     <ComboBox.Resources>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#D70026" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#D70026" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#bcd2d0" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#bcd2d0" />
                     </ComboBox.Resources>
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -93,7 +93,7 @@
                 </ComboBox>
             </Grid>
 
-            <Button Style ="{StaticResource coolbtn}" Command="{Binding Path=OpenSeatPicker}" Margin="10" Content="Submit" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4"></Button>
+            <Button Style ="{StaticResource coolbtn}" Command="{Binding Path=OpenSeatPicker}" Margin="1" Content="Submit" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4"></Button>
 
 
         </Grid>

@@ -8,9 +8,9 @@
         
         <LinearGradientBrush x:Key="RedPearlGradientBrush"
          StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#D70026" Offset="0" />
-            <GradientStop Color="#FFF8F5F3" Offset="0.951" />
-            <GradientStop Color="#D70026" Offset="0" />
+            <GradientStop Color="#5d576b" Offset="0" />
+            <GradientStop Color="#5d576b" Offset="0" />
+            <GradientStop Color="#5d576b" Offset="0" />
         </LinearGradientBrush>
 
         <Style x:Key="coolbtn" TargetType="{x:Type Button}">

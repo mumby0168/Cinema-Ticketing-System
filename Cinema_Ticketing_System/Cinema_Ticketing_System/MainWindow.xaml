@@ -37,11 +37,11 @@
         </DataTemplate>
     </Window.Resources>
 
-    <DockPanel Background="#FF000B29">
+    <DockPanel Background="White">
 
         <Label FontStyle="Oblique" FontWeight="Bold" DockPanel.Dock="Top" HorizontalAlignment="Center" Content="Cinema Ticket Booking System" Foreground="#FFF8F5F2"></Label>
 
-        <StackPanel DockPanel.Dock="Left" Background="#FF000B29">
+        <StackPanel DockPanel.Dock="Left" Background="White">
             <Button Style="{StaticResource coolbtn}" Command="{Binding Path=goToBook}" Content="Book a Ticket" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
             <Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToCharts}" Content="View Chart Data" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
             <Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToViewAScreen}" Content="View a Screening" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
@@ -54,7 +54,7 @@
 
         <Label Content="@Copyright Cinema System 2018" DockPanel.Dock="Bottom" HorizontalAlignment="Center"></Label>
 
-        <Border BorderBrush="Black" BorderThickness="2">
+        <Border BorderBrush="Black" BorderThickness="3">
             <ContentPresenter Content="{Binding Path=ViewModel, UpdateSourceTrigger=PropertyChanged}"></ContentPresenter>
         </Border>
 
