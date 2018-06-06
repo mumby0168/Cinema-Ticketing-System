@@ -28,10 +28,14 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Margin="10">
-                <Button Command="{Binding Path=Chart1Clicked}" Margin="5" Grid.Column="0" Content="Ticket Spread Pie Chart"></Button>
+                <Button Foreground="White" Background ="#5d576b" Command="{Binding Path=Chart1Clicked}" Margin="5" Grid.Column="0" Content="Ticket Spread Pie Chart"></Button>
                 <StackPanel Visibility="{Binding Path=Chart1DetailsVisibilty, UpdateSourceTrigger=PropertyChanged}">
-                    <DatePicker SelectedDate="{Binding Path=DateChosenChart1, UpdateSourceTrigger=PropertyChanged}" Margin="5"></DatePicker>
+                    <DatePicker Background="#bcd2d0" SelectedDate="{Binding Path=DateChosenChart1, UpdateSourceTrigger=PropertyChanged}" Margin="5"></DatePicker>
                     <ComboBox SelectedItem="{Binding Path=ChosenScreening, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5" ItemsSource="{Binding Path=Screenings, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBox.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#bcd2d0" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#bcd2d0" />
+                        </ComboBox.Resources>
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -44,10 +48,14 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="10" Orientation="Vertical" Grid.Column="1">
-                <Button Command="{Binding Path=Chart2Clicked}" Margin="5" Grid.Column="1" Content="Screening % Filled Pie Chart"></Button>
+                <Button Foreground="White" Background="#5d576b" Command="{Binding Path=Chart2Clicked}" Margin="5" Grid.Column="1" Content="Screening % Filled Pie Chart"></Button>
                 <StackPanel Visibility="{Binding Path=Chart2DetailVisibility, UpdateSourceTrigger=PropertyChanged}" >
-                    <DatePicker SelectedDate="{Binding Path=DateChosenChart1, UpdateSourceTrigger=PropertyChanged}" Margin="5"></DatePicker>
+                    <DatePicker Background="#bcd2d0" SelectedDate="{Binding Path=DateChosenChart1, UpdateSourceTrigger=PropertyChanged}" Margin="5"></DatePicker>
                     <ComboBox SelectedItem="{Binding Path=ChosenScreening, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5" ItemsSource="{Binding Path=Screenings, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBox.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#bcd2d0" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#bcd2d0" />
+                        </ComboBox.Resources>
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -61,26 +69,35 @@
                 
             </StackPanel>
             <StackPanel Grid.Column="2" Margin="10">
-                <Button Command="{Binding Path=Chart3Clicked}" Margin="5" Grid.Column="2" Content="Spread Across Genres"></Button>
+                <Button Foreground="White" Background="#5d576b" Command="{Binding Path=Chart3Clicked}" Margin="5" Grid.Column="2" Content="Spread Across Genres"></Button>
                 <StackPanel Visibility="{Binding Path=Chart3Visibility, UpdateSourceTrigger=PropertyChanged}" >
                     <ComboBox Margin="5" SelectedItem="{Binding Path=ChosenGenre, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ItemsSource="{Binding Path=Genres, UpdateSourceTrigger=PropertyChanged}">
-                        
+                        <ComboBox.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#bcd2d0" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#bcd2d0" />
+                        </ComboBox.Resources>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <ComboBoxItem IsHitTestVisible="False" Content="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+
                     </ComboBox>
                 </StackPanel>
             </StackPanel>
 
             <StackPanel Margin="10" Grid.Column="3">
-                <Button Command="{Binding Path=Chart4Clicked}" Margin="5" Grid.Column="3" Content="Tickets Sold Across a date"></Button>
+                <Button Foreground="White" Background="#5d576b" Command="{Binding Path=Chart4Clicked}" Margin="5" Grid.Column="3" Content="Tickets Sold Across a date"></Button>
                 <StackPanel Visibility="{Binding Path=Chart4Visibility, UpdateSourceTrigger=PropertyChanged}" Orientation="Vertical">
                     <WrapPanel>
-                        <Label Name="dateLabel" Content="Start">
+                        <Label Foreground="White" Name="dateLabel" Content="Start">
                         </Label>
-                        <DatePicker Name="picker" SelectedDate="{Binding Path=StartDate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+                        <DatePicker Background="#bcd2d0" Name="picker" SelectedDate="{Binding Path=StartDate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
                     </WrapPanel>
                     <WrapPanel>
-                        <Label Width="{Binding ElementName=dateLabel, Path=ActualWidth}" Content="End">
+                        <Label Foreground="White" Width="{Binding ElementName=dateLabel, Path=ActualWidth}" Content="End">
                         </Label>
-                        <DatePicker Width="{Binding ElementName=picker, Path=ActualWidth}" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+                        <DatePicker Background="#bcd2d0" Width="{Binding ElementName=picker, Path=ActualWidth}" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
                     </WrapPanel>
                 </StackPanel>
             </StackPanel>
