@@ -27,6 +27,7 @@ namespace Cinema_Ticketing_System
             {
                 handle.GenerateData();
             }
+
             InitializeComponent();
         }
     }

@@ -42,7 +42,7 @@ namespace Cinema_Ticketing_System.Database
                 m_DatabaseContext.SaveChanges();
             }
 
-            DateTime start = DateTime.Now.AddDays(-10);
+            DateTime start = DateTime.Now.AddDays(-150);
             while (start.DayOfWeek != DayOfWeek.Monday)
             {
                 start = start.AddDays(-1);
@@ -71,6 +71,7 @@ namespace Cinema_Ticketing_System.Database
             {
                 foreach (Screening s in screenings.Where(S => S.DateAndTime.Day == curr.Day && S.DateAndTime.Month == curr.Month && S.DateAndTime.Year == curr.Year).ToList())
                 {
+                    Debug.WriteLine(curr);
                     if (tickets.Where(T => T.ScreeningId == s.Id).ToList().Count == 0)
                     {
                         PopulateScreening(s);
@@ -194,8 +195,8 @@ namespace Cinema_Ticketing_System.Database
         {
             Screen screen = new Screen
             {
-                Columns = 10,
-                Rows = 5,
+                Columns = 20,
+                Rows = 15,
                 Number = 1
             };
 
@@ -203,8 +204,8 @@ namespace Cinema_Ticketing_System.Database
 
             screen = new Screen
             {
-                Columns = 10,
-                Rows = 5,
+                Columns = 20,
+                Rows = 10,
                 Number = 2
             };
             m_DatabaseContext.Screens.Add(screen);
