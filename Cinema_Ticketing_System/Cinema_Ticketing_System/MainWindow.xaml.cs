@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cinema_Ticketing_System.Annotations;
 using Cinema_Ticketing_System.ViewModels.Screen;
 
 namespace Cinema_Ticketing_System
@@ -22,36 +25,16 @@ namespace Cinema_Ticketing_System
     /// </summary>
     public partial class MainWindow : Window
     {
-        private delegate void Test();
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        private void Deb()
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            System.Diagnostics.Debug.WriteLine("Data Gen Finished");
-        }
-
-        private void Method(Test t)
-        {
-            using (var handle = new Database.DataHandler())
-            {
-                handle.GenerateData(14);
-            }
-
-            t();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public MainWindow()
         {
-            Test a = new Test(Deb);
-
-
-            Thread t = new Thread(new ThreadStart(() => 
-            {
-                Method(a);
-            }));
-
-            t.Name = "Data Generator";
-            t.Start();
-
             InitializeComponent();
             System.Diagnostics.Debug.WriteLine("Loaded");
         }
