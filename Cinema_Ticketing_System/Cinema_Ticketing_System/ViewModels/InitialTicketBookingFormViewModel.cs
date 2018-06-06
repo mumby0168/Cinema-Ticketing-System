@@ -143,7 +143,11 @@ namespace Cinema_Ticketing_System.ViewModels
 
         public void SetFilmsOnDate()
         {
-
+            if (_selectedDateTime < DateTime.Now)
+            {
+                MessageBox.Show("Please pick a film which is in the future.");
+                return;
+            }
             using (var handler = new DataHandler())
             {
                 _currentPossibleScreenings = handler.GetFilmsOnDate(_selectedDateTime);
@@ -243,6 +247,7 @@ namespace Cinema_Ticketing_System.ViewModels
             }
 
             Passer(_selectedScreening.Id, tickets);
+            ClearValues();
         }
 
         private Action<int, List<Ticket>> Passer;
@@ -252,6 +257,16 @@ namespace Cinema_Ticketing_System.ViewModels
             Passer = passer;
             SelectedDateTime = DateTime.Now;
             OpenSeatPicker = new ClickCommand(SubmitForm);
+        }
+
+        private void ClearValues()
+        {
+            Films = new List<Film>();
+            Screening = null;
+            SelectedScreening = null;
+            _currentPossibleScreenings = new List<Screening>();
+            FilmTimes = null;
+            FilmTimeSelected = DateTime.Now;
         }
     }
 }
