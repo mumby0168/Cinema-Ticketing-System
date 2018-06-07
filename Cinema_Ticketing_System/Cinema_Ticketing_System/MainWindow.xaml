@@ -48,6 +48,7 @@
 			<Label FontStyle="Oblique" FontWeight="Bold" DockPanel.Dock="Top" HorizontalAlignment="Center" Content="Cinema Ticket Booking System" Foreground="#FFF8F5F2"></Label>
 
 			<StackPanel DockPanel.Dock="Left" Background="White">
+                <Button Style="{StaticResource coolbtn}" Command="{Binding Path=GoToHomeP}" Content="Home" VerticalAlignment="Top" Padding="10" FontSize="16" HorizontalAlignment="Center" Margin="5"></Button>
 				<Button Style="{StaticResource coolbtn}" Command="{Binding Path=goToBook}" Content="Book a Ticket" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
 				<Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToCharts}" Content="View Chart Data" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
 				<Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToViewAScreen}" Content="View a Screening" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>

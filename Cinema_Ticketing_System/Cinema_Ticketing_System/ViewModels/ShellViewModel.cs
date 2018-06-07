@@ -64,6 +64,8 @@ namespace Cinema_Ticketing_System.ViewModels
 
         public ClickCommand GoToOverviewPage { get; private set; }
 
+        public ClickCommand GoToHomeP { get; private set; }
+
         public ShellViewModel()
         {
             Thread t = new Thread(new ThreadStart(() =>
@@ -86,6 +88,7 @@ namespace Cinema_Ticketing_System.ViewModels
             GoToViewAScreen = new ClickCommand(ViewAScreen);
             screenViewModel = new ScreenViewModel();
             homePageView = new HomePageViewModel();
+            GoToHomeP = new ClickCommand(GoToHome);
             _overCinemaPerformance = new OverCinemaPerformanceViewModel();
 
             InitialTicketBookingFormViewModel = new InitialTicketBookingFormViewModel((screeningId, tickets) =>
@@ -105,6 +108,11 @@ namespace Cinema_Ticketing_System.ViewModels
 
             ViewModel = homePageView;
 
+        }
+
+        public void GoToHome()
+        {
+            ViewModel = homePageView;
         }
 
         public void GoToOverCinemaPerformance()
