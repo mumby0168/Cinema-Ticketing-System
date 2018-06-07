@@ -255,7 +255,7 @@ namespace Cinema_Ticketing_System.ViewModels
         public InitialTicketBookingFormViewModel(Action<int, List<Ticket>> passer)
         {
             Passer = passer;
-            SelectedDateTime = DateTime.Now;
+            SelectedDateTime = DateTime.Now.AddMinutes(20);
             OpenSeatPicker = new ClickCommand(SubmitForm);
         }
 

@@ -44,7 +44,9 @@
 
 
         <!--TicketForm-->
-        <Grid Background="#5d576b" Opacity="0.5" Grid.Row="1" Margin="30" Grid.Column="0">
+        <Border Grid.Row="1" Margin="30" Background="#5d576b" Grid.Column="0" CornerRadius="5" >
+
+            <Grid Grid.Row="1"  Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -58,8 +60,8 @@
                     <ColumnDefinition Width="auto" SharedSizeGroup="TextBlock"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Width="{Binding ElementName=timelabel, Path=ActualWidth}" Grid.Column="0" DockPanel.Dock="Left" Margin="0,0,10,0" VerticalAlignment="Center" Text="Date:"></TextBlock>
-                <DatePicker  Background="#bcd2d0" MinWidth="100" MaxWidth="200" Name="datepicker" Grid.Column="1" SelectedDate="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right"></DatePicker>
+                <TextBlock Width="{Binding ElementName=timelabel, Path=ActualWidth}" Grid.Column="0"  Text="Date:"></TextBlock>
+                <DatePicker  Background="#bcd2d0" MinWidth="100" MaxWidth="200" Name="datepicker" Grid.Column="1" SelectedDate="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}" ></DatePicker>
             </Grid>
 
             <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -124,7 +126,8 @@
             <Button Style ="{StaticResource coolbtn}" Command="{Binding Path=OpenSeatPicker}" Margin="2" HorizontalAlignment="Center" Content="Submit" Grid.Row="4"></Button>
 
 
-        </Grid>
+            </Grid>
+        </Border>
 
         <!--TicketDisplay-->
 
