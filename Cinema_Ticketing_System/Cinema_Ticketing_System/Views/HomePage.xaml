@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vms="clr-namespace:Cinema_Ticketing_System.ViewModels"
              xmlns:local="clr-namespace:Cinema_Ticketing_System.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <vms:HomePageViewModel></vms:HomePageViewModel>
+    </UserControl.DataContext>
     <Grid Background="#FFF8F5F3">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -17,7 +22,7 @@
 
     <Image Grid.Row="1" Source="pack://application:,,,/Resources/cinema-logo.png" ClipToBounds="True" Visibility="Visible"></Image>
 
-        <Button Grid.Row="2" x:Name="Open_User_Guide" Style ="{StaticResource coolbtn}" Content="Open User Guide" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" BorderBrush="#FF000B29" Foreground="AntiqueWhite" RenderTransformOrigin="0.491,0.548">
+        <Button Command="{Binding Path=OpenPdfClick}" Grid.Row="2" x:Name="Open_User_Guide" Style ="{StaticResource coolbtn}" Content="Open User Guide" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" BorderBrush="#FF000B29" Foreground="AntiqueWhite" RenderTransformOrigin="0.491,0.548">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                     <GradientStop Color="#5d576b" Offset="0"/>
