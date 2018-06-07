@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Cinema_Ticketing_System.ViewModels.Commands;
 using Cinema_Ticketing_System.ViewModels.Screen;
 using Cinema_Ticketing_System.Views;
+using System.Windows;
+using System.Threading;
 
 namespace Cinema_Ticketing_System.ViewModels
 {
@@ -24,6 +26,21 @@ namespace Cinema_Ticketing_System.ViewModels
             }
         }
 
+        private Visibility _visibility = Visibility.Visible;
+        public Visibility visibility
+        {
+            get
+            {
+                return _visibility;
+            }
+
+            set
+            {
+                System.Diagnostics.Debug.WriteLine(value);
+                _visibility = value;
+                OnPropertyChanged("visibility");
+            }
+        }
 
         private ScreenViewModel screenViewModel;
 
@@ -48,7 +65,20 @@ namespace Cinema_Ticketing_System.ViewModels
         public ClickCommand GoToOverviewPage { get; private set; }
 
         public ShellViewModel()
-        {            
+        {
+            Thread t = new Thread(new ThreadStart(() =>
+            {
+                using (var handle = new Database.DataHandler())
+                {
+                    handle.GenerateData(7);
+                }
+
+                visibility = Visibility.Collapsed;
+            }));
+
+            t.Name = "Data Generator";
+            t.Start();
+
             GoToOverviewPage = new ClickCommand(GoToOverCinemaPerformance);
             goToBook = new ClickCommand(BookTicketClicked);
             goToViewAScreening = new ClickCommand(ViewAScreen);

@@ -71,7 +71,14 @@ namespace Cinema_Ticketing_System.Elements.Screen
 
                 if(Selected == true)
                 {
-                    Colour = Brushes.Green;
+                    if (NewSeat)
+                    {
+                        Colour = Brushes.Aqua;
+                    }
+                    else
+                    {
+                        Colour = Brushes.Green;
+                    }
                     PersonVisibility = Visibility.Visible;
                 }
 
@@ -143,6 +150,20 @@ namespace Cinema_Ticketing_System.Elements.Screen
             }
         }
 
+        private bool _NewSeat = false;
+        public bool NewSeat
+        {
+            get
+            {
+                return _NewSeat;
+            }
+            set
+            {
+                _NewSeat = value;
+                OnPropertyChanged("NewSeat");
+            }
+        }
+
         private static bool _AddingEnabled = false;
         public static bool AddingEnabled
         {
@@ -196,7 +217,14 @@ namespace Cinema_Ticketing_System.Elements.Screen
                 else if (!Selected && AddingEnabled)
                 {
                     Selected = true;
-                    Colour = Brushes.Green;
+                    if (NewSeat)
+                    {
+                        Colour = Brushes.Aqua;
+                    }
+                    else
+                    {
+                        Colour = Brushes.Green;
+                    }
                     PersonVisibility = Visibility.Visible;
                 }
 

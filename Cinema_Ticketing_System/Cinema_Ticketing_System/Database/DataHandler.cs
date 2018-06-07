@@ -28,8 +28,11 @@ namespace Cinema_Ticketing_System.Database
             m_DatabaseContext = new CinemaContext();
         }
 
-        public void GenerateData()
+        public void GenerateData(int iNumDays)
         {
+            if (iNumDays < 0)
+                iNumDays *= -1;
+
             if (m_DatabaseContext.Films.ToList().Count == 0)
             {
                 PopulateFilms();
@@ -42,21 +45,23 @@ namespace Cinema_Ticketing_System.Database
                 m_DatabaseContext.SaveChanges();
             }
 
-            DateTime start = DateTime.Now.AddDays(-150);
+            DateTime start = DateTime.Now.AddDays(-iNumDays);
             while (start.DayOfWeek != DayOfWeek.Monday)
             {
                 start = start.AddDays(-1);
             }
 
             GenerateScreengins(start, DateTime.Now.AddDays(14));
-            GenerateHistoricData(start, DateTime.Now.AddDays(5));
+            GenerateHistoricData(start, DateTime.Now.AddDays(2));
 
             m_DatabaseContext.SaveChanges();
         }
 
+        private List<Ticket> intitialTickets = null;
+
         public void GenerateHistoricData(DateTime start, DateTime end)
         {
-
+            intitialTickets = m_DatabaseContext.Tickets.ToList();
             var screenings = m_DatabaseContext.Screenings.Include(s => s.Screen).ToList();
             var tickets = m_DatabaseContext.Tickets.ToList();
 
@@ -67,9 +72,9 @@ namespace Cinema_Ticketing_System.Database
             var curr = start;
             while (curr < end)
             {
+                Debug.WriteLine(curr);
                 foreach (Screening s in screenings.Where(S => S.DateAndTime.Day == curr.Day && S.DateAndTime.Month == curr.Month && S.DateAndTime.Year == curr.Year).ToList())
                 {
-                    Debug.WriteLine(curr);
                     if (tickets.Where(T => T.ScreeningId == s.Id).ToList().Count == 0)
                     {
                         PopulateScreening(s);
@@ -87,13 +92,15 @@ namespace Cinema_Ticketing_System.Database
         {
             Random rand = new Random(DateTime.Now.Millisecond);
             var screen = s.Screen;// m_DatabaseContext.Screenings.Include(S => S.Screen).Where(S => S.Id == s.Id).FirstOrDefault().Screen;
-            int num = rand.Next(10, screen.Columns * screen.Rows);
+            int num = rand.Next(10, (screen.Columns * screen.Rows) - 5);
             int row = 1;
             int col = 1;
+            List<Ticket> tickets = new List<Ticket>(intitialTickets);
 
             for (int i = 0; i < num; i++)
             {
-                List<Ticket> tickets = m_DatabaseContext.Tickets.Where(T => T.ScreeningId == s.Id).ToList();
+                tickets = tickets.Where(T => T.ScreeningId == s.Id).ToList();
+
                 bool bAdd = false;
 
                 do
@@ -101,8 +108,8 @@ namespace Cinema_Ticketing_System.Database
                     if (tickets.Count == 0)
                         bAdd = true;
 
-                    row = rand.Next(0, screen.Rows);
-                    col = rand.Next(0, screen.Columns);
+                    row = rand.Next(1, screen.Rows);
+                    col = rand.Next(1, screen.Columns);
                     if (tickets.Where(T => T.RowNumber == row && T.ColumnNumber == col).ToList().Count == 0)
                     {
                         bAdd = true;
@@ -130,7 +137,9 @@ namespace Cinema_Ticketing_System.Database
                 t.SeatNumber = "";
                 t.SeatNumber += row + col;
                 t.ScreeningId = s.Id;
+                tickets = new List<Ticket>(intitialTickets);
                 ticketsToAdd.Add(t);
+                tickets.Add(t);
             }
 
             return;
@@ -186,7 +195,62 @@ namespace Cinema_Ticketing_System.Database
                 Name = "Women In Black"
             };
             m_DatabaseContext.Films.Add(film);
-            
+
+            film = new Film
+            {
+                Genre = Genre.Action,
+                Name = "Die Hard 2"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Comedy,
+                Name = "Longest Yard"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Action,
+                Name = "Shooter"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Thriller,
+                Name = "Hunger Games"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Action,
+                Name = "Die Hard 3"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Comedy,
+                Name = "Click"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Action,
+                Name = "Harry Potter: The Chamber of Secrets"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Thriller,
+                Name = "Hunger Games 2"
+            };
+            m_DatabaseContext.Films.Add(film);
         }
 
         public void PopulateScreens()

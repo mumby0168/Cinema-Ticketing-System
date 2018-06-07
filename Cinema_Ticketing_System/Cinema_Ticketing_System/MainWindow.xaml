@@ -36,30 +36,37 @@
             <vs:OverCinemaPerformanceView></vs:OverCinemaPerformanceView>
         </DataTemplate>
     </Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Label Name="Loading_Label" Grid.Row="0" FontSize="30px" Visibility="{Binding Path=visibility, UpdateSourceTrigger=PropertyChanged}">Generating random data... This will disapear when generation is complete.</Label>
+		
+		<DockPanel Grid.Row="1" Background="White">
 
-    <DockPanel Background="White">
+			<Label FontStyle="Oblique" FontWeight="Bold" DockPanel.Dock="Top" HorizontalAlignment="Center" Content="Cinema Ticket Booking System" Foreground="#FFF8F5F2"></Label>
 
-        <Label FontStyle="Oblique" FontWeight="Bold" DockPanel.Dock="Top" HorizontalAlignment="Center" Content="Cinema Ticket Booking System" Foreground="#FFF8F5F2"></Label>
+			<StackPanel DockPanel.Dock="Left" Background="White">
+				<Button Style="{StaticResource coolbtn}" Command="{Binding Path=goToBook}" Content="Book a Ticket" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
+				<Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToCharts}" Content="View Chart Data" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
+				<Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToViewAScreen}" Content="View a Screening" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
+				<Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToOverviewPage}" Content="Cinema Performance" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
+			</StackPanel>
 
-        <StackPanel DockPanel.Dock="Left" Background="White">
-            <Button Style="{StaticResource coolbtn}" Command="{Binding Path=goToBook}" Content="Book a Ticket" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
-            <Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToCharts}" Content="View Chart Data" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
-            <Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToViewAScreen}" Content="View a Screening" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
-            <Button Style ="{StaticResource coolbtn}" Command="{Binding Path=GoToOverviewPage}" Content="Cinema Performance" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" Padding="10" Margin="5"></Button>
-        </StackPanel>
-
-        <StackPanel Margin="10" DockPanel.Dock="Right">
+			<StackPanel Margin="10" DockPanel.Dock="Right">
             
-        </StackPanel>
+			</StackPanel>
 
-        <Label Content="@Copyright Cinema System 2018" DockPanel.Dock="Bottom" HorizontalAlignment="Center"></Label>
+			<Label Content="@Copyright Cinema System 2018" DockPanel.Dock="Bottom" HorizontalAlignment="Center"></Label>
 
-        <Border BorderBrush="Black" BorderThickness="3">
-            <ContentPresenter Content="{Binding Path=ViewModel, UpdateSourceTrigger=PropertyChanged}"></ContentPresenter>
-        </Border>
+			<Border BorderBrush="Black" BorderThickness="3">
+				<ContentPresenter Content="{Binding Path=ViewModel, UpdateSourceTrigger=PropertyChanged}"></ContentPresenter>
+			</Border>
 
         
 
-    </DockPanel>
+		</DockPanel>
+	</Grid>
 </Window>
                                                                                                             

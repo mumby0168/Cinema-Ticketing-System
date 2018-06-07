@@ -230,6 +230,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
                                 seat.ColumnNumber = x;
                                 seat.CanEdit = false;
                                 seat.Selected = true;
+                                seat.NewSeat = bNewSeat;
                                 _Seats.Add(seat);
                                 SeatingGrid.Children.Add(seat);
 
@@ -248,6 +249,7 @@ namespace Cinema_Ticketing_System.Elements.Screen
                         seat.Selected = false;
                         seat.RowNumber = y;
                         seat.ColumnNumber = x;
+                        seat.NewSeat = bNewSeat;
                         _Seats.Add(seat);
                         SeatingGrid.Children.Add(seat);
                     }
@@ -272,6 +274,8 @@ namespace Cinema_Ticketing_System.Elements.Screen
                         {
                             if(s.AssociatedTicket == t)
                             {
+                                s.NewSeat = false;
+                                s.Colour = Brushes.Green;
                                 s.CanEdit = false;
                             }
                         }
