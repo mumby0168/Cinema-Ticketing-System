@@ -7,11 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#FFF8F5F3">
-        <TextBlock Text="Welcome to the XL Cinemas Ticketing System" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" FontFamily="Arial Rounded MT Bold" FontSize="28" FontWeight="Bold" TextDecorations="{x:Null}" Foreground="#FF000B29"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="Welcome to the XL Cinemas Ticketing System" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10" FontFamily="Arial Rounded MT Bold" FontSize="28" FontWeight="Bold" TextDecorations="{x:Null}" Foreground="#FF000B29"/>
 
-        <Image HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+    <Image Grid.Row="1" Source="pack://siteoforigin:,,,/Imgs/cinema-logo.png" ClipToBounds="True" Visibility="Visible"></Image>
 
-        <Button x:Name="Open_User_Guide" Style ="{StaticResource coolbtn}" Content="Open User Guide" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" BorderBrush="#FF000B29" Foreground="AntiqueWhite" RenderTransformOrigin="0.491,0.548">
+        <Button Grid.Row="2" x:Name="Open_User_Guide" Style ="{StaticResource coolbtn}" Content="Open User Guide" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="Arial Nova Cond" FontSize="16" FontWeight="Bold" BorderBrush="#FF000B29" Foreground="AntiqueWhite" RenderTransformOrigin="0.491,0.548">
             <Button.Background>
                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                     <GradientStop Color="#5d576b" Offset="0"/>

@@ -270,5 +270,17 @@
   <ItemGroup>
     <Resource Include="Imgs\person_black_216x216.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\popcorn.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imgs\Popcorn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imgs\Popcorn2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imgs\cinema-logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
