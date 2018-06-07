@@ -274,6 +274,8 @@ namespace Cinema_Ticketing_System.Elements.Screen
                         {
                             if(s.AssociatedTicket == t)
                             {
+                                s.NewSeat = false;
+                                s.Colour = Brushes.Green;
                                 s.CanEdit = false;
                             }
                         }
