@@ -60,7 +60,7 @@
                     <ColumnDefinition Width="auto" SharedSizeGroup="TextBlock"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Width="{Binding ElementName=timelabel, Path=ActualWidth}" Grid.Column="0"  Text="Date:"></TextBlock>
+                <TextBlock Width="{Binding ElementName=timelabel, Path=ActualWidth}" Grid.Column="0"  Text=""></TextBlock>
                 <DatePicker  Background="#bcd2d0" MinWidth="100" MaxWidth="200" Name="datepicker" Grid.Column="1" SelectedDate="{Binding Path=SelectedDateTime, UpdateSourceTrigger=PropertyChanged}" ></DatePicker>
             </Grid>
 

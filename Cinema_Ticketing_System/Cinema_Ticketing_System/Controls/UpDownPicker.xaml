@@ -13,23 +13,9 @@
         </Grid.ColumnDefinitions>
         <TextBlock TextAlignment="Center" Margin="0" MinHeight="25" Name="ValueTextBox" Background="White" MinWidth="50" Text="{Binding Path=Value}"></TextBlock>
         <StackPanel Height="{Binding ElementName=ValueTextBox, Path=ActualHeight}" Grid.Column="1" Orientation="Vertical">
-            <Button Click="Increase_Click" Name="Increase" Content="+" Padding="10,0,10,0" Margin="0" FontSize="8">
-                <Button.Background>
-                    <LinearGradientBrush>
-                            <GradientStop Color="#5d576b" Offset="0" />
-                        <GradientStop Color="#5d576b" Offset="0" />
-                        <GradientStop Color="#5d576b" Offset="0" />
-                        </LinearGradientBrush>
-                    </Button.Background>
+            <Button Background="#bcd2d0" Foreground="Gray" Click="Increase_Click" Name="Increase" Content="+" Padding="10,0,10,0" Margin="0" FontSize="8">
             </Button>
-            <Button  Click="Decrease_Click" Name="Decrease" Content="-" Padding="10,0,10,0" Margin="0" FontSize="8">
-                <Button.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="#5d576b" Offset="0" />
-                        <GradientStop Color="#5d576b" Offset="0" />
-                        <GradientStop Color="#5d576b" Offset="0" />
-                    </LinearGradientBrush>
-                </Button.Background>
+            <Button Background="#bcd2d0" Foreground="Gray"  Click="Decrease_Click" Name="Decrease" Content="-" Padding="10,0,10,0" Margin="0" FontSize="8">
             </Button>
         </StackPanel>
     </Grid>
