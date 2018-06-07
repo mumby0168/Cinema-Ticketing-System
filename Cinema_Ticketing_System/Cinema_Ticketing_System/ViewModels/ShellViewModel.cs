@@ -70,7 +70,7 @@ namespace Cinema_Ticketing_System.ViewModels
             {
                 using (var handle = new Database.DataHandler())
                 {
-                    handle.GenerateData(14);
+                    handle.GenerateData(7);
                 }
 
                 visibility = Visibility.Collapsed;

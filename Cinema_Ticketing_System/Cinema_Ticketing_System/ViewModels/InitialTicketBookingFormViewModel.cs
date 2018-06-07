@@ -141,13 +141,23 @@ namespace Cinema_Ticketing_System.ViewModels
             }
         }
 
+   
         public void SetFilmsOnDate()
         {
-            if (_selectedDateTime < DateTime.Now)
+            if (_selectedDateTime < DateTime.Now.AddMinutes(-10))
             {
-                MessageBox.Show("Please pick a film which is in the future.");
-                return;
+                MessageBox.Show("No screenings left for this day ! Please select a date in the future !");
+
+                if (SelectedDateTime.Date == DateTime.Now.Date)
+                {
+                    SelectedDateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1, 0, 0, 0);
+                }
+                else
+                {
+                    SelectedDateTime = DateTime.Now;
+                }
             }
+
             using (var handler = new DataHandler())
             {
                 _currentPossibleScreenings = handler.GetFilmsOnDate(_selectedDateTime);
@@ -156,6 +166,11 @@ namespace Cinema_Ticketing_System.ViewModels
             var films = new List<Film>();
             foreach (var currentPossibleScreening in _currentPossibleScreenings)
             {
+                if (currentPossibleScreening.DateAndTime < _selectedDateTime.AddMinutes(-10))
+                {
+                    continue;
+                }
+
                 if (films.Count != 0)
                 {
                     bool Add = true;
@@ -177,6 +192,20 @@ namespace Cinema_Ticketing_System.ViewModels
                 {
                     films.Add(currentPossibleScreening.Film);
                 }
+            }
+
+            if (films.Count == 0)
+            {
+                if (SelectedDateTime.Date == DateTime.Now.Date)
+                {
+                    SelectedDateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1, 0, 0, 0);
+                }
+                else
+                {
+                    SelectedDateTime = DateTime.Now;
+                }
+
+                return;
             }
 
             Films = films;

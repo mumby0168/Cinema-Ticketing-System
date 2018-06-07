@@ -95,18 +95,16 @@ namespace Cinema_Ticketing_System.Database
             int num = rand.Next(10, (screen.Columns * screen.Rows) - 5);
             int row = 1;
             int col = 1;
+            List<Ticket> tickets = new List<Ticket>(intitialTickets);
 
             for (int i = 0; i < num; i++)
             {
-                
-                
+                tickets = tickets.Where(T => T.ScreeningId == s.Id).ToList();
+
                 bool bAdd = false;
 
                 do
                 {
-                    List<Ticket> tickets = new List<Ticket>(intitialTickets);
-                    tickets.AddRange(ticketsToAdd);
-                    tickets = tickets.Where(T => T.ScreeningId == s.Id).ToList();
                     if (tickets.Count == 0)
                         bAdd = true;
 
@@ -139,7 +137,9 @@ namespace Cinema_Ticketing_System.Database
                 t.SeatNumber = "";
                 t.SeatNumber += row + col;
                 t.ScreeningId = s.Id;
+                tickets = new List<Ticket>(intitialTickets);
                 ticketsToAdd.Add(t);
+                tickets.Add(t);
             }
 
             return;
@@ -195,7 +195,62 @@ namespace Cinema_Ticketing_System.Database
                 Name = "Women In Black"
             };
             m_DatabaseContext.Films.Add(film);
-            
+
+            film = new Film
+            {
+                Genre = Genre.Action,
+                Name = "Die Hard 2"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Comedy,
+                Name = "Longest Yard"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Action,
+                Name = "Shooter"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Thriller,
+                Name = "Hunger Games"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Action,
+                Name = "Die Hard 3"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Comedy,
+                Name = "Click"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Action,
+                Name = "Harry Potter: The Chamber of Secrets"
+            };
+            m_DatabaseContext.Films.Add(film);
+
+            film = new Film
+            {
+                Genre = Genre.Thriller,
+                Name = "Hunger Games 2"
+            };
+            m_DatabaseContext.Films.Add(film);
         }
 
         public void PopulateScreens()
